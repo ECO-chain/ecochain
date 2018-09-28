@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Ecochain Core
+Comment=Connect to the Ecochain P2P Network
+Exec=ecoc-qt %u
+Terminal=false
+Type=Application
+Icon=ecoc128
+MimeType=x-scheme-handler/ecoc;
+Categories=Office;Finance;

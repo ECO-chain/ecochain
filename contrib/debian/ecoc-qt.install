@@ -1,0 +1,6 @@
+usr/local/bin/ecoc-qt usr/bin
+share/pixmaps/ecoc32.xpm usr/share/pixmaps
+share/pixmaps/ecoc16.xpm usr/share/pixmaps
+share/pixmaps/ecoc128.png usr/share/pixmaps
+debian/ecoc-qt.desktop usr/share/applications
+debian/ecoc-qt.protocol usr/share/kde4/services/

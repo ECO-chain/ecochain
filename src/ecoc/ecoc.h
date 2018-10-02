@@ -12,7 +12,7 @@ namespace ecoc {
   const int LastPoWBlock = 1000 ; // turning block from PoW to PoS
   const int BlockTime= 2 * 64; // block time creation target
   const int granularity = 15;
-  const int consensusMultisigners = 3;
+  const int consensusMultisigners = 10;
   const int coinbaseMaturity = 500;
   const std::string ecoUnit = "ECO";
   const int MinerSleepInSecs = 60; // delay the block creation for a minute

@@ -1,0 +1,1 @@
+DGP is breaking decentralization. It gives much power to superadmin. It consists as a "point of failure", it creates a "head" in a headless architecture. In this brabch I am going to remove DGP. We must decide, after getting feedback from community, if we are going to keep DGP or not.

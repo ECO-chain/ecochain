@@ -3,27 +3,14 @@
 #include "policy/policy.h"
 
 /** The maximum allowed size for a serialized block, in bytes (only for buffer size limits) */
-unsigned int dgpMaxBlockSerSize = 8000000;
+unsigned int MaxBlockSerSize = WITNESS_SCALE_FACTOR * ecoc::blockSizeLimit;
 /** The maximum allowed weight for a block, see BIP 141 (network rule) */
-unsigned int dgpMaxBlockWeight = 8000000;
+unsigned int MaxBlockWeight = WITNESS_SCALE_FACTOR * ecoc::blockSizeLimit;
 /** The maximum allowed size for a block excluding witness data, in bytes (network rule) */
-unsigned int dgpMaxBlockBaseSize = 2000000;
-
-unsigned int dgpMaxBlockSize = ecoc::blockSizeLimit;
+unsigned int MaxBlockBaseSize = ecoc::blockSizeLimit;
+unsigned int MaxBlockSize = ecoc::blockSizeLimit;
 
 /** The maximum allowed number of signature check operations in a block (network rule) */
-int64_t dgpMaxBlockSigOps = 80000;
-
-unsigned int dgpMaxProtoMsgLength = 8000000;
-
-unsigned int dgpMaxTxSigOps = 16000;
-
-void updateBlockSizeParams(unsigned int newBlockSize){
-    unsigned int newSizeForParams=WITNESS_SCALE_FACTOR*newBlockSize;
-    dgpMaxBlockSerSize=newSizeForParams;
-    dgpMaxBlockWeight=newSizeForParams;
-    dgpMaxBlockBaseSize=newBlockSize;
-    dgpMaxBlockSigOps=(int64_t)(newSizeForParams/100);
-    dgpMaxTxSigOps = (unsigned int)(dgpMaxBlockSigOps/5);
-    dgpMaxProtoMsgLength=newSizeForParams;
-}
+int64_t MaxBlockSigOps = WITNESS_SCALE_FACTOR * MaxBlockBaseSize/100;
+unsigned int MaxProtoMsgLength = WITNESS_SCALE_FACTOR  * ecoc::blockSizeLimit;
+unsigned int MaxTxSigOps = MaxBlockSigOps/5;

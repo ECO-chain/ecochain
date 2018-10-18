@@ -705,7 +705,7 @@ bool CNode::ReceiveMsgBytes(const char *pch, unsigned int nBytes, bool& complete
         if (handled < 0)
                 return false;
 
-        if (msg.in_data && msg.hdr.nMessageSize > dgpMaxProtoMsgLength) {
+        if (msg.in_data && msg.hdr.nMessageSize > MaxProtoMsgLength) {
             LogPrint("net", "Oversized message from peer=%i, disconnecting\n", GetId());
             return false;
         }
@@ -2554,7 +2554,7 @@ bool CConnman::OutboundTargetReached(bool historicalBlockServingLimit)
     {
         // keep a large enough buffer to at least relay each block once
         uint64_t timeLeftInCycle = GetMaxOutboundTimeLeftInCycle();
-        uint64_t buffer = timeLeftInCycle / 600 * dgpMaxBlockSerSize;
+        uint64_t buffer = timeLeftInCycle / 600 * MaxBlockSerSize;
         if (buffer >= nMaxOutboundLimit || nMaxOutboundTotalBytesSentInCycle >= nMaxOutboundLimit - buffer)
             return true;
     }

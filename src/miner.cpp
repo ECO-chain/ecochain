@@ -88,7 +88,7 @@ BlockAssembler::BlockAssembler(const CChainParams& _chainparams)
     bool fWeightSet = false;
     if (IsArgSet("-blockmaxweight")) {
         nBlockMaxWeight = GetArg("-blockmaxweight", DEFAULT_BLOCK_MAX_WEIGHT);
-        nBlockMaxSize = dgpMaxBlockSerSize;
+        nBlockMaxSize = MaxBlockSerSize;
         fWeightSet = true;
     }
     if (IsArgSet("-blockmaxsize")) {
@@ -105,12 +105,12 @@ BlockAssembler::BlockAssembler(const CChainParams& _chainparams)
         blockMinFeeRate = CFeeRate(DEFAULT_BLOCK_MIN_TX_FEE);
     }
 
-    // Limit weight to between 4K and dgpMaxBlockWeight-4K for sanity:
-    nBlockMaxWeight = std::max((unsigned int)4000, std::min((unsigned int)(dgpMaxBlockWeight-4000), nBlockMaxWeight));
-    // Limit size to between 1K and dgpMaxBlockSerSize-1K for sanity:
-    nBlockMaxSize = std::max((unsigned int)1000, std::min((unsigned int)(dgpMaxBlockSerSize-1000), nBlockMaxSize));
+    // Limit weight to between 4K and MaxBlockWeight-4K for sanity:
+    nBlockMaxWeight = std::max((unsigned int)4000, std::min((unsigned int)(MaxBlockWeight-4000), nBlockMaxWeight));
+    // Limit size to between 1K and MaxBlockSerSize-1K for sanity:
+    nBlockMaxSize = std::max((unsigned int)1000, std::min((unsigned int)(MaxBlockSerSize-1000), nBlockMaxSize));
     // Whether we need to account for byte usage (in addition to weight usage)
-    fNeedSizeAccounting = (nBlockMaxSize < dgpMaxBlockSerSize-1000);
+    fNeedSizeAccounting = (nBlockMaxSize < MaxBlockSerSize-1000);
 }
 
 void BlockAssembler::resetBlock()
@@ -442,7 +442,7 @@ bool BlockAssembler::TestPackage(uint64_t packageSize, int64_t packageSigOpsCost
     // TODO: switch to weight-based accounting for packages instead of vsize-based accounting.
     if (nBlockWeight + WITNESS_SCALE_FACTOR * packageSize >= nBlockMaxWeight)
         return false;
-    if (nBlockSigOpsCost + packageSigOpsCost >= (uint64_t)dgpMaxBlockSigOps)
+    if (nBlockSigOpsCost + packageSigOpsCost >= (uint64_t)MaxBlockSigOps)
         return false;
     return true;
 }
@@ -502,10 +502,10 @@ bool BlockAssembler::TestForBlock(CTxMemPool::txiter iter)
         }
     }
 
-    if (nBlockSigOpsCost + iter->GetSigOpCost() >= (uint64_t)dgpMaxBlockSigOps) {
+    if (nBlockSigOpsCost + iter->GetSigOpCost() >= (uint64_t)MaxBlockSigOps) {
         // If the block has room for no more sig ops then
         // flag that the block is finished
-        if (nBlockSigOpsCost > (uint64_t)dgpMaxBlockSigOps - 8) {
+        if (nBlockSigOpsCost > (uint64_t)MaxBlockSigOps - 8) {
             blockFinished = true;
             return false;
         }
@@ -525,11 +525,11 @@ bool BlockAssembler::TestForBlock(CTxMemPool::txiter iter)
 
 bool BlockAssembler::CheckBlockBeyondFull()
 {
-    if (nBlockSize > dgpMaxBlockSerSize) {
+    if (nBlockSize > MaxBlockSerSize) {
         return false;
     }
 
-    if (nBlockSigOpsCost * WITNESS_SCALE_FACTOR > (uint64_t)dgpMaxBlockSigOps) {
+    if (nBlockSigOpsCost * WITNESS_SCALE_FACTOR > (uint64_t)MaxBlockSigOps) {
         return false;
     }
     return true;
@@ -635,8 +635,8 @@ bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64
     //all contract costs now applied to local state
 
     //Check if block will be too big or too expensive with this contract execution
-    if (nBlockSigOpsCost * WITNESS_SCALE_FACTOR > (uint64_t)dgpMaxBlockSigOps ||
-            nBlockSize > dgpMaxBlockSerSize) {
+    if (nBlockSigOpsCost * WITNESS_SCALE_FACTOR > (uint64_t)MaxBlockSigOps ||
+            nBlockSize > MaxBlockSerSize) {
         //contract will not be added to block, so revert state to before we tried
         globalState->setRoot(oldHashStateRoot);
         globalState->setRootUTXO(oldHashUTXORoot);

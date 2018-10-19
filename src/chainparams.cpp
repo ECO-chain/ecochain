@@ -231,7 +231,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("ecocdns.tk", "ecocdns.tk", false)); // Ecochain testnet , set ecoc DNS later
+        //vSeeds.push_back(CDNSSeedData("ecocdns.tk", "ecocdns.tk", false)); // Ecochain testnet , set ecoc DNS later
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,92);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);

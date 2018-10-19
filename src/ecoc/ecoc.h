@@ -10,18 +10,18 @@
 namespace ecoc {
   const bool debug = true;
   const int LastPoWBlock = 1000 ; // turning block from PoW to PoS
-  const int BlockTime= 2 * 64; // block time creation target
-  const int granularity = 15;
+  const int BlockTime= 32 ; // block time creation target
+  const int granularity = 7;
   const int consensusMultisigners = 10;
-  const int coinbaseMaturity = 500;
+  const int coinbaseMaturity = 500; //600*100/BlockTime; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
   const std::string ecoUnit = "ECO";
   const int MinerSleepInSecs = 60; // delay the block creation for a minute
   const int StakerPollingPeriod = 5000; //STAKER_POLLING_PERIOD in miliseconds
   const int PoWReward = 100000 ; // reward of coins for each block at first phase (PoW)
-  const int PoSReward = 2 ; // Starting PoS reward (before halving). Equals to around 1%/year for 100M coins and 1 mimute block creation time
+  const int PoSReward = 1 ; // Starting PoS reward (before halving). Equals to around 1%/year for 100M coins and 32 secs block creation time
   const int maxHalvings = 7 ;
-  const int rewardSession= 985500 ; // how many blocks for falving the PoS reward
-  const int blockSizeLimit = 2000000 ; // blocksize limit
+  const int rewardSession= 985500 ; // how many blocks for falving the PoS reward , about a year
+  const int blockSizeLimit = 4*1000*1000 ; // blocksize limit 4M
 
   const std::string genesisBlockMainNet = "a7a28c6e747327810ebb5d3b62beae2420f1417691594f45d289d64da2835bed";
   const std::string genesisBlockTestNet = "d78c882bd8433d357fd0a68c818444b9e33a377fed01bc9e6ce1e7fce883d917";

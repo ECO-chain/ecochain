@@ -7,14 +7,9 @@
 #include "utilstrencodings.h"
 
 static const dev::Address GasScheduleDGP = dev::Address("0000000000000000000000000000000000000080");
-static const dev::Address BlockSizeDGP = dev::Address("0000000000000000000000000000000000000081");
 static const dev::Address GasPriceDGP = dev::Address("0000000000000000000000000000000000000082");
 static const dev::Address DGPCONTRACT4 = dev::Address("0000000000000000000000000000000000000083");
 static const dev::Address BlockGasLimitDGP = dev::Address("0000000000000000000000000000000000000084");
-
-static const uint32_t MIN_BLOCK_SIZE_DGP = 500000;
-static const uint32_t MAX_BLOCK_SIZE_DGP = 32000000;
-static const uint32_t DEFAULT_BLOCK_SIZE_DGP = ecoc::blockSizeLimit;
 
 static const uint64_t MIN_MIN_GAS_PRICE_DGP = 1;
 static const uint64_t MAX_MIN_GAS_PRICE_DGP = 10000;
@@ -31,8 +26,6 @@ public:
     QtumDGP(QtumState* _state, bool _dgpevm = true) : dgpevm(_dgpevm), state(_state) { initDataEIP158(); }
 
     dev::eth::EVMSchedule getGasSchedule(unsigned int blockHeight);
-
-    uint32_t getBlockSize(unsigned int blockHeight);
 
     uint64_t getMinGasPrice(unsigned int blockHeight);
 

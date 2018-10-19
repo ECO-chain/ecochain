@@ -251,7 +251,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     //////////////////////////////////////////////////////// qtum
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(nHeight));
-    uint32_t blockSizeDGP = qtumDGP.getBlockSize(nHeight);
     minGasPrice = qtumDGP.getMinGasPrice(nHeight);
     if(IsArgSet("-staker-min-tx-gas-price")) {
         CAmount stakerMinGasPrice;
@@ -264,8 +263,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     softBlockGasLimit = std::min(softBlockGasLimit, hardBlockGasLimit);
     txGasLimit = GetArg("-staker-max-tx-gas-limit", softBlockGasLimit);
 
-    nBlockMaxSize = blockSizeDGP ? blockSizeDGP : nBlockMaxSize;
-    
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
     addPriorityTxs(minGasPrice);

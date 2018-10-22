@@ -161,10 +161,8 @@ testScripts = [
 
     #ecoc
     'ecoc-8mb-block.py',
-    'ecoc-dgp-gas-price-lingering-mempool-tx.py',
     'ecoc-opcreate.py',
     'ecoc-block-header.py',
-    'ecoc-dgp.py',
     'ecoc-pos.py',
     'ecoc-callcontract.py',
     'ecoc-gas-limit.py',
@@ -181,10 +179,8 @@ testScripts = [
     'ecoc-create-eth-op-code.py',
     'ecoc-no-exec-call-disabled.py',
     'ecoc-state-root.py',
-    'ecoc-dgp-block-size-restart.py',
     'ecoc-null-sender.py',
     'ecoc-transaction-prioritization.py',
-    'ecoc-dgp-block-size-sync.py',
     'ecoc-opcall.py',
     'ecoc-assign-mpos-fees-to-gas-refund.py',
     'ecoc-gas-limit-overflow.py',

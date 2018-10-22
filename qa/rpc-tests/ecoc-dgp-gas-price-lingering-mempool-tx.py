@@ -8,10 +8,6 @@ from test_framework.ecoc import *
 from test_framework.address import *
 from test_framework.blocktools import *
 
-
-"""
-Note, these tests do not test the functionality of the DGP template contract itself, for tests for the DGP template, see ecoc-dgp.py
-"""
 class EcocDGPGasPriceLingeringMempoolTxTest(BitcoinTestFramework):
     def __init__(self):
         super().__init__()

@@ -52,18 +52,6 @@ uint64_t QtumDGP::getUint64FromDGP(unsigned int blockHeight, const dev::Address&
     return value;
 }
 
-
-uint64_t QtumDGP::getMinGasPrice(unsigned int blockHeight){
-    clear();
-    uint64_t result = DEFAULT_MIN_GAS_PRICE_DGP;
-    uint64_t minGasPrice = getUint64FromDGP(blockHeight, GasPriceDGP, ParseHex("3fb58819"));
-    if(minGasPrice <= MAX_MIN_GAS_PRICE_DGP && minGasPrice >= MIN_MIN_GAS_PRICE_DGP){
-        result = minGasPrice;
-    }
-    return result;
-}
-
-
 bool QtumDGP::initStorages(const dev::Address& addr, unsigned int blockHeight, std::vector<unsigned char> data){
     initStorageDGP(addr);
     createParamsInstance();

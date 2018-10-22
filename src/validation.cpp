@@ -769,7 +769,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
             }
 
             QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-            uint64_t minGasPrice = qtumDGP.getMinGasPrice(chainActive.Tip()->nHeight + 1);
+            uint64_t minGasPrice = MIN_TX_GAS;
             uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
             size_t count = 0;
             for(const CTxOut& o : tx.vout)
@@ -2418,7 +2418,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     ///////////////////////////////////////////////// // qtum
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(pindex->nHeight + 1));
-    uint64_t minGasPrice = qtumDGP.getMinGasPrice(pindex->nHeight + 1);
+    uint64_t minGasPrice = MIN_TX_GAS;
     uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
     CBlock checkBlock(block.GetBlockHeader());
     std::vector<CTxOut> checkVouts;

@@ -251,7 +251,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     //////////////////////////////////////////////////////// qtum
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(nHeight));
-    minGasPrice = qtumDGP.getMinGasPrice(nHeight);
+    minGasPrice = MIN_TX_GAS;
     if(IsArgSet("-staker-min-tx-gas-price")) {
         CAmount stakerMinGasPrice;
         if(ParseMoney(GetArg("-staker-min-tx-gas-price", ""), stakerMinGasPrice)) {

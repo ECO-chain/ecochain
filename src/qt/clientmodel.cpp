@@ -200,7 +200,7 @@ void ClientModel::getGasInfo(uint64_t& blockGasLimit, uint64_t& minGasPrice, uin
 
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     blockGasLimit = BLOCK_GAS_LIMIT;
-    minGasPrice = CAmount(qtumDGP.getMinGasPrice(chainActive.Height()));
+    minGasPrice = CAmount(MIN_TX_GAS);
     nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;
 }
 

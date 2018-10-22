@@ -9,15 +9,11 @@
 static const dev::Address GasScheduleDGP = dev::Address("0000000000000000000000000000000000000080");
 static const dev::Address GasPriceDGP = dev::Address("0000000000000000000000000000000000000082");
 static const dev::Address DGPCONTRACT4 = dev::Address("0000000000000000000000000000000000000083");
-static const dev::Address BlockGasLimitDGP = dev::Address("0000000000000000000000000000000000000084");
 
 static const uint64_t MIN_MIN_GAS_PRICE_DGP = 1;
 static const uint64_t MAX_MIN_GAS_PRICE_DGP = 10000;
 static const uint64_t DEFAULT_MIN_GAS_PRICE_DGP = 40;
 
-static const uint64_t MIN_BLOCK_GAS_LIMIT_DGP = 1000000;
-static const uint64_t MAX_BLOCK_GAS_LIMIT_DGP = 1000000000;
-static const uint64_t DEFAULT_BLOCK_GAS_LIMIT_DGP = 40000000;
 
 class QtumDGP {
     
@@ -28,8 +24,6 @@ public:
     dev::eth::EVMSchedule getGasSchedule(unsigned int blockHeight);
 
     uint64_t getMinGasPrice(unsigned int blockHeight);
-
-    uint64_t getBlockGasLimit(unsigned int blockHeight);
 
 private:
 

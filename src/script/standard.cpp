@@ -9,6 +9,7 @@
 #include "script/script.h"
 #include "util.h"
 #include "utilstrencodings.h"
+#include "ecoc/ecoc.h"
 
 #include <boost/foreach.hpp>
 #include <qtum/qtumstate.h>
@@ -207,7 +208,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
                         if (version.rootVM != 0 && val < 1) {
                             return false;
                         }
-                        if (val > MAX_BLOCK_GAS_LIMIT_DGP) {
+                        if (val > ecoc::blockGasLimit) {
                             //do not allow transactions that could use more gas than is in a block
                             return false;
                         }
@@ -217,7 +218,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
                         if (version.rootVM != 0 && val < STANDARD_MINIMUM_GAS_LIMIT) {
                             return false;
                         }
-                        if (val > DEFAULT_BLOCK_GAS_LIMIT_DGP / 2) {
+                        if (val > ecoc::blockGasLimit / 2) {
                             //don't allow transactions that use more than 1/2 block of gas to be broadcast on the mempool
                             return false;
                         }

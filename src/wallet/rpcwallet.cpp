@@ -504,7 +504,7 @@ UniValue createcontract(const JSONRPCRequest& request){
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Height());
+    uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
     uint64_t minGasPrice = CAmount(qtumDGP.getMinGasPrice(chainActive.Height()));
     CAmount nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;
 
@@ -706,7 +706,7 @@ UniValue sendtocontract(const JSONRPCRequest& request){
 
     LOCK2(cs_main, pwalletMain->cs_wallet);
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Height());
+    uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
     uint64_t minGasPrice = CAmount(qtumDGP.getMinGasPrice(chainActive.Height()));
     CAmount nGasPrice = (minGasPrice>DEFAULT_GAS_PRICE)?minGasPrice:DEFAULT_GAS_PRICE;
 

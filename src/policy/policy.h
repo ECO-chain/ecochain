@@ -9,6 +9,7 @@
 #include "consensus/consensus.h"
 #include "script/interpreter.h"
 #include "script/standard.h"
+#include "ecoc/ecoc.h"
 
 #include <string>
 
@@ -46,6 +47,10 @@ static const unsigned int MAX_STANDARD_P2WSH_SCRIPT_SIZE = 3600;
  * only increase the dust limit after prior releases were already not creating
  * outputs below the new threshold */
 static const unsigned int DUST_RELAY_TX_FEE = 400000;
+/** The maximum gas that can be paid to the minter
+ *  per block. Depends on blocksiz limit
+ */
+static const unsigned int BLOCK_GAS_LIMIT = ecoc::blockGasLimit;
 /**
  * Standard script verification flags that standard transactions will comply
  * with. However scripts violating these flags may still be present in valid

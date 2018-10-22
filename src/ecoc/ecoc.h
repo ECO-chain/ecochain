@@ -22,7 +22,8 @@ namespace ecoc {
   const int maxHalvings = 7 ;
   const int rewardSession= 985500 ; // how many blocks for falving the PoS reward , about a year
   const int blockSizeLimit = 4*1000*1000 ; // blocksize limit 4M
-
+  const int blockGasLimit= 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
+  
   const std::string genesisBlockMainNet = "a7a28c6e747327810ebb5d3b62beae2420f1417691594f45d289d64da2835bed";
   const std::string genesisBlockTestNet = "d78c882bd8433d357fd0a68c818444b9e33a377fed01bc9e6ce1e7fce883d917";
   const std::string genesisBlockRegTest = "1831dde9a594c08a342d9dd547c446e733a69e5ff511f1d50d9dc48a16e9f901";

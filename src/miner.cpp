@@ -258,7 +258,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
             minGasPrice = std::max(minGasPrice, (uint64_t)stakerMinGasPrice);
         }
     }
-    hardBlockGasLimit = qtumDGP.getBlockGasLimit(nHeight);
+    hardBlockGasLimit = BLOCK_GAS_LIMIT;
     softBlockGasLimit = GetArg("-staker-soft-block-gas-limit", hardBlockGasLimit);
     softBlockGasLimit = std::min(softBlockGasLimit, hardBlockGasLimit);
     txGasLimit = GetArg("-staker-max-tx-gas-limit", softBlockGasLimit);

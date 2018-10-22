@@ -770,7 +770,7 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
 
             QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
             uint64_t minGasPrice = qtumDGP.getMinGasPrice(chainActive.Tip()->nHeight + 1);
-            uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Tip()->nHeight + 1);
+            uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
             size_t count = 0;
             for(const CTxOut& o : tx.vout)
                 count += o.scriptPubKey.HasOpCreate() || o.scriptPubKey.HasOpCall() ? 1 : 0;
@@ -1991,7 +1991,7 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
 
 
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(chainActive.Tip()->nHeight + 1);
+    uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
 
     if(gasLimit == 0){
         gasLimit = blockGasLimit - 1;
@@ -2419,7 +2419,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(pindex->nHeight + 1));
     uint64_t minGasPrice = qtumDGP.getMinGasPrice(pindex->nHeight + 1);
-    uint64_t blockGasLimit = qtumDGP.getBlockGasLimit(pindex->nHeight + 1);
+    uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
     CBlock checkBlock(block.GetBlockHeader());
     std::vector<CTxOut> checkVouts;
 

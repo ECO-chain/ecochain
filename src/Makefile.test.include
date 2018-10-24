@@ -139,9 +139,8 @@ BITCOIN_TESTS =\
   test/ecoctests/bytecodeexec_tests.cpp \
   test/ecoctests/condensingtransaction_tests.cpp \
   test/ecoctests/test_utils.cpp \
-  test/ecoctests/test_utils.h \
-  test/ecoctests/dgp_tests.cpp
-
+  test/ecoctests/test_utils.h
+  
 if ENABLE_WALLET
 BITCOIN_TESTS += \
   wallet/test/wallet_test_fixture.cpp \

@@ -355,7 +355,7 @@ class FullBlockTest(ComparisonTestFramework):
         block(22, spend=out[96])
         yield rejected()
 
-        # Create a block on either side of dgpMaxBlockBaseSize and make sure its accepted/rejected
+        # Create a block on either side of MaxBlockBaseSize and make sure its accepted/rejected
         #     genesis -> b1 (0) -> b2 (1) -> b5 (2) -> b6  (3)
         #                                          \-> b12 (3) -> b13 (4) -> b15 (5) -> b23 (6)
         #                                                                           \-> b24 (6) -> b25 (7)
@@ -376,11 +376,11 @@ class FullBlockTest(ComparisonTestFramework):
         # Make the next block one byte bigger and check that it fails
         tip(15)
         b24 = block(24, spend=out[6])
-        script_length = dgpMaxBlockBaseSize - len(b24.serialize()) - 69
+        script_length = MaxBlockBaseSize - len(b24.serialize()) - 69
         script_output = CScript([b'\x00' * (script_length+1)])
         tx.vout = [CTxOut(0, script_output)]
         b24 = update_block(24, [tx])
-        assert_equal(len(b24.serialize()), dgpMaxBlockBaseSize+1)
+        assert_equal(len(b24.serialize()), MaxBlockBaseSize+1)
         yield rejected()
 
         block(25, spend=out[7])
@@ -528,12 +528,12 @@ class FullBlockTest(ComparisonTestFramework):
         tx_new = None
         tx_last = tx
         total_size=len(b39.serialize())
-        while(total_size < dgpMaxBlockBaseSize):
+        while(total_size < MaxBlockBaseSize):
             tx_new = create_tx(tx_last, 1, 1, p2sh_script)
             tx_new.vout.append(CTxOut(tx_last.vout[1].nValue - 1, CScript([OP_TRUE])))
             tx_new.rehash()
             total_size += len(tx_new.serialize())
-            if total_size >= dgpMaxBlockBaseSize:
+            if total_size >= MaxBlockBaseSize:
                 break
             b39.vtx.append(tx_new) # add tx to block
             tx_last = tx_new
@@ -887,7 +887,7 @@ class FullBlockTest(ComparisonTestFramework):
 
 
         #  This checks that a block with a bloated VARINT between the block_header and the array of tx such that
-        #  the block is > dgpMaxBlockBaseSize with the bloated varint, but <= dgpMaxBlockBaseSize without the bloated varint,
+        #  the block is > MaxBlockBaseSize with the bloated varint, but <= MaxBlockBaseSize without the bloated varint,
         #  does not cause a subsequent, identical block with canonical encoding to be rejected.  The test does not
         #  care whether the bloated block is accepted or rejected; it only cares that the second block is accepted.
         #

@@ -43,17 +43,14 @@ MY_VERSION = 70016  # past bip-31 for ping/pong
 MY_SUBVERSION = b"/python-mininode-tester:0.0.3/"
 MY_RELAY = 1 # from version 70001 onwards, fRelay should be appended to version messages (BIP37)
 
-COIN = 100000000 # 1 btc in satoshis
+COIN = 100000000 # 1 ECO coin
 
 MAX_INV_SZ = 50000
-dgpMaxBlockBaseSize = 2000000
+MaxBlockBaseSize = 4000000
 POW_TARGET_SPACING = 600
 INITIAL_HASH_UTXO_ROOT = 0x21b463e3b52f6201c0ad6c991be0485b6ef8c092e64583ffa655cc1b171fe856
 INITIAL_HASH_STATE_ROOT = 0x9514771014c9ae803d8cea2731b2063e83de44802b40dce2d06acd02d0ff65e9
 INITIAL_BLOCK_REWARD = 20000.0
-NUM_DEFAULT_DGP_CONTRACTS = 5
-
-
 
 NODE_NETWORK = (1 << 0)
 NODE_GETUTXO = (1 << 1)

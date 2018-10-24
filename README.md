@@ -19,7 +19,7 @@ Because Bitcoin has no smart contract functionality, Ethereum adds turing comple
 **Blackckoin:**
 Bitcoin and Ethereum are based on Proof of Work (PoW). Blackckoin provides the Proof of Stake (PoS) consensus algorithm. Blackckoin is a descendant of peercoin, but removed the coinage factor completely to make the algorithm safer.
 
-Additionally, Account Abstract Layer (AAL) allows integration of EVM with Bitcoin blockchains. Another notable feature is the addition of Decentralized Governance Protocol (DGP) which enables changes of parameters and rules "on the fly". If the change is approved by stakeholders' voting with high approval rate, then they can take place without a need of a fork.
+Additionally, Account Abstract Layer (AAL) allows integration of EVM with Bitcoin blockchains.
 
 ## ECOchain's goals
 - To be trusted by people and businesses, real decentralization is needed. Bitcoin's codebase and consensus protocol guarantees this.

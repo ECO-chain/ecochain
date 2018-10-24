@@ -18,6 +18,7 @@
 #include "ui_interface.h"
 #include "util.h"
 #include "wallet/wallet.h"
+#include "policy/policy.h"
 
 #include <stdint.h>
 

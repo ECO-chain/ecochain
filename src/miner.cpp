@@ -250,7 +250,8 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
 
     //////////////////////////////////////////////////////// qtum
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(nHeight));
+    dev::eth::EVMSchedule scheduleEIP158 = dev::eth::EIP158Schedule;
+    globalSealEngine->setQtumSchedule(scheduleEIP158);
     minGasPrice = MIN_TX_GAS;
     if(IsArgSet("-staker-min-tx-gas-price")) {
         CAmount stakerMinGasPrice;

@@ -6,7 +6,6 @@
 #include "validation.h"
 #include "utilstrencodings.h"
 
-static const dev::Address GasScheduleDGP = dev::Address("0000000000000000000000000000000000000080");
 static const dev::Address DGPCONTRACT4 = dev::Address("0000000000000000000000000000000000000083");
 
 class QtumDGP {
@@ -14,8 +13,6 @@ class QtumDGP {
 public:
 
     QtumDGP(QtumState* _state, bool _dgpevm = true) : dgpevm(_dgpevm), state(_state) { initDataEIP158(); }
-
-    dev::eth::EVMSchedule getGasSchedule(unsigned int blockHeight);
 
 private:
 
@@ -28,8 +25,6 @@ private:
     void initDataTemplate(const dev::Address& addr, std::vector<unsigned char>& data);
 
     void initDataEIP158();
-
-    bool checkLimitSchedule(const std::vector<uint32_t>& defaultData, const std::vector<uint32_t>& checkData);
 
     void createParamsInstance();
 
@@ -45,12 +40,7 @@ private:
 
     void parseDataOneUint64(uint64_t& value);
 
-    dev::eth::EVMSchedule createEVMSchedule();
-
-    void clear();    
-
-
-
+    
     bool dgpevm;
 
     const QtumState* state;

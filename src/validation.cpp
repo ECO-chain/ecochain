@@ -2417,7 +2417,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     ///////////////////////////////////////////////// // qtum
     QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
-    globalSealEngine->setQtumSchedule(qtumDGP.getGasSchedule(pindex->nHeight + 1));
+    dev::eth::EVMSchedule scheduleEIP158 = dev::eth::EIP158Schedule;
+    globalSealEngine->setQtumSchedule(scheduleEIP158);
     uint64_t minGasPrice = MIN_TX_GAS;
     uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
     CBlock checkBlock(block.GetBlockHeader());

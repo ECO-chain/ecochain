@@ -397,8 +397,6 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-timeout=<n>", strprintf(_("Specify connection timeout in milliseconds (minimum: 1, default: %d)"), DEFAULT_CONNECT_TIMEOUT));
     strUsage += HelpMessageOpt("-torcontrol=<ip>:<port>", strprintf(_("Tor control port to use if onion listening enabled (default: %s)"), DEFAULT_TOR_CONTROL));
     strUsage += HelpMessageOpt("-torpassword=<pass>", _("Tor control port password (default: empty)"));
-    strUsage += HelpMessageOpt("-dgpstorage", _("Receiving data from DGP via storage (default: -dgpevm)"));
-    strUsage += HelpMessageOpt("-dgpevm", _("Receiving data from DGP via a contract call (default: -dgpevm)"));
 #ifdef USE_UPNP
 #if USE_UPNP
     strUsage += HelpMessageOpt("-upnp", _("Use UPnP to map the listening port (default: 1 when listening and no -proxy)"));
@@ -495,7 +493,7 @@ std::string HelpMessage(HelpMessageMode mode)
     strUsage += HelpMessageOpt("-blockprioritysize=<n>", strprintf(_("Set maximum size of high-priority/low-fee transactions in bytes (default: %d)"), DEFAULT_BLOCK_PRIORITY_SIZE));
     strUsage += HelpMessageOpt("-blockmintxfee=<amt>", strprintf(_("Set lowest fee rate (in %s/kB) for transactions to be included in block creation. (default: %s)"), CURRENCY_UNIT, FormatMoney(DEFAULT_BLOCK_MIN_TX_FEE)));
 
-    strUsage += HelpMessageOpt("-staker-min-tx-gas-price=<amt>", _("Any contract execution with a gas price below this will not be included in a block (defaults to the value specified by the DGP)"));
+    strUsage += HelpMessageOpt("-staker-min-tx-gas-price=<amt>", _("Any contract execution with a gas price below this will not be included in a block"));
     strUsage += HelpMessageOpt("-staker-max-tx-gas-limit=<n>", _("Any contract execution with a gas limit over this amount will not be included in a block (defaults to soft block gas limit)"));
     strUsage += HelpMessageOpt("-staker-soft-block-gas-limit=<n>", _("After this amount of gas is surpassed in a block, no more contract executions will be added to the block (defaults to consensus-critical maximum block gas limit)"));
 
@@ -1492,14 +1490,7 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
                     return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?"));
 
                 /////////////////////////////////////////////////////////// qtum
-                if((IsArgSet("-dgpstorage") && IsArgSet("-dgpevm")) || (!IsArgSet("-dgpstorage") && IsArgSet("-dgpevm")) ||
-                  (!IsArgSet("-dgpstorage") && !IsArgSet("-dgpevm"))){
-                    fGettingValuesDGP = true;
-                } else {
-                    fGettingValuesDGP = false;
-                }
-
-                dev::eth::Ethash::init();
+		dev::eth::Ethash::init();
 
                 boost::filesystem::path ecocStateDir = GetDataDir() / "stateEcoc";
 

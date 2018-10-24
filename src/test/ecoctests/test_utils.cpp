@@ -55,7 +55,6 @@ QtumTransaction createEcocTransaction(valtype data, dev::u256 value, dev::u256 g
 
 std::pair<std::vector<ResultExecute>, ByteCodeExecResult> executeBC(std::vector<QtumTransaction> txs){
     CBlock block(generateBlock());
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     uint64_t blockGasLimit = ecoc::blockGasLimit;
     ByteCodeExec exec(block, txs, blockGasLimit);
     exec.performByteCode();

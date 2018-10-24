@@ -204,7 +204,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
                 try {
                     uint64_t val = CScriptNum::vch_to_uint64(vch1);
                     if(contractConsensus) {
-                        //consensus rules (this is checked more in depth later using DGP)
+                        //consensus rules
                         if (version.rootVM != 0 && val < 1) {
                             return false;
                         }
@@ -233,7 +233,7 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
                 try {
                     uint64_t val = CScriptNum::vch_to_uint64(vch1);
                     if(contractConsensus) {
-                        //consensus rules (this is checked more in depth later using DGP)
+                        //consensus rules
                         if (version.rootVM != 0 && val < 1) {
                             return false;
                         }

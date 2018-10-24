@@ -71,7 +71,6 @@ std::unique_ptr<QtumState> globalState;
 std::shared_ptr<dev::eth::SealEngineFace> globalSealEngine;
 bool fRecordLogOpcodes = false;
 bool fIsVMlogFile = false;
-bool fGettingValuesDGP = false;
  //////////////////////////////
 
 CCriticalSection cs_main;
@@ -768,7 +767,6 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
                 return state.DoS(1, false, REJECT_INVALID, "bad-txns-invalid-sender-script");
             }
 
-            QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
             uint64_t minGasPrice = MIN_TX_GAS;
             uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
             size_t count = 0;
@@ -825,7 +823,6 @@ bool AcceptToMemoryPoolWorker(CTxMemPool& pool, CValidationState& state, const C
                 if(gasAllTxs > dev::u256(blockGasLimit))
                     return state.DoS(1, false, REJECT_INVALID, "bad-txns-gas-exceeds-blockgaslimit");
 
-                //don't allow less than DGP set minimum gas price to prevent MPoS greedy mining/spammers
                 if(v.rootVM!=0 && (uint64_t)ecocTransaction.gasPrice() < minGasPrice)
                     return state.DoS(100, error("AcceptToMempool(): Contract execution has lower gas price than allowed"), REJECT_INVALID, "bad-tx-low-gas-price");
             }
@@ -1989,8 +1986,6 @@ std::vector<ResultExecute> CallContract(const dev::Address& addrContract, std::v
     else
         block.vtx.erase(block.vtx.begin()+1,block.vtx.end());
 
-
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     uint64_t blockGasLimit = BLOCK_GAS_LIMIT;
 
     if(gasLimit == 0){
@@ -2416,7 +2411,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     int64_t nTimeStart = GetTimeMicros();
 
     ///////////////////////////////////////////////// // qtum
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     dev::eth::EVMSchedule scheduleEIP158 = dev::eth::EIP158Schedule;
     globalSealEngine->setQtumSchedule(scheduleEIP158);
     uint64_t minGasPrice = MIN_TX_GAS;
@@ -2681,8 +2675,6 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             dev::u256 gasAllTxs = dev::u256(0);
             ByteCodeExec exec(block, resultConvertQtumTX.first, blockGasLimit);
             //validate VM version and other ETH params before execution
-            //Reject anything unknown (could be changed later by DGP)
-            //TODO evaluate if this should be relaxed for soft-fork purposes
             bool nonZeroVersion=false;
             dev::u256 sumGas = dev::u256(0);
             CAmount nTxFee = view.GetValueIn(tx)-tx.GetValueOut();
@@ -2726,7 +2718,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 if(gasAllTxs > dev::u256(blockGasLimit))
                     return state.DoS(1, false, REJECT_INVALID, "bad-txns-gas-exceeds-blockgaslimit");
 
-                //don't allow less than DGP set minimum gas price to prevent MPoS greedy mining/spammers
+                //don't allow less than set minimum gas price to prevent MPoS greedy mining/spammers
                 if(v.rootVM!=0 && (uint64_t)qtx.gasPrice() < minGasPrice)
                     return state.DoS(100, error("ConnectBlock(): Contract execution has lower gas price than allowed"), REJECT_INVALID, "bad-tx-low-gas-price");
             }
@@ -4891,7 +4883,6 @@ bool CVerifyDB::VerifyDB(const CChainParams& chainparams, CCoinsView *coinsview,
 ////////////////////////////////////////////////////////////////////////// // qtum
     dev::h256 oldHashStateRoot(globalState->rootHash());
     dev::h256 oldHashUTXORoot(globalState->rootHashUTXO());
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
 //////////////////////////////////////////////////////////////////////////
 
     LogPrintf("[0%%]...");

@@ -249,7 +249,6 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     }
 
     //////////////////////////////////////////////////////// qtum
-    QtumDGP qtumDGP(globalState.get(), fGettingValuesDGP);
     dev::eth::EVMSchedule scheduleEIP158 = dev::eth::EIP158Schedule;
     globalSealEngine->setQtumSchedule(scheduleEIP158);
     minGasPrice = MIN_TX_GAS;
@@ -571,11 +570,11 @@ bool BlockAssembler::AttemptToAddContractToBlock(CTxMemPool::txiter iter, uint64
             return false;
         }
         if(ecocTransaction.gasPrice() < minGasPrice){
-            //if this transaction's gasPrice is less than the current DGP minGasPrice don't add it
+            //if this transaction's gasPrice is less than the current minGasPrice don't add it
             return false;
         }
     }
-    // We need to pass the DGP's block gas limit (not the soft limit) since it is consensus critical.
+    // We need to pass block gas limit (not the soft limit) since it is consensus critical.
     ByteCodeExec exec(*pblock, ecocTransactions, hardBlockGasLimit);
     if(!exec.performByteCode()){
         //error, don't add contract

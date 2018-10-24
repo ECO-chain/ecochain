@@ -35,7 +35,6 @@
 
 /////////////////////////////////////////// qtum
 #include <qtum/qtumstate.h>
-#include <qtum/qtumDGP.h>
 #include <libethereum/ChainParams.h>
 #include <libethashseal/Ethash.h>
 #include <libethashseal/GenesisInfo.h>
@@ -47,7 +46,6 @@ extern std::unique_ptr<QtumState> globalState;
 extern std::shared_ptr<dev::eth::SealEngineFace> globalSealEngine;
 extern bool fRecordLogOpcodes;
 extern bool fIsVMlogFile;
-extern bool fGettingValuesDGP;
 
 struct EthTransactionParams;
 using valtype = std::vector<unsigned char>;

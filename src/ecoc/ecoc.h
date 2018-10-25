@@ -28,9 +28,9 @@ namespace ecoc {
 
   //  dev::eth::EVMSchedule GAS_SCHEDULE = dev::eth::EIP158Schedule;
   
-  const std::string genesisBlockMainNet = "a7a28c6e747327810ebb5d3b62beae2420f1417691594f45d289d64da2835bed";
-  const std::string genesisBlockTestNet = "d78c882bd8433d357fd0a68c818444b9e33a377fed01bc9e6ce1e7fce883d917";
-  const std::string genesisBlockRegTest = "1831dde9a594c08a342d9dd547c446e733a69e5ff511f1d50d9dc48a16e9f901";
+  const std::string genesisBlockMainNet = "523db1d28b252258af6d353847e5143df930933cdefe6264159b2a062651fa5d";
+  const std::string genesisBlockTestNet = "45c3a65f2a3cfced71af53d7081f4286b8efc7b339fb39ddb5ee189155886281";
+  const std::string genesisBlockRegTest = "72904736917e5c9c4a493405b9a59dc35e86bcda145cbe38684109a3c1c23695";
   const std::string genesisMerkleRoot = "d56e5980fb608781d0694199ced021c3cd9c1acdf98ff05251aba661c7e49c13";
   
   inline void ecocLog(const std::string message) {

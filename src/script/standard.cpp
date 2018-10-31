@@ -12,8 +12,8 @@
 #include "ecoc/ecoc.h"
 
 #include <boost/foreach.hpp>
-#include <qtum/qtumstate.h>
-#include <qtum/qtumtransaction.h>
+#include <aal/qtumstate.h>
+#include <aal/qtumtransaction.h>
 #include <validation.h>
 
 using namespace std;

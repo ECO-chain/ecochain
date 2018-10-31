@@ -34,12 +34,12 @@
 #include "consensus/consensus.h"
 
 /////////////////////////////////////////// qtum
-#include <qtum/qtumstate.h>
+#include <aal/qtumstate.h>
 #include <libethereum/ChainParams.h>
 #include <libethashseal/Ethash.h>
 #include <libethashseal/GenesisInfo.h>
 #include <script/standard.h>
-#include <qtum/storageresults.h>
+#include <aal/storageresults.h>
 
 
 extern std::unique_ptr<QtumState> globalState;

@@ -28,10 +28,10 @@ namespace ecoc {
 
   //  dev::eth::EVMSchedule GAS_SCHEDULE = dev::eth::EIP158Schedule;
   
-  const std::string genesisBlockMainNet = "523db1d28b252258af6d353847e5143df930933cdefe6264159b2a062651fa5d";
-  const std::string genesisBlockTestNet = "45c3a65f2a3cfced71af53d7081f4286b8efc7b339fb39ddb5ee189155886281";
-  const std::string genesisBlockRegTest = "72904736917e5c9c4a493405b9a59dc35e86bcda145cbe38684109a3c1c23695";
-  const std::string genesisMerkleRoot = "d56e5980fb608781d0694199ced021c3cd9c1acdf98ff05251aba661c7e49c13";
+  const std::string genesisBlockMainNet = "b1795f27caef43cb48ce1168d88a3bd1d3d925aeee6c34c695efc884a5b55278";
+  const std::string genesisBlockTestNet = "b5656481d7f922e468dd4024b3e4c9be2486e5273ae1dacfa7d35eaa5c068fed";
+  const std::string genesisBlockRegTest = "0af3850116f580171375d0fb852b43b36f1ae15b2c2eee0068d27d8440e294d4";
+  const std::string genesisMerkleRoot = "4dbbe328a35a2ab40dbb6603e778feaae2153a55b5fe051ccff705804f34aae8";
   
   inline void ecocLog(const std::string message) {
     if (debug) {

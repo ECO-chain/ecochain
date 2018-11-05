@@ -63,7 +63,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     const char* pszTimestamp = "Distributed economy and trading system - Elena, 2018";
-    const CScript genesisOutputScript = CScript() << ParseHex("0427a36792897a90777e95d588122c72ad808d1911821d2fe768dd16b02ea110521ee1867b9f0e35c693edfa0d75bac9287c198b3b604d0dac774886b225df4d76") << OP_CHECKSIG;
+    const CScript genesisOutputScript = CScript() << ParseHex("04ec0c02f0884cd46ee1a90d7befd1e8d9109cf999b947147101644f1b7eba77cc3b9c6408182273fd4a17f00f6d5caeec5986e4de3d85f0ad06387572ced81660") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
 
@@ -130,8 +130,8 @@ public:
 
         genesis = CreateGenesisBlock(1504695029, 8026361, 0x1f00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockMainNet));
-        //assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
+        assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockMainNet));
+        assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.push_back(CDNSSeedData("dnsseed1.ecoc.io", "dnsseed1.ecoc.io", false)); // Ecochain mainnet
@@ -317,7 +317,7 @@ public:
         genesis = CreateGenesisBlock(1504695029, 17, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-	    assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
+	assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.

@@ -10,24 +10,22 @@
 
 namespace ecoc {
   const bool debug = true;
-  const int LastPoWBlock = 1000 ; // turning block from PoW to PoS
+  const int LastPoWBlock = 10000 ; // turning block from PoW to PoS
   const int BlockTime= 32 ; // block time creation target
   const int granularity = 7;
   const int consensusMultisigners = 10;
-  const int coinbaseMaturity = 500; //600*100/BlockTime; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
+  const int coinbaseMaturity = (600*100)/(BlockTime); //600*100/BlockTime = 1875 ; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
   const std::string ecoUnit = "ECO";
   const int MinerSleepInSecs = 60; // delay the block creation for a minute
   const int StakerPollingPeriod = 5000; //STAKER_POLLING_PERIOD in miliseconds
-  const int PoWReward = 100000 ; // reward of coins for each block at first phase (PoW)
-  const int PoSReward = 1 ; // Starting PoS reward (before halving). Equals to around 1%/year for 100M coins and 32 secs block creation time
-  const int maxHalvings = 7 ;
-  const int rewardSession= 985500 ; // how many blocks for falving the PoS reward , about a year
+  const int PoWReward = 2000 ; // reward of coins for each block at first phase (PoW)
+  const int PoSReward = 18 ; // PoS reward. After 10,000 POS blocks reward is zero.
+  const int maxHalvings = 1 ;// Just one  POS epoch with stable reward
+  const int rewardSession= 10000000 ; // how many blocks for falving the PoS reward , about 10 years and two months 
   const int blockSizeLimit = 4*1000*1000 ; // blocksize limit 4M
   const int blockGasLimit= 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
   const int minTxGas = 40;
 
-  //  dev::eth::EVMSchedule GAS_SCHEDULE = dev::eth::EIP158Schedule;
-  
   const std::string genesisBlockMainNet = "b1795f27caef43cb48ce1168d88a3bd1d3d925aeee6c34c695efc884a5b55278";
   const std::string genesisBlockTestNet = "b5656481d7f922e468dd4024b3e4c9be2486e5273ae1dacfa7d35eaa5c068fed";
   const std::string genesisBlockRegTest = "0af3850116f580171375d0fb852b43b36f1ae15b2c2eee0068d27d8440e294d4";

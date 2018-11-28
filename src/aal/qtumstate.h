@@ -96,7 +96,7 @@ private:
 
     void addBalance(dev::Address const& _id, dev::u256 const& _amount);
 
-    dev::Address createQtumAddress(dev::h256 hashTx, uint32_t voutNumber);
+    dev::Address createEcocAddress(dev::h256 hashTx, uint32_t voutNumber);
 
     void deleteAccounts(std::set<dev::Address>& addrs);
 

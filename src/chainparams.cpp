@@ -134,7 +134,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         // Note that of those with the service bits flag, most only support a subset of possible options
-        //vSeeds.push_back(CDNSSeedData("dnsseed1.ecoc.io", "dnsseed1.ecoc.io", false)); // Ecochain mainnet
+        //vSeeds.push_back(CDNSSeedData("mainnet.seeder.ecoc.io", "mainnet.seeder.ecoc.io", false)); // Ecochain mainnet
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,33);
@@ -231,7 +231,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("ecocdns.tk", "ecocdns.tk", false)); // Ecochain testnet , set ecoc DNS later
+        vSeeds.push_back(CDNSSeedData("testnet.seeder.ecoc.io11", "testnet.seeder.ecoc.io", false)); // Ecochain testnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,92);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);

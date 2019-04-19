@@ -1514,7 +1514,6 @@ bool AppInitMain(boost::thread_group& threadGroup, CScheduler& scheduler)
                     globalState->setRoot(dev::sha3(dev::rlp("")));
                     globalState->setRootUTXO(uintToh256(chainparams.GenesisBlock().hashUTXORoot));
                     globalState->populateFrom(cp.genesisState);
-		    std::cout << "cp.calculateStateRoot :: " << cp.stateRoot << " ::CP" << std::endl;
                 }
                 globalState->db().commit();
                 globalState->dbUtxo().commit();

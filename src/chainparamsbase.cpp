@@ -32,7 +32,7 @@ class CBaseMainParams : public CBaseChainParams
 public:
     CBaseMainParams()
     {
-        nRPCPort = 36563;
+        nRPCPort = 36562;
     }
 };
 static CBaseMainParams mainParams;
@@ -45,7 +45,7 @@ class CBaseTestNetParams : public CBaseChainParams
 public:
     CBaseTestNetParams()
     {
-        nRPCPort = 56563;
+        nRPCPort = 56562;
         strDataDir = "ecoctestnet";
     }
 };
@@ -59,7 +59,7 @@ class CBaseRegTestParams : public CBaseChainParams
 public:
     CBaseRegTestParams()
     {
-        nRPCPort = 56564;
+        nRPCPort = 56552;
         strDataDir = "ecocregtest";
     }
 };
@@ -101,7 +101,8 @@ std::string ChainNameFromCommandLine()
         return CBaseChainParams::REGTEST;
     if (fTestNet)
         return CBaseChainParams::TESTNET;
-    return CBaseChainParams::MAIN;
+    //return CBaseChainParams::MAIN;
+    return CBaseChainParams::TESTNET; // For testnet branch default is testnet
 }
 
 bool AreBaseParamsConfigured()

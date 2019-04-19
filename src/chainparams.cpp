@@ -311,13 +311,13 @@ public:
         pchMessageStart[1] = 0x00 ;
         pchMessageStart[2] = 0xc0 ;
         pchMessageStart[3] = 0xe0 ;
-        nDefaultPort = 56563;
+        nDefaultPort = 56555;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1504695029, 17, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-
-	assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
+        
+        assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.

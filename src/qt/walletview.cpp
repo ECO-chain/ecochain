@@ -23,7 +23,7 @@
 #include "createcontract.h"
 #include "sendtocontract.h"
 #include "callcontract.h"
-#include "qrctoken.h"
+#include "ecrctoken.h"
 #include "restoredialog.h"
 
 #include "ui_interface.h"
@@ -70,7 +70,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     sendToContractPage = new SendToContract(platformStyle);
     callContractPage = new CallContract(platformStyle);
 
-    QRCTokenPage = new QRCToken(platformStyle);
+    ECRCTokenPage = new ECRCToken(platformStyle);
 
     addWidget(overviewPage);
     addWidget(transactionsPage);
@@ -79,7 +79,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(createContractPage);
     addWidget(sendToContractPage);
     addWidget(callContractPage);
-    addWidget(QRCTokenPage);
+    addWidget(ECRCTokenPage);
 
     connect(overviewPage, SIGNAL(outOfSyncWarningClicked()), this, SLOT(requestedSyncWarningInfo()));
 
@@ -135,7 +135,7 @@ void WalletView::setClientModel(ClientModel *_clientModel)
     createContractPage->setClientModel(_clientModel);
     sendToContractPage->setClientModel(_clientModel);
     callContractPage->setClientModel(_clientModel);
-    QRCTokenPage->setClientModel(_clientModel);
+    ECRCTokenPage->setClientModel(_clientModel);
 }
 
 void WalletView::setWalletModel(WalletModel *_walletModel)
@@ -150,7 +150,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     createContractPage->setModel(_walletModel);
     sendToContractPage->setModel(_walletModel);
     callContractPage->setModel(_walletModel);
-    QRCTokenPage->setModel(_walletModel);
+    ECRCTokenPage->setModel(_walletModel);
     usedReceivingAddressesPage->setModel(_walletModel->getAddressTableModel());
     usedSendingAddressesPage->setModel(_walletModel->getAddressTableModel());
 
@@ -273,20 +273,20 @@ void WalletView::gotoCallContractPage()
 
 void WalletView::gotoSendTokenPage()
 {
-    setCurrentWidget(QRCTokenPage);
-    QRCTokenPage->on_goToSendTokenPage();
+    setCurrentWidget(ECRCTokenPage);
+    ECRCTokenPage->on_goToSendTokenPage();
 }
 
 void WalletView::gotoReceiveTokenPage()
 {
-    setCurrentWidget(QRCTokenPage);
-    QRCTokenPage->on_goToReceiveTokenPage();
+    setCurrentWidget(ECRCTokenPage);
+    ECRCTokenPage->on_goToReceiveTokenPage();
 }
 
 void WalletView::gotoAddTokenPage()
 {
-    setCurrentWidget(QRCTokenPage);
-    QRCTokenPage->on_goToAddTokenPage();
+    setCurrentWidget(ECRCTokenPage);
+    ECRCTokenPage->on_goToAddTokenPage();
 }
 
 void WalletView::gotoSignMessageTab(QString addr)

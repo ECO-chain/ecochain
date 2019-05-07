@@ -1,5 +1,5 @@
-#include "qrctoken.h"
-#include "ui_qrctoken.h"
+#include "ecrctoken.h"
+#include "ui_ecrctoken.h"
 #include "tokenitemmodel.h"
 #include "walletmodel.h"
 #include "tokentransactionview.h"
@@ -90,9 +90,9 @@ public:
     const PlatformStyle *platformStyle;
 };
 
-QRCToken::QRCToken(const PlatformStyle *platformStyle, QWidget *parent) :
+ECRCToken::ECRCToken(const PlatformStyle *platformStyle, QWidget *parent) :
     QWidget(parent),
-    ui(new Ui::QRCToken),
+    ui(new Ui::ECRCToken),
     m_model(0),
     m_clientModel(0),
     m_tokenModel(0),
@@ -148,12 +148,12 @@ QRCToken::QRCToken(const PlatformStyle *platformStyle, QWidget *parent) :
     on_goToSendTokenPage();
 }
 
-QRCToken::~QRCToken()
+ECRCToken::~ECRCToken()
 {
     delete ui;
 }
 
-void QRCToken::setModel(WalletModel *_model)
+void ECRCToken::setModel(WalletModel *_model)
 {
     m_model = _model;
     m_addTokenPage->setModel(m_model);
@@ -184,29 +184,29 @@ void QRCToken::setModel(WalletModel *_model)
     }
 }
 
-void QRCToken::setClientModel(ClientModel *_clientModel)
+void ECRCToken::setClientModel(ClientModel *_clientModel)
 {
     m_clientModel = _clientModel;
     m_sendTokenPage->setClientModel(_clientModel);
     m_addTokenPage->setClientModel(_clientModel);
 }
 
-void QRCToken::on_goToSendTokenPage()
+void ECRCToken::on_goToSendTokenPage()
 {
     ui->stackedWidgetToken->setCurrentIndex(0);
 }
 
-void QRCToken::on_goToReceiveTokenPage()
+void ECRCToken::on_goToReceiveTokenPage()
 {
     ui->stackedWidgetToken->setCurrentIndex(1);
 }
 
-void QRCToken::on_goToAddTokenPage()
+void ECRCToken::on_goToAddTokenPage()
 {
     ui->stackedWidgetToken->setCurrentIndex(2);
 }
 
-void QRCToken::on_currentTokenChanged(QModelIndex index)
+void ECRCToken::on_currentTokenChanged(QModelIndex index)
 {
     if(m_tokenModel)
     {
@@ -237,7 +237,7 @@ void QRCToken::on_currentTokenChanged(QModelIndex index)
     }
 }
 
-void QRCToken::on_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
+void ECRCToken::on_dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles)
 {
     Q_UNUSED(bottomRight);
     Q_UNUSED(roles);
@@ -253,14 +253,14 @@ void QRCToken::on_dataChanged(const QModelIndex &topLeft, const QModelIndex &bot
     }
 }
 
-void QRCToken::on_currentChanged(QModelIndex current, QModelIndex previous)
+void ECRCToken::on_currentChanged(QModelIndex current, QModelIndex previous)
 {
     Q_UNUSED(previous);
 
     on_currentTokenChanged(current);
 }
 
-void QRCToken::on_rowsInserted(QModelIndex index, int first, int last)
+void ECRCToken::on_rowsInserted(QModelIndex index, int first, int last)
 {
     Q_UNUSED(index);
     Q_UNUSED(first);
@@ -274,7 +274,7 @@ void QRCToken::on_rowsInserted(QModelIndex index, int first, int last)
     }
 }
 
-void QRCToken::contextualMenu(const QPoint &point)
+void ECRCToken::contextualMenu(const QPoint &point)
 {
     QModelIndex index = ui->tokensList->indexAt(point);
     QModelIndexList selection = ui->tokensList->selectionModel()->selectedIndexes();
@@ -287,27 +287,27 @@ void QRCToken::contextualMenu(const QPoint &point)
     }
 }
 
-void QRCToken::copyTokenAddress()
+void ECRCToken::copyTokenAddress()
 {
     GUIUtil::copyEntryDataFromList(ui->tokensList, TokenItemModel::AddressRole);
 }
 
-void QRCToken::copyTokenBalance()
+void ECRCToken::copyTokenBalance()
 {
     GUIUtil::copyEntryDataFromList(ui->tokensList, TokenItemModel::BalanceRole);
 }
 
-void QRCToken::copyTokenName()
+void ECRCToken::copyTokenName()
 {
     GUIUtil::copyEntryDataFromList(ui->tokensList, TokenItemModel::NameRole);
 }
 
-void QRCToken::copySenderAddress()
+void ECRCToken::copySenderAddress()
 {
     GUIUtil::copyEntryDataFromList(ui->tokensList, TokenItemModel::SenderRole);
 }
 
-void QRCToken::removeToken()
+void ECRCToken::removeToken()
 {
     QMessageBox::StandardButton btnRetVal = QMessageBox::question(this, tr("Confirm token remove"), tr("The selected token will be removed from the list. Are you sure?"),
         QMessageBox::Yes | QMessageBox::Cancel, QMessageBox::Cancel);

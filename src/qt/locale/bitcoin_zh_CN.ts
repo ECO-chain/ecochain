@@ -1232,6 +1232,11 @@
 <context>
     <name>OverviewPage</name>
     <message>
+        <source>Show more...</source>
+        <translation>显示更多</translation>
+    </message>
+
+    <message>
         <source>Other Tokens</source>
         <translation>其他代币</translation>
     </message>
@@ -1246,6 +1251,10 @@
     <message>
         <source>Watch-only:</source>
         <translation>查看-只有:</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
     </message>
     <message>
         <source>Available:</source>
@@ -1276,8 +1285,8 @@
         <translation>余额</translation>
     </message>
     <message>
-        <source>Total:</source>
-        <translation>总额：</translation>
+        <source>Total:        </source>
+        <translation>总金额</translation>
     </message>
     <message>
         <source>Your current total balance</source>
@@ -1292,8 +1301,24 @@
         <translation>可使用：</translation>
     </message>
     <message>
-        <source>Recent transactions</source>
+        <source>RecentTransactions</source>
         <translation>最近交易记录</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation>日期</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>种类</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>数量</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation>标签</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
@@ -1426,7 +1451,7 @@
         <translation>金额</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>Enter a ECO address (e.g. %1)</source>
         <translation>请输入一个ECOC地址 (例如 %1)</translation>
     </message>
     <message>
@@ -1998,6 +2023,18 @@
 </context>
 <context>
     <name>SendCoinsDialog</name>
+     <message>
+        <source>Recipients</source>
+        <translation>接受者</translation>
+    </message>
+    <message>
+        <source>Recommended</source>
+        <translation>请求数据</translation>
+    </message>
+    <message>
+        <source>Custom</source>
+        <translation>自定义、关税</translation>
+    </message>
     <message>
         <source>Send Coins</source>
         <translation>发送ECOC</translation>
@@ -3868,8 +3905,8 @@
         <translation>&lt;a href=&quot;https://ethereum.github.io/browser-solidity/&quot;&gt;Solidity 编译器&lt;/a&gt;</translation>
     </message>
     <message>
-        <source>&lt;a href=&quot;https://ethereum.org/token#the-code&quot;&gt;令牌模板&lt;/a&gt;</source>
-        <translation>令牌模板</translation>
+        <source>&lt;a href=&quot;https://ethereum.org/token#the-code&quot;&gt;Token template&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;https://ethereum.org/token#the-code&quot;&gt;令牌模板&lt;/a&gt;</translation>
     </message>
     <message>
         <source>Create Smart Contract</source>
@@ -3880,9 +3917,8 @@
         <translation>字节代码</translation>
     </message>
     <message>
-        <location line="+55"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Interface (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;接口 (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;接口 (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Optional</source>
@@ -3924,6 +3960,10 @@
 <context>
     <name>CallContract</name>
     <message>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Interface (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;接口 (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>Call Contract</source>
         <translation>调用智能合约</translation>
     </message>
@@ -3948,5 +3988,24 @@
         <translation>调用智能合约</translation>
     </message>
 
+</context>
+<context>
+    <name>ContractTableModel</name>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Contract Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Interface (ABI)</source>
+        <translation>接口  (ABI)</translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 </TS>

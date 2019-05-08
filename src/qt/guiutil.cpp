@@ -153,7 +153,7 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
 bool parseBitcoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
     // return if URI is not valid or is no bitcoin: URI
-    if(!uri.isValid() || uri.scheme() != QString("ECO"))
+    if(!uri.isValid() || uri.scheme() != QString("ecoc"))
         return false;
 
     SendCoinsRecipient rv;
@@ -219,7 +219,7 @@ bool parseBitcoinURI(QString uri, SendCoinsRecipient *out)
     //    which will lower-case it (and thus invalidate the address).
     if(uri.startsWith("ecoc://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 7, "ecoc:"); // ECOC: change string length to 7 to correctly parse ecoc://
+        uri.replace(0, 7, "ecoc:"); // ecoc: change string length to 7 to correctly parse ecoc://
     }
     QUrl uriInstance(uri);
     return parseBitcoinURI(uriInstance, out);

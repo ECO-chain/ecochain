@@ -232,7 +232,43 @@
     </message>
 </context>
 <context>
-    <name>ECOCGUI</name>
+    <name>BitcoinGUI</name>
+    <message>
+        <source>My &amp;wallet</source>
+        <translation>我的钱包</translation>
+    </message>
+    <message>
+    <source>Smart &amp;Contracts</source>
+    <translation>智能合约</translation>
+    </message>
+    <message>
+	<source>&amp;ECRC Tokens</source>
+        <translation>ECRC 令牌</translation>
+    </message>
+    <message>
+	<source>Create</source>
+        <translation>创建</translation>
+    </message>
+    <message>
+	<source>Send To</source>
+        <translation>发送至</translation>
+    </message>
+    <message>
+	<source>Call</source>
+        <translation>访问、呼叫</translation>
+    </message>
+    <message>
+	<source>Send</source>
+        <translation>发送</translation>
+    </message>
+    <message>
+	<source>Receive</source>
+        <translation>收到</translation>
+    </message>
+    <message>
+	<source>Add Token</source>
+        <translation>添加牌</translation>
+    </message>
     <message>
         <source>Sign &amp;message...</source>
         <translation>消息签名(&amp;M)...</translation>
@@ -300,6 +336,10 @@
     <message>
         <source>&amp;Backup Wallet...</source>
         <translation>备份钱包(&amp;B)...</translation>
+    </message>
+    <message>
+	<source>&amp;Restore Wallet...</source>
+     	<translation>恢复钱包</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
@@ -1191,6 +1231,10 @@
 </context>
 <context>
     <name>OverviewPage</name>
+    <message>
+        <source>Other Tokens</source>
+        <translation>其他代币</translation>
+    </message>
     <message>
         <source>Form</source>
         <translation>表单</translation>
@@ -3820,12 +3864,25 @@
 <context>
     <name>CreateContract</name>
     <message>
+        <source>&lt;a href=&quot;https://ethereum.github.io/browser-solidity/&quot;&gt;Solidity compiler&lt;/a&gt;</source>
+        <translation>&lt;a href=&quot;https://ethereum.github.io/browser-solidity/&quot;&gt;Solidity 编译器&lt;/a&gt;</translation>
+    </message>
+    <message>
+        <source>&lt;a href=&quot;https://ethereum.org/token#the-code&quot;&gt;令牌模板&lt;/a&gt;</source>
+        <translation>令牌模板</translation>
+    </message>
+    <message>
         <source>Create Smart Contract</source>
         <translation>创建智能合约</translation>
     </message>
     <message>
         <source>Bytecode</source>
-        <translation>Bytecode</translation>
+        <translation>字节代码</translation>
+    </message>
+    <message>
+        <location line="+55"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Interface (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;接口 (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>Optional</source>
@@ -3836,12 +3893,16 @@
         <translation>发送者地址</translation>
     </message>
     <message>
+        <source>Constructor</source>
+        <translation>构造函数</translation>
+    </message>
+    <message>
         <source>Gas Limit</source>
-        <translation>Gas Limit</translation>
+        <translation>GAS 限制</translation>
     </message>
     <message>
         <source>Gas Price</source>
-        <translation>Gas Price</translation>
+        <translation>GAS 价格</translation>
     </message>
     <message>
         <source>Contract Template</source>

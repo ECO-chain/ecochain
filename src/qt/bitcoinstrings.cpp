@@ -9,7 +9,7 @@
 #define UNUSED
 #endif
 static const char UNUSED *bitcoin_strings[] = {
-QT_TRANSLATE_NOOP("bitcoin-core", "Ecoc Core"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Ecochain Core"),
 QT_TRANSLATE_NOOP("bitcoin-core", "The %s developers"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "(1 = keep tx meta data e.g. account owner and payment request information, 2 "
@@ -27,9 +27,19 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Accept relayed transactions received from whitelisted peers even when not "
 "relaying transactions (default: %d)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
+"After this amount of gas is surpassed in a block, no more contract "
+"executions will be added to the block (defaults to consensus-critical "
+"maximum block gas limit)"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Allow JSON-RPC connections from specified source. Valid for <ip> are a "
 "single IP (e.g. 1.2.3.4), a network/netmask (e.g. 1.2.3.4/255.255.255.0) or "
 "a network/CIDR (e.g. 1.2.3.4/24). This option can be specified multiple times"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"Any contract execution with a gas limit over this amount will not be "
+"included in a block (defaults to soft block gas limit)"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"Any contract execution with a gas price below this will not be included in a "
+"block"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Bind to given address and always listen on it. Use [host]:port notation for "
 "IPv6"),
@@ -59,6 +69,9 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "%s"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Do not keep transactions in the mempool longer than <n> hours (default: %u)"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"Enables or disables the staking cache; significantly improves staking "
+"performance, but can use a lot of memory (enabled by default)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Equivalent bytes per sigop in transactions for relay and mining (default: %u)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
@@ -104,6 +117,9 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Invalid amount for -maxtxfee=<amount>: '%s' (must be at least the minrelay "
 "fee of %s to prevent stuck transactions)"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"Maintain a full EVM log index, used by searchlogs and gettransactionreceipt "
+"rpc calls (default: %u)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "Maintain a full transaction index, used by the getrawtransaction rpc call "
 "(default: %u)"),
@@ -168,6 +184,8 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "This may be due to your computer's date and time being set incorrectly. Only "
 "rebuild the block database if you are sure that your computer's date and "
 "time are correct"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"The max value (in satoshis) for gas price allowed through RPC (default: %u)"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "The transaction amount is too small to send after the fee has been deducted"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
@@ -235,6 +253,9 @@ QT_TRANSLATE_NOOP("bitcoin-core", ""
 "mode.  This will redownload the entire blockchain"),
 QT_TRANSLATE_NOOP("bitcoin-core", ""
 "You need to rebuild the database using -reindex-chainstate to change -txindex"),
+QT_TRANSLATE_NOOP("bitcoin-core", ""
+"You need to rebuild the database using -reindex-chainstate to enable -"
+"logevents"),
 QT_TRANSLATE_NOOP("bitcoin-core", "%s corrupt, salvage failed"),
 QT_TRANSLATE_NOOP("bitcoin-core", "%s is set very high!"),
 QT_TRANSLATE_NOOP("bitcoin-core", "(default: %s)"),
@@ -258,7 +279,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Change index out of range"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Connect through SOCKS5 proxy"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Connect to a node to retrieve peer addresses, and disconnect"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Connection options:"),
-QT_TRANSLATE_NOOP("bitcoin-core", "Copyright (C) %i-%i"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Copyright (C) %i"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Corrupted block database detected"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Debugging/Testing options:"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Do not load the wallet and disable wallet RPC calls"),
@@ -269,6 +290,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Enable publish hash transaction in <address>"
 QT_TRANSLATE_NOOP("bitcoin-core", "Enable publish raw block in <address>"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Enable publish raw transaction in <address>"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Enable transaction replacement in the memory pool (default: %u)"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Enables or disables staking (enabled by default)"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error initializing block database"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error initializing wallet database environment %s!"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading %s"),
@@ -278,9 +300,11 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Error loading %s: You can't disable HD on a a
 QT_TRANSLATE_NOOP("bitcoin-core", "Error loading block database"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error opening block database"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error reading from database, shutting down."),
+QT_TRANSLATE_NOOP("bitcoin-core", "Error upgrading chainstate database"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error: A fatal internal error occurred, see debug.log for details"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Error: Disk space is low!"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Error: Wallet unlocked for staking only, unable to create transaction."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Failed to listen on any port. Use -listen=0 if you want this."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Fee (in %s/kB) to add to transactions you send (default: %s)"),
 QT_TRANSLATE_NOOP("bitcoin-core", "How many blocks to check at startup (default: %u, 0 = all)"),
@@ -308,6 +332,7 @@ QT_TRANSLATE_NOOP("bitcoin-core", "Loading banlist..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Loading block index..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Loading wallet..."),
 QT_TRANSLATE_NOOP("bitcoin-core", "Location of the auth cookie (default: data dir)"),
+QT_TRANSLATE_NOOP("bitcoin-core", "Logs all EVM LOG opcode operations to the file vmExecLogs.json"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Maintain at most <n> connections to peers (default: %u)"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Make the wallet broadcast transactions"),
 QT_TRANSLATE_NOOP("bitcoin-core", "Maximum per-connection receive buffer, <n>*1000 bytes (default: %u)"),

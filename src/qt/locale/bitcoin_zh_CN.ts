@@ -4277,15 +4277,15 @@
     </message>
     <message>
         <source>The address that will receive the tokens.</source>
-        <translation type="unfinished"></translation>
+        <translation>将收到令牌的地址。</translation>
     </message>
     <message>
         <source>The amount in Token to send.</source>
-        <translation type="unfinished"></translation>
+        <translation>要发送的硬币金额。</translation>
     </message>
     <message>
         <source>Optional description for transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>交易的可选描述。</translation>
     </message>
     <message>
         <source>Gas limit: Default = %1, Max = %2.</source>
@@ -4297,7 +4297,7 @@
     </message>
     <message>
         <source>Are you sure you want to send? &lt;br /&gt;&lt;br /&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>你确定要发送吗？</translation>
     </message>
     <message>
         <source>&lt;b&gt;%1 %2 &lt;/b&gt; to </source>
@@ -4309,7 +4309,7 @@
     </message>
     <message>
         <source>Confirm send token.</source>
-        <translation type="unfinished"></translation>
+        <translation>确认发送令牌。</translation>
     </message>
     <message>
         <source>To send %1 you need ECO on address &lt;br /&gt; %2.</source>
@@ -4317,7 +4317,7 @@
     </message>
     <message>
         <source>Send token</source>
-        <translation type="unfinished"></translation>
+        <translation>发送令牌</translation>
     </message>
 </context>
 <context>
@@ -4332,7 +4332,7 @@
     </message>
     <message>
         <source>Label</source>
-        <translation type="unfinished">标签</translation>
+        <translation>标签</translation>
     </message>
     <message>
         <source>Name</source>
@@ -4344,35 +4344,35 @@
     </message>
     <message>
         <source>Offline</source>
-        <translation type="unfinished"></translation>
+        <translation>离线</translation>
     </message>
     <message>
         <source>Unconfirmed</source>
-        <translation type="unfinished"></translation>
+        <translation>未确认</translation>
     </message>
     <message>
         <source>Confirming (%1 of %2 recommended confirmations)</source>
-        <translation type="unfinished"></translation>
+        <translation>确认中 (推荐 %2个确认，已经有 %1个确认)</translation>
     </message>
     <message>
         <source>Confirmed (%1 confirmations)</source>
-        <translation type="unfinished"></translation>
+        <translation>已确认 (%1 条确认信息)</translation>
     </message>
     <message>
         <source>Received with</source>
-        <translation type="unfinished"></translation>
+        <translation>收款</translation>
     </message>
     <message>
         <source>Received from</source>
-        <translation type="unfinished"></translation>
+        <translation>收款来自</translation>
     </message>
     <message>
         <source>Sent to</source>
-        <translation type="unfinished"></translation>
+        <translation>付款</translation>
     </message>
     <message>
         <source>Payment to yourself</source>
-        <translation type="unfinished"></translation>
+        <translation>付款给自己</translation>
     </message>
     <message>
         <source>(n/a)</source>
@@ -4384,27 +4384,27 @@
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
-        <translation type="unfinished"></translation>
+        <translation>交易状态。 鼠标移到此区域可显示确认项数量。</translation>
     </message>
     <message>
         <source>Date and time that the transaction was received.</source>
-        <translation type="unfinished"></translation>
+        <translation>接收到交易的时间</translation>
     </message>
     <message>
         <source>Type of transaction.</source>
-        <translation type="unfinished"></translation>
+        <translation>交易类别。</translation>
     </message>
     <message>
         <source>User-defined intent/purpose of the transaction.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Token name.</source>
-        <translation type="unfinished"></translation>
+        <translation>用户定义的该交易的意图/目的。</translation>
     </message>
     <message>
         <source>Amount removed from or added to balance.</source>
-        <translation type="unfinished"></translation>
+        <translation>从余额添加或移除的金额。</translation>
+    </message>
+    <message>
+        <source>Token name.</source>
+        <translation>令牌名称</translation>
     </message>
 </context>
 <context>
@@ -4484,92 +4484,92 @@
     </message>
     <message>
         <source>Create a new contract info</source>
-        <translation type="unfinished"></translation>
+        <translation>创建新的合同信息</translation>
     </message>
     <message>
         <source>New</source>
-        <translation type="unfinished"></translation>
+        <translation>新的</translation>
     </message>
     <message>
         <source>Copy the currently selected contract address to the system clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>将当前选定的合同地址复制到系统剪贴板</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>复制</translation>
     </message>
     <message>
         <source>Delete the currently selected contract info from the list</source>
-        <translation type="unfinished"></translation>
+        <translation>从列表中删除当前选定的合同信息</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>删除</translation>
     </message>
     <message>
         <source>Export the data to a file</source>
-        <translation type="unfinished"></translation>
+        <translation>从数据导出到文件</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>输出</translation>
     </message>
     <message>
         <source>Choose</source>
-        <translation type="unfinished"></translation>
+        <translation>选择</translation>
     </message>
     <message>
         <location filename="../contractbookpage.cpp" line="+42"/>
         <source>Choose the contract for send/call</source>
-        <translation type="unfinished"></translation>
+        <translation>选择发送/合约</translation>
     </message>
     <message>
         <source>These are your saved contracts. Always check the contract address and the ABI before sending/calling.</source>
-        <translation type="unfinished"></translation>
+        <translation>这些是您保存的合同。 在发送/呼叫之前，请务必检查合同地址和ABI</translation>
     </message>
     <message>
         <source>Copy &amp;Address</source>
-        <translation type="unfinished"></translation>
+        <translation>复制 &amp;地址</translation>
     </message>
     <message>
         <source>Copy &amp;Name</source>
-        <translation type="unfinished"></translation>
+        <translation>复制 &amp;名称</translation>
     </message>
     <message>
         <source>Copy &amp;Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>复制 &amp;接口</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;编辑</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Delete</translation>
+        <translation>&amp;删除</translation>
     </message>
     <message>
         <source>Are you sure you want to delete the address &quot;%1&quot; from your contract address list?</source>
-        <translation type="unfinished"></translation>
+        <translation >您确定要从合同地址列表中删除该地址&quot;%1&quot;吗？</translation>
     </message>
     <message>
         <source>Delete contact address</source>
-        <translation type="unfinished"></translation>
+        <translation>删除联系地址</translation>
     </message>
     <message>
         <source>Export Contract List</source>
-        <translation type="unfinished"></translation>
+        <translation>输出的合同清单</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation type="unfinished"></translation>
+        <translation>逗号分隔文件（* .csv）</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>导出失败</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation type="unfinished"></translation>
+        <translation>尝试将地址列表保存到％1时出错。 请再试一次。</translation>
     </message>
 </context>
 <context>
@@ -4583,7 +4583,7 @@
         <location line="+16"/>
         <location line="+175"/>
         <source>Contract Summary</source>
-        <translation type="unfinished"></translation>
+        <translation>合同摘要</translation>
     </message>
     <message>
         <location line="-132"/>
@@ -4605,17 +4605,17 @@
     <message>
         <location line="-176"/>
         <source>Transaction ID</source>
-        <translation type="unfinished"></translation>
+        <translation>交易ID</translation>
     </message>
     <message>
         <location line="+125"/>
         <source>Function</source>
-        <translation type="unfinished"></translation>
+        <translation>函数</translation>
     </message>
     <message>
         <location line="+61"/>
         <source>Result</source>
-        <translation type="unfinished"></translation>
+        <translation>结果</translation>
     </message>
     <message>
         <location filename="../contractresult.cpp" line="+251"/>
@@ -4633,7 +4633,7 @@
     <message>
         <location line="+32"/>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <location line="+7"/>
@@ -4648,17 +4648,17 @@
     <message>
         <location filename="../editcontractinfodialog.cpp" line="+31"/>
         <source>New contract info</source>
-        <translation type="unfinished"></translation>
+        <translation>新合同信息</translation>
     </message>
     <message>
         <location line="+3"/>
         <source>Edit contract info</source>
-        <translation type="unfinished"></translation>
+        <translation>编辑合同信息</translation>
     </message>
     <message>
         <location line="+112"/>
         <source>The entered address &quot;%1&quot; is already in the contract book.</source>
-        <translation type="unfinished"></translation>
+        <translation>所输入的地址&quot;%1&quot;已经在合同簿中。</translation>
     </message>
 </context>
 </TS>

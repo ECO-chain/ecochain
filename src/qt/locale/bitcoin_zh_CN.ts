@@ -3973,8 +3973,31 @@
         <translation>发送至智能合约</translation>
     </message>
     <message>
+        <location line="+47"/>
+        <source>Choose from contract book page</source>
+        <translation>选择粘贴钱包地址</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Paste contract address from clipboard</source>
+        <translation>从剪贴板粘贴钱包地址</translation>
+    </message>
+    <message>
+        <location line="+29"/>
+        <source>Save contract info</source>
+        <translation>保存钱包信息</translation>
+    </message>
+    <message>
         <source>Contract Address</source>
         <translation>合约地址</translation>
+    </message>
+    <message>
+        <source>Interface (ABI)*</source>
+        <translation>接口  (ABI)*</translation>
+    </message>
+    <message>
+        <source>Function</source>
+        <translation>函数</translation>
     </message>
     <message>
         <source>Data Hex</source>
@@ -4006,6 +4029,11 @@
     </message>
     <message>
         <source>Send to Contract</source>
+        <translation>发送至智能合约</translation>
+    </message>
+    <message>
+        <location filename="../sendtocontract.cpp" line="+75"/>
+        <source>Send To Contract</source>
         <translation>发送至智能合约</translation>
     </message>
 </context>
@@ -4071,8 +4099,20 @@
 <context>
     <name>CallContract</name>
     <message>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Interface (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;接口 (ABI)*&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <source>Choose from contract book page</source>
+        <translation>选择粘贴钱包地址</translation>
+    </message>
+    <message>
+        <source>Paste contract address from clipboard</source>
+        <translation>从剪贴板粘贴钱包地址</translation>
+    </message>
+    <message>
+        <source>Save contract info</source>
+        <translation>保存钱包信息</translation>
+    </message>
+    <message>
+        <source>Interface (ABI)</source>
+        <translation>接口  (ABI)</translation>
     </message>
     <message>
         <source>Call Contract</source>
@@ -4098,17 +4138,20 @@
         <source>Call Smart Contract</source>
         <translation>调用智能合约</translation>
     </message>
-
+    <message>
+        <source>Function</source>
+        <translation>函数</translation>
+    </message>
 </context>
 <context>
     <name>ContractTableModel</name>
     <message>
         <source>Label</source>
-        <translation type="unfinished"></translation>
+        <translation>标签</translation>
     </message>
     <message>
         <source>Contract Address</source>
-        <translation type="unfinished"></translation>
+        <translation>合约地址</translation>
     </message>
     <message>
         <source>Interface (ABI)</source>
@@ -4430,6 +4473,192 @@
         <location line="+1"/>
         <source>Wallet Data (*.dat)</source>
         <translation>电子钱包数据 (*. dat)</translation>
+    </message>
+</context>
+<context>
+    <name>ContractBookPage</name>
+    <message>
+        <location filename="../forms/contractbookpage.ui" line="+20"/>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>Create a new contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy the currently selected contract address to the system clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete the currently selected contract info from the list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export the data to a file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../contractbookpage.cpp" line="+42"/>
+        <source>Choose the contract for send/call</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>These are your saved contracts. Always check the contract address and the ABI before sending/calling.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp;Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp;Name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy &amp;Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Delete</translation>
+    </message>
+    <message>
+        <source>Are you sure you want to delete the address &quot;%1&quot; from your contract address list?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete contact address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export Contract List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Comma separated file (*.csv)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Exporting Failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>There was an error trying to save the address list to %1. Please try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContractResult</name>
+    <message>
+        <location filename="../forms/contractresult.ui" line="+14"/>
+        <source>StackedWidget</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <location line="+175"/>
+        <source>Contract Summary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="-132"/>
+        <location line="+162"/>
+        <source>ContractAddress</source>
+        <translation>智能合约地址</translation>
+    </message>
+    <message>
+        <location line="-143"/>
+        <source>Hash160</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+35"/>
+        <location line="+224"/>
+        <source>SenderAddress</source>
+        <translation>发送者地址</translation>
+    </message>
+    <message>
+        <location line="-176"/>
+        <source>Transaction ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+125"/>
+        <source>Function</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+61"/>
+        <source>Result</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../contractresult.cpp" line="+251"/>
+        <source>Create contract</source>
+        <translation>创建智能合约</translation>
+    </message>
+</context>
+<context>
+    <name>EditContractInfoDialog</name>
+    <message>
+        <location filename="../forms/editcontractinfodialog.ui" line="+20"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+32"/>
+        <source>Label</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Contract Address</source>
+        <translation>智能合约地址</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Interface (ABI)*</source>
+        <translation>接口  (ABI)*</translation>
+    </message>
+    <message>
+        <location filename="../editcontractinfodialog.cpp" line="+31"/>
+        <source>New contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>Edit contract info</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+112"/>
+        <source>The entered address &quot;%1&quot; is already in the contract book.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

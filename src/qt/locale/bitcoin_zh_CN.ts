@@ -1,5 +1,83 @@
 <TS language="zh_CN" version="2.1">
 <context>
+    <name>ABIFunctionField</name>
+    <message>
+        <source>Function</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>ABIParam</name>
+    <message>
+        <source>%1 %2</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>AddTokenPage</name>
+    <message>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Token Symbol</source>
+        <translation>令牌标识</translation>
+    </message>
+    <message>
+        <source>Decimals</source>
+        <translation>小数点</translation>
+    </message>
+    <message>
+        <source>Contract Address</source>
+        <translation>智能合约地址</translation>
+    </message>
+    <message>
+        <source>Token Name</source>
+        <translation>令牌名称</translation>
+    </message>
+    <message>
+        <source>Token Address</source>
+        <translation>令牌地址</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>明确、清除（消除的意思）</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+	<source>(This is your wallet address which will be tied to the token for send/receive operations)</source>
+        <translation>这是您的钱包地址，它将与发送和接收操作的令牌绑定</translation>
+    </message>
+    <message>
+        <source>The %1 address &quot;%2&quot; is not yours, please change it to new one.
+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Invalid token address</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Token exist</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>The token already exist with the specified contract and sender addresses.</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Log events</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Enable log events from the option menu in order to receive token transactions.</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
@@ -997,6 +1075,26 @@
 <context>
     <name>OptionsDialog</name>
     <message>
+    <source>Reserve</source>
+        <translation>保留</translation>
+    </message>
+    <message>
+        <source>Enable  log &amp;events</source>
+        <translation>启用日志事件</translation>
+    </message>
+    <message>
+        <source>Enable &amp;zero balance for receiver token address</source>
+        <translation>允许发送零标记数量</translation>
+    </message>
+    <message>
+        <source>Check for &amp;updates</source>
+        <translation>检查更新、版本更新</translation>
+    </message>
+    <message>
+        <source>Don&apos;t use change &amp;address</source>
+        <translation>请勿更改地址</translation>
+    </message>
+    <message>
         <source>Options</source>
         <translation>选项</translation>
     </message>
@@ -1145,6 +1243,14 @@
         <translation>通过Tor隐藏服务连接节点时 使用不同的SOCKS5代理</translation>
     </message>
     <message>
+        <source>&amp;OK</source>
+        <translation>&amp;好</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;取消</translation>
+    </message>
+    <message>
         <source>&amp;Window</source>
         <translation>窗口(&amp;W)</translation>
     </message>
@@ -1235,7 +1341,6 @@
         <source>Show more...</source>
         <translation>显示更多</translation>
     </message>
-
     <message>
         <source>Other Tokens</source>
         <translation>其他代币</translation>
@@ -1851,6 +1956,10 @@
 <context>
     <name>ReceiveCoinsDialog</name>
     <message>
+        <source>Address:</source>
+        <translation>地址:</translation>
+    </message>
+    <message>
         <source>&amp;Amount:</source>
         <translation>总额(&amp;A)：</translation>
     </message>
@@ -1879,8 +1988,8 @@
         <translation>可为新建的收款地址添加一个标签。</translation>
     </message>
     <message>
-        <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>使用此表单要求付款。所有字段都是&lt;b&gt;可选&lt;/b&gt;。</translation>
+	<source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Use this form to request payments. All fields are &lt;span style=&quot;	color: #ffffff;&quot;&gt;&lt;b&gt;optional&lt;/b&gt;&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>	
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;使用此表单要求付款。所有字段都是&lt;span style=&quot;	color: #ffffff;&quot;&gt;&lt;b&gt;可选&lt;/b&gt;&lt;/span&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
@@ -3879,11 +3988,11 @@
     </message>
     <message>
         <source>Gas Limit</source>
-        <translation>Gas Limit</translation>
+        <translation>GAS 限制</translation>
     </message>
     <message>
         <source>Gas Price</source>
-        <translation>Gas Price</translation>
+        <translation>GAS 价格</translation>
     </message>
     <message>
         <source>Amount</source>
@@ -4005,6 +4114,251 @@
     </message>
     <message>
         <source>(no label)</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionView</name>
+    <message>        
+        <source>All</source>
+        <translation>所有</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>今天</translation>
+    </message>
+    <message>
+        <source>This week</source>
+        <translation>这星期</translation>
+    </message>
+    <message>
+        <source>This month</source>
+        <translation>这个月</translation>
+    </message>
+    <message>
+        <source>Last month</source>
+        <translation>上个月</translation>
+    </message>
+    <message>
+        <source>This year</source>
+        <translation>今年</translation>
+    </message>
+    <message>
+        <source>Range...</source>
+        <translation>指定范围...</translation>
+    </message>
+    <message>
+        <source>Received with</source>
+        <translation>收款</translation>
+    </message>
+    <message>
+        <source>Sent to</source>
+        <translation>付款</translation>
+    </message>
+    <message>
+        <source>To yourself</source>
+        <translation>给自己</translation>
+    </message>
+    <message>
+        <source>Enter address to search</source>
+        <translation>地址搜索</translation>
+    </message>
+    <message>
+        <source>Min amount</source>
+        <translation>最低金额</translation>
+    </message>
+    <message>
+        <source>Copy address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy amount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy transaction ID</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Copy full transaction details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Show transaction details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Range:</source>
+        <translation>指定范围:</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SendTokenPage</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Form</translation>
+    </message>
+    <message>
+        <source>PayTo</source>
+        <translation>付钱给</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>数量</translation>
+    </message>
+    <message>
+        <source>GasLimit</source>
+        <translation>GAS限制</translation>
+    </message>
+    <message>
+        <source>GasPrice</source>
+        <translation>GAS 价格</translation>
+    </message>
+    <message>
+        <source>Description</source>
+        <translation>描述</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation>明确、清除（消除的意思）</translation>
+    </message>
+    <message>
+        <source>Confirm</source>
+        <translation>确认</translation>
+    </message>
+    <message>
+        <source>The address that will receive the tokens.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The amount in Token to send.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Optional description for transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gas limit: Default = %1, Max = %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gas price: ECO price per gas unit. Default = %1, Min = %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Are you sure you want to send? &lt;br /&gt;&lt;br /&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;%1 %2 &lt;/b&gt; to </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;br /&gt;%3 &lt;br /&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirm send token.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>To send %1 you need ECO on address &lt;br /&gt; %2.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Send token</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionTableModel</name>
+    <message>
+        <source>Date</source>
+        <translation>日期</translation>
+    </message>
+    <message>
+        <source>Type</source>
+        <translation>种类</translation>
+    </message>
+    <message>
+        <source>Label</source>
+        <translation type="unfinished">标签</translation>
+    </message>
+    <message>
+        <source>Name</source>
+        <translation>名称</translation>
+    </message>
+    <message>
+        <source>Amount</source>
+        <translation>数量</translation>
+    </message>
+    <message>
+        <source>Offline</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unconfirmed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirming (%1 of %2 recommended confirmations)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Confirmed (%1 confirmations)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Received with</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Received from</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Sent to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Payment to yourself</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(n/a)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>(no label)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Transaction status. Hover over this field to show number of confirmations.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date and time that the transaction was received.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Type of transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User-defined intent/purpose of the transaction.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Token name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Amount removed from or added to balance.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

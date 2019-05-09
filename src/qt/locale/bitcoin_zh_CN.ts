@@ -4364,4 +4364,72 @@
         <translation type="unfinished"></translation>
     </message>
 </context>
+<context>
+    <name>RestoreDialog</name>
+    <message>
+        <location filename="../forms/restoredialog.ui" line="+20"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+38"/>
+        <source>Select wallet file to restore from</source>
+        <translation>选择要还原的钱包文件</translation>
+    </message>
+    <message>
+        <location line="+16"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Choose wallet restore option</source>
+        <translation>选择钱包还原选项</translation>
+    </message>
+    <message>
+        <location line="+6"/>
+        <source>Reindex</source>
+        <translation>重新索引</translation>
+    </message>
+    <message>
+        <location line="+10"/>
+        <source>Salvage</source>
+        <translation>恢复</translation>
+    </message>
+    <message>
+        <location line="+23"/>
+        <source>The wallet.dat will be restored from the selected location and the Qt Wallet will be restarted with the -reindex or -salvagewallet option.</source>
+        <translation>这个钱包将从选定的位置恢复，而Qt钱包将通过-reindex或-salvagewallet选项重新启动</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>&amp;Reset</source>
+        <translation>重 置</translation>
+    </message>
+    <message>
+        <location filename="../restoredialog.cpp" line="+50"/>
+        <source>Confirm wallet restoration</source>
+        <translation>确认钱包恢复</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Warning: The wallet will be restored from location &lt;b&gt;%1&lt;/b&gt; and restarted with parameter &lt;b&gt;%2&lt;/b&gt;.</source>
+        <translation>警告：钱包将恢复 &lt;b&gt;%1&lt;/b&gt; 并使用参数重新启动 &lt;b&gt;%2&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&lt;br&gt;&lt;br&gt;Are you sure you wish to restore your wallet?</source>
+        <translation>&lt;br&gt;&lt;br&gt;您确定要恢复您的钱包吗？</translation>
+    </message>
+    <message>
+        <location line="+22"/>
+        <source>Restore Wallet</source>
+        <translation>恢复钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Wallet Data (*.dat)</source>
+        <translation>电子钱包数据 (*. dat)</translation>
+    </message>
+</context>
 </TS>

@@ -77,11 +77,13 @@ Makefile.am.user
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-bitcoin-qt
-Bitcoin-Qt.app
+ecoc-qt
+Ecoc-Qt.app
+background.tiff*
 
 # Unit-tests
 Makefile.test
+ecoc-qt_test
 bitcoin-qt_test
 src/test/buildenv.py
 

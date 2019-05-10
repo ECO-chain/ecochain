@@ -79,7 +79,7 @@ Makefile.am.user
 Makefile
 ecoc-qt
 Ecoc-Qt.app
-background.tiff*
+*background.tiff*
 
 # Unit-tests
 Makefile.test

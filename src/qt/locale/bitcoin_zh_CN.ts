@@ -2014,6 +2014,10 @@
         <translation>请求付款(&amp;R)</translation>
     </message>
     <message>
+	<source>Request data</source>
+        <translation>请求数据</translation>
+    </message>
+    <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
         <translation>显示选中的请求 (双击也可以显示)</translation>
     </message>
@@ -4032,7 +4036,6 @@
         <translation>发送至智能合约</translation>
     </message>
     <message>
-        <location filename="../sendtocontract.cpp" line="+75"/>
         <source>Send To Contract</source>
         <translation>发送至智能合约</translation>
     </message>

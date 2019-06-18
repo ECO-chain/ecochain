@@ -277,7 +277,7 @@ public:
     CRegTestParams() {
         strNetworkID = "regtest";
 	
-        consensus.nSubsidyHalvingInterval = 150;
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession;
         consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests) // activate for ecoc
         consensus.BIP34Hash = uint256S("0x665ed5b402ac0b44efc37d8926332994363e8a7278b7ee9a58fb972efadae943");
         consensus.BIP65Height = 0; // BIP65 activated on regtest (Used in rpc activation tests)
@@ -339,9 +339,9 @@ public:
             0
         };
 
-        consensus.nLastPOWBlock = 0x7fffffff;
+        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
         consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
+        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock+1;
 
         consensus.nFixUTXOCacheHFHeight=0;
 

@@ -18,10 +18,11 @@ namespace ecoc {
   const std::string ecoUnit = "ECO";
   const int MinerSleepInSecs = 60; // delay the block creation for a minute
   const int StakerPollingPeriod = 5000; //STAKER_POLLING_PERIOD in miliseconds
-  const int PoWReward = 2000 ; // reward of coins for each block at first phase (PoW)
-  const int PoSReward = 18 ; // PoS reward. After 10,000 POS blocks reward is zero.
-  const int maxHalvings = 1 ;// Just one  POS epoch with stable reward
-  const int rewardSession= 10000000 ; // how many blocks for falving the PoS reward , about 10 years and two months 
+  const int PoWReward = 20000 ; // reward of coins for each block at first phase (PoW)
+  const int PoSReward = 50 ; // PoS reward, doubling every epoch. After LastPoSBlock blocks reward is zero.
+  const int maxHalvings = 4 ;// 4 POS epochs(sessions) , doubling until cap. Variable name (maxHalvings) stays unmodified for historical reasons (tribute to bitcoin)
+  const int rewardSession= 2500000 ; // how many blocks for doubling the PoS reward , about two and a half years
+  const int LastPoSBlock = 9812500 ; // LastPoWBlock + LastPoSBlock is the block height that gives the last reward (2 billion coins cap reached)
   const int blockSizeLimit = 4*1000*1000 ; // blocksize limit 4M
   const int blockGasLimit= 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
   const int minTxGas = 40;

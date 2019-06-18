@@ -82,7 +82,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // set halving to take place every 4 years
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // set doubling to take place every 2 and half years
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockMainNet);
         consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
@@ -134,7 +134,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         // Note that of those with the service bits flag, most only support a subset of possible options
-        //vSeeds.push_back(CDNSSeedData("mainnet.seeder.ecoc.io", "mainnet.seeder.ecoc.io", false)); // Ecochain mainnet
+        vSeeds.push_back(CDNSSeedData("mainnet.seeder.ecoc.io", "mainnet.seeder.ecoc.io", false)); // Ecochain mainnet
 
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,33);
@@ -161,8 +161,8 @@ public:
                             //   (the tx=... number in the SetBestChain debug.log lines)
             0 // * estimated number of transactions per second after that timestamp
         };
-        consensus.nLastPOWBlock = 0x7fffffff;
-	    consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
+        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+	consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
                                     consensus.nMPoSRewardRecipients + 
                                     COINBASE_MATURITY;
@@ -180,7 +180,7 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
 	
-	    consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 4 years
+	    consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockTestNet);
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
@@ -217,8 +217,8 @@ public:
 
         pchMessageStart[0] = 0xc0; 
         pchMessageStart[1] = 0x00;
-	    pchMessageStart[2] = 0xc0;
-	    pchMessageStart[3] = 0xe0;
+	pchMessageStart[2] = 0xc0;
+	pchMessageStart[3] = 0xe0;
         nDefaultPort = 56563;
         nPruneAfterHeight = 1000;
 

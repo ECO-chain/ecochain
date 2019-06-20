@@ -112,7 +112,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000036a70ae675b98824c5"); 
+        consensus.nMinimumChainWork = uint256S("0x00"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xbfbbfc2c3be3d4e085082aff2e4e73a4e21dbf6205bc41b84b38ffac0a8bc114");
@@ -164,8 +164,7 @@ public:
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
 	consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
-                                    consensus.nMPoSRewardRecipients + 
-                                    COINBASE_MATURITY;
+                                    consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
 
         consensus.nFixUTXOCacheHFHeight=100000;
     }
@@ -231,7 +230,7 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
-        vSeeds.push_back(CDNSSeedData("testnet.seeder.ecoc.io", "testnet.seeder.ecoc.io", false)); // Ecochain testnet
+        //vSeeds.push_back(CDNSSeedData("testnet.seeder.ecoc.io", "testnet.seeder.ecoc.io", false)); // Ecochain testnet
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,92);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
@@ -341,7 +340,7 @@ public:
 
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
         consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock+1;
+        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
 
         consensus.nFixUTXOCacheHFHeight=0;
 

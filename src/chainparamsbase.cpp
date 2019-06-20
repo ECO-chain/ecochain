@@ -33,6 +33,7 @@ public:
     CBaseMainParams()
     {
         nRPCPort = 36562;
+	strDataDir = "ecocmainnet";
     }
 };
 static CBaseMainParams mainParams;
@@ -101,8 +102,8 @@ std::string ChainNameFromCommandLine()
         return CBaseChainParams::REGTEST;
     if (fTestNet)
         return CBaseChainParams::TESTNET;
-    //return CBaseChainParams::MAIN;
-    return CBaseChainParams::TESTNET; // For testnet branch default is testnet
+    return CBaseChainParams::MAIN;
+    //return CBaseChainParams::TESTNET; // For testnet branch default is testnet
 }
 
 bool AreBaseParamsConfigured()

@@ -27,7 +27,7 @@ namespace ecoc {
   const int blockGasLimit= 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
   const int minTxGas = 40;
 
-  const std::string genesisBlockMainNet = "b1795f27caef43cb48ce1168d88a3bd1d3d925aeee6c34c695efc884a5b55278";
+  const std::string genesisBlockMainNet = "0000009cbd44612c6e231a74c6d5ae65dcc4a55fa728cc5aa55f0558bdcc7268";
   const std::string genesisBlockTestNet = "b5656481d7f922e468dd4024b3e4c9be2486e5273ae1dacfa7d35eaa5c068fed";
   const std::string genesisBlockRegTest = "0af3850116f580171375d0fb852b43b36f1ae15b2c2eee0068d27d8440e294d4";
   const std::string genesisMerkleRoot = "4dbbe328a35a2ab40dbb6603e778feaae2153a55b5fe051ccff705804f34aae8";

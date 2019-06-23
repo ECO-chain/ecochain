@@ -2883,7 +2883,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     //only start checking this error after lasi PoW block  and only on testnet and mainnet, not regtest
     if(pindex->nHeight > ecoc::LastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
-        if(pindex->nMoneySupply > (uint64_t)(100000000 + ((pindex->nHeight - ecoc::LastPoWBlock) * 4)) * COIN){
+      if(pindex->nMoneySupply > (uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::PoSReward)) * COIN){
             return state.DoS(100, error("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply"),
                              REJECT_INVALID, "incorrect-money-supply");
         }

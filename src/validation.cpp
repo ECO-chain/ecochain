@@ -2622,7 +2622,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
         if (!tx.IsCoinBase())
         {
-            if (tx.IsCoinStake())
+	  if (tx.IsCoinStake())
                 nActualStakeReward = tx.GetValueOut()-view.GetValueIn(tx);
             else
                 nFees += view.GetValueIn(tx)-tx.GetValueOut();
@@ -2884,6 +2884,8 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     if(pindex->nHeight > ecoc::LastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
       if(pindex->nMoneySupply > (uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::PoSReward)) * COIN){
+	ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
+	ecoc::ecocLogNL("Reward limit: "); ecoc::ecocLogNL((uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::PoSReward)) * COIN);
             return state.DoS(100, error("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply"),
                              REJECT_INVALID, "incorrect-money-supply");
         }

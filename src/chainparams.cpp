@@ -112,7 +112,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00"); 
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000001000099"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S(ecoc::genesisBlockMainNet);
@@ -164,8 +164,7 @@ public:
         };
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
 	consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + 
-                                    consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
 
 	consensus.nFixUTXOCacheHFHeight=0;
     }

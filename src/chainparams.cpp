@@ -25,6 +25,22 @@
 
 #include "ecoc/ecoc.h"
 
+
+bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params) {
+    bool fNegative;
+    bool fOverflow;
+    arith_uint256 bnTarget;
+
+    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
+
+    // Check proof of work matches claimed amount
+    if (UintToArith256(hash) > bnTarget) {
+        return false;
+    }
+    return true;
+}
+
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -179,7 +195,7 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
 	
-	    consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
+	consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockTestNet);
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
@@ -219,13 +235,21 @@ public:
 	pchMessageStart[2] = 0xc0;
 	pchMessageStart[3] = 0xe0;
         nDefaultPort = 56563;
-        nPruneAfterHeight = 1000;
+	nPruneAfterHeight = 1000;
 
+	/* mine genesis block */
+	printf("Starting mining...\n");
+	while(!CheckProofOfWork(genesis.GetHash(), genesis.nBits, Params().GetConsensus())) { 
+       ++genesis.nNonce;
+       }
+       printf("nonce: %u\n",genesis.nNonce);
+       
+       
         genesis = CreateGenesisBlock(1530693715, 951159, 0x2100efff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
-        //assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));
-        //assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
+        assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));
+        assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -362,7 +386,7 @@ static CRegTestParams regTestParams;
 static CChainParams *pCurrentParams = 0;
 
 const CChainParams &Params() {
-    assert(pCurrentParams);
+  //assert(pCurrentParams);
     return *pCurrentParams;
 }
 

@@ -236,18 +236,10 @@ public:
 	pchMessageStart[3] = 0xe0;
         nDefaultPort = 56563;
 	nPruneAfterHeight = 1000;
-
-	/* mine genesis block */
-	printf("Starting mining...\n");
-	while(!CheckProofOfWork(genesis.GetHash(), genesis.nBits, Params().GetConsensus())) { 
-       ++genesis.nNonce;
-       }
-       printf("nonce: %u\n",genesis.nNonce);
-       
        
         genesis = CreateGenesisBlock(1530693715, 951159, 0x2100efff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-
+	
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
@@ -339,9 +331,9 @@ public:
 
         genesis = CreateGenesisBlock(1504695029, 17, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        
-        //assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
-        //assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
+	
+        assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
+        assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
 	
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -386,7 +378,7 @@ static CRegTestParams regTestParams;
 static CChainParams *pCurrentParams = 0;
 
 const CChainParams &Params() {
-  //assert(pCurrentParams);
+    assert(pCurrentParams);
     return *pCurrentParams;
 }
 

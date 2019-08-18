@@ -237,7 +237,7 @@ public:
         nDefaultPort = 56563;
 	nPruneAfterHeight = 1000;
        
-        genesis = CreateGenesisBlock(1530693715, 951159, 0x2100efff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1530693715, 851159, 0x2100efff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 	
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));

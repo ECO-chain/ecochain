@@ -28,7 +28,7 @@ namespace ecoc {
   const int minTxGas = 40;
 
   const std::string genesisBlockMainNet = "0000009cbd44612c6e231a74c6d5ae65dcc4a55fa728cc5aa55f0558bdcc7268";
-  const std::string genesisBlockTestNet = "84ed67278dd8a2dc5978d894e6649e3e4266ba23bae89d8cec471aa7ec1500fa";
+  const std::string genesisBlockTestNet = "0000005d73ef7042858df0f7fca1459d519ae0a209d68c9bf5701e61dd97fb42";
   const std::string genesisBlockRegTest = "52b4ddc1be5a40a1c5cf3ad2280baa8e7a25b5e3fe02b9d229c476bd0830c8d6";
   const std::string genesisMerkleRoot = "441bfed54efa3a027363d44aa74751180147bbad7e4a55f30213735b83a7d078";
   

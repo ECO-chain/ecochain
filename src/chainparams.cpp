@@ -25,22 +25,6 @@
 
 #include "ecoc/ecoc.h"
 
-
-bool CheckProofOfWork(uint256 hash, unsigned int nBits, const Consensus::Params& params) {
-    bool fNegative;
-    bool fOverflow;
-    arith_uint256 bnTarget;
-
-    bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
-
-    // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget) {
-        return false;
-    }
-    return true;
-}
-
-
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -143,8 +127,8 @@ public:
         pchMessageStart[3] = 0xc0;
         nDefaultPort = 36563;
         nPruneAfterHeight = 100000;
-
-	genesis = CreateGenesisBlock(1561089219 , 348169991 , 0x1e00ffff, 1, 50 * COIN);
+        
+        genesis = CreateGenesisBlock(1561089219 , 348169991 , 0x1e00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockMainNet));
@@ -194,8 +178,8 @@ class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
         strNetworkID = "test";
-	
-	consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
+        
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockTestNet);
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
@@ -232,12 +216,12 @@ public:
 
         pchMessageStart[0] = 0xc0; 
         pchMessageStart[1] = 0x00;
-	pchMessageStart[2] = 0xc0;
-	pchMessageStart[3] = 0xe0;
+        pchMessageStart[2] = 0xc0;
+        pchMessageStart[3] = 0xe0;
         nDefaultPort = 56563;
-	nPruneAfterHeight = 1000;
-       
-        genesis = CreateGenesisBlock(1530693715, 851159, 0x2100efff, 1, 50 * COIN);
+        nPruneAfterHeight = 1000;
+
+        genesis = CreateGenesisBlock(1530693715, 7921910, 0x1e00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 	
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));
@@ -259,14 +243,13 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = false; 
 	
-
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S(ecoc::genesisBlockTestNet))
         };
 
         chainTxData = ChainTxData{
-	        0,
+            0,
             0,
             0,
         };

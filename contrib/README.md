@@ -39,3 +39,6 @@ Utilities to generate test vectors for the data-driven Bitcoin tests.
 
 ### [Verify Binaries](/contrib/verifybinaries) ###
 This script attempts to download and verify the signature file SHA256SUMS.asc from bitcoin.org.
+
+### Berkley_DB 4.8
+you can run  install_BerkleyDB_4.8.sh bash script to install the 4.8 version

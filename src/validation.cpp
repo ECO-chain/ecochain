@@ -5266,7 +5266,7 @@ bool LoadExternalBlockFile(const CChainParams& chainparams, FILE* fileIn, CDiskB
 
 void static CheckBlockIndex(const Consensus::Params& consensusParams)
 {
-  ecoc::ecocLogFun(__PRETTY_FUNCTION__);
+  /* ecoc::ecocLogFun(__PRETTY_FUNCTION__); */
     if (!fCheckBlockIndex) {
       return;
     }

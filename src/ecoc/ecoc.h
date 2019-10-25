@@ -9,7 +9,7 @@
 //#include "libethcore/SealEngine.cpp"
 
 namespace ecoc {
-  const bool debug = true;
+  const bool debug = false;
   const int LastPoWBlock = 10000 ; // turning block from PoW to PoS
   const int BlockTime= 32 ; // block time creation target
   const int granularity = 7;

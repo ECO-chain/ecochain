@@ -137,7 +137,6 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("mainnet.seeder.ecoc.io", "mainnet.seeder.ecoc.io", false)); // Ecochain mainnet
 
-
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,33);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
@@ -154,6 +153,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S(ecoc::genesisBlockMainNet))
+            ( 10000, uint256S("000043c53370fffc55ea4baac593144dae30c2aced2156f3ab1c6ef1c147dded")) //last PoW block
         };
 
         chainTxData = ChainTxData{
@@ -163,10 +163,10 @@ public:
             0 // * estimated number of transactions per second after that timestamp
         };
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
-	consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
+        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
-
-	consensus.nFixUTXOCacheHFHeight=0;
+        
+        consensus.nFixUTXOCacheHFHeight=0;
     }
 };
 static CMainParams mainParams;
@@ -246,6 +246,7 @@ public:
         checkpointData = (CCheckpointData) {
             boost::assign::map_list_of
             ( 0, uint256S(ecoc::genesisBlockTestNet))
+            ( 10000, uint256S("75a83c05f539b959d89524a0816d1e7272e539a123751303ecdc8255b7c81c08")) //last PoW block
         };
 
         chainTxData = ChainTxData{
@@ -258,12 +259,11 @@ public:
         consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY; 
         consensus.nFixUTXOCacheHFHeight = 84500;
-	
-	    ecoc::ecocLogNL("nMPoSRewardRecipients: ") ; ecoc::ecocLog(consensus.nMPoSRewardRecipients);
-	    ecoc::ecocLogNL("nLastPOWBlock: ") ; ecoc::ecocLog(consensus.nLastPOWBlock);						 ;
-	    ecoc::ecocLogNL("nFirstMPoSBlock: ") ; ecoc::ecocLog(consensus.nFirstMPoSBlock);
+        
+        ecoc::ecocLogNL("nMPoSRewardRecipients: ") ; ecoc::ecocLog(consensus.nMPoSRewardRecipients);
+        ecoc::ecocLogNL("nLastPOWBlock: ") ; ecoc::ecocLog(consensus.nLastPOWBlock);
+        ecoc::ecocLogNL("nFirstMPoSBlock: ") ; ecoc::ecocLog(consensus.nFirstMPoSBlock);
     }
-	
 };
 static CTestNetParams testNetParams;
 
@@ -368,11 +368,11 @@ const CChainParams &Params() {
 CChainParams& Params(const std::string& chain)
 {
     if (chain == CBaseChainParams::MAIN)
-            return mainParams;
+        return mainParams;
     else if (chain == CBaseChainParams::TESTNET)
-            return testNetParams;
+        return testNetParams;
     else if (chain == CBaseChainParams::REGTEST)
-            return regTestParams;
+        return regTestParams;
     else
         throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }

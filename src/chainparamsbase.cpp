@@ -102,7 +102,7 @@ std::string ChainNameFromCommandLine()
         return CBaseChainParams::REGTEST;
     if (fTestNet)
         return CBaseChainParams::TESTNET;
-    return CBaseChainParams::MAIN; // set mainnet as default
+    return CBaseChainParams::MAIN;
 }
 
 bool AreBaseParamsConfigured()

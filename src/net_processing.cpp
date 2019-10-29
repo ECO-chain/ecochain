@@ -3347,7 +3347,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
 {
     {
         LOCK(cs_main);
-	ecoc::ecocLogFun(__PRETTY_FUNCTION__); 
+	ecoc::ecocLogFun(__PRETTY_FUNCTION__);
         // Check that the coinstake transaction exist in the received block
         if(pblock->IsProofOfStake() && !(pblock->vtx.size() > 1 && pblock->vtx[1]->IsCoinStake()))
         {

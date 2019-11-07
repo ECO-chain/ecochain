@@ -297,6 +297,8 @@ struct CNodeState {
      */
     bool fSupportsDesiredCmpctVersion;
 
+  CNodeHeaders headers;
+
     CNodeState(CAddress addrIn, std::string addrNameIn) : address(addrIn), name(addrNameIn) {
         fCurrentlyConnected = false;
         nMisbehavior = 0;
@@ -404,6 +406,19 @@ void FinalizeNode(NodeId nodeid, bool& fUpdateConnectionTime) {
     }
 }
 
+bool ProcessAndCheckNewBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=nullptr, CBlockHeader *first_invalid=nullptr)
+  {
+    const CBlockIndex *pindexFirst = nullptr;
+    bool fNewHeaders = ProcessNewBlockHeaders(block, state, chainparams, ppindex, first_invalid, &pindexFirst);
+    LOCK(cs_main);
+    CNodeState *nodestate = State(pfrom->GetId());
+    const CBlockIndex *pindexLast = ppindex == nullptr ? nullptr : *ppindex;
+    nodestate->headers.mayAddHeaders(pindexFirst, pindexLast);
+    return nodestate->headers.memoryGuard(state, fNewHeaders);
+
+    return fNewHeaders;
+  }
+  
 // Requires cs_main.
 // Returns a bool indicating whether we requested this block.
 // Also used if a block was /not/ received and timed out or started with another peer
@@ -579,7 +594,7 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<con
     // Make sure pindexBestKnownBlock is up to date, we'll need it.
     ProcessBlockAvailability(nodeid);
 
-    if (state->pindexBestKnownBlock == NULL || state->pindexBestKnownBlock->nChainWork < chainActive.Tip()->nChainWork) {
+    if (state->pindexBestKnownBlock == NULL || state->pindexBestKnownBlock->nChainWork <= chainActive.Tip()->nChainWork) {
         // This peer has nothing interesting.
         return;
     }
@@ -2069,7 +2084,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         const CBlockIndex *pindex = NULL;
         CValidationState state;
-        if (!ProcessNewBlockHeaders({cmpctblock.header}, state, chainparams, &pindex)) {
+        if (!ProcessAndCheckNewBlockHeaders(pfrom, {cmpctblock.header}, state, chainparams, &pindex)) {
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 if (nDoS > 0) {
@@ -2380,14 +2395,14 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         }
 
         CValidationState state;
-        if (!ProcessNewBlockHeaders(headers, state, chainparams, &pindexLast)) {
+        if (!ProcessAndCheckNewBlockHeaders(pfrom, headers, state, chainparams, &pindexLast)) {
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 if (nDoS > 0) {
                     LOCK(cs_main);
                     Misbehaving(pfrom->GetId(), nDoS);
                 }
-                return error("invalid header received");
+            return error("invalid header received");
             }
         }
 

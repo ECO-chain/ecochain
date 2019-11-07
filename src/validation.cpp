@@ -4317,10 +4317,12 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
 }
 
 // Exposed wrapper for AcceptBlockHeader
-bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex)
+bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex, CBlockHeader *first_invalid,  const CBlockIndex** pindexFirst)
 {
+  if (first_invalid != nullptr) first_invalid->SetNull();
     {
         LOCK(cs_main);
+	bool isFirst = true;
         for (const CBlockHeader& header : headers) {
             CBlockIndex *pindex = NULL; // Use a temp pindex instead of ppindex to avoid a const_cast
             if (!AcceptBlockHeader(header, state, chainparams, &pindex)) {
@@ -4328,6 +4330,11 @@ bool ProcessNewBlockHeaders(const std::vector<CBlockHeader>& headers, CValidatio
             }
             if (ppindex) {
                 *ppindex = pindex;
+		if(isFirst && pindexFirst)
+		  {
+		    *pindexFirst = pindex;
+		    isFirst = false;
+	       }
             }
         }
     }

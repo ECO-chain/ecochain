@@ -8,6 +8,7 @@
 
 #include "net.h"
 #include "validationinterface.h"
+#include "ecoc/ecoc.h"
 
 class CChainParams;
 
@@ -21,6 +22,10 @@ static const int64_t ORPHAN_TX_EXPIRE_INTERVAL = 5 * 60;
 static const unsigned int DEFAULT_BLOCK_RECONSTRUCTION_EXTRA_TXN = 100;
 /** Default maximum orphan blocks */
 static const unsigned int DEFAULT_MAX_ORPHAN_BLOCKS = 40;
+/*** Set limits for headers to guard RAM resources on fake stake attacks*/
+static const unsigned int HEADER_LIMIT_MAX_SIZE=ecoc::coinbaseMaturity;
+static const unsigned int HEADER_LIMIT_MAX_AVERAGE=10;
+static const unsigned int NODE_TOLERANCE=3;
 
 /** Register with a network node to receive its signals */
 void RegisterNodeSignals(CNodeSignals& nodeSignals);

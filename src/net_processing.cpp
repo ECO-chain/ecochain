@@ -159,6 +159,90 @@ struct CBlockReject {
  * processing of incoming data is done after the ProcessMessage call returns,
  * and we're no longer holding the node's locks.
  */
+
+  /* add CNodeHeader class to guard resources */
+  class CNodeHeaders
+  {
+    std::map<int,int> points;
+    size_t maxSize;
+    size_t maxAverage;
+
+  public:
+    CNodeHeaders():
+      maxSize(0), maxAverage(0)
+    {
+      maxSize=HEADER_LIMIT_MAX_SIZE;
+      maxAverage=HEADER_LIMIT_MAX_AVERAGE;
+    }
+    
+    bool mayAddHeaders(const CBlockIndex *pindexFirst, const CBlockIndex *pindexLast)
+    {
+      if(pindexFirst && pindexLast)
+	{
+	  int nBegin = pindexFirst->nHeight;
+	  int nEnd = pindexLast->nHeight;
+
+	  for(int point = nBegin; point<= nEnd; point++)
+	    {
+	      addPoint(point);
+	    }
+
+	  return true;
+	}
+
+      return false;
+    }
+
+    bool memoryGuard(CValidationState& state, bool originalf)
+    {
+      size_t size = points.size();
+      if(size == 0) {
+      // No headers , just return
+	return originalf;
+      }
+      
+      // Get total headers received
+      size_t nHeaders = 0;
+      for(auto point : points)
+	{
+	  nHeaders += point.second;
+	}
+
+      // Average value for height
+      double nAvgValue = (double)nHeaders / size;
+
+      /** Ban the attacker if any of the three conditions hold */
+      bool memoryAttack = (nAvgValue >= (NODE_TOLERANCE/2) * maxAverage && size >= maxAverage) ||
+	(nAvgValue >= maxAverage && nHeaders >= maxSize) ||
+	(nHeaders >= maxSize * NODE_TOLERANCE);
+      if(memoryAttack)
+	  // Clear all points and ban the attacker
+	{
+	  points.clear();
+	  return state.DoS(100, false, REJECT_INVALID, "header-spam", false, "possible RAM resource exhaustion attack; ban the attacker");
+	}
+
+      return originalf;
+    }
+
+  private:
+    void addPoint(int height)
+    {
+      if(points.size() == maxSize)
+	{
+	  points.erase(points.begin());
+	}
+      int occurrence = 0;
+      auto mindex = points.find(height);
+      if (mindex != points.end())
+	occurrence = (*mindex).second;
+      occurrence++;
+      points[height] = occurrence;
+    }
+
+  };
+
+  
 struct CNodeState {
     //! The peer's address
     const CService address;

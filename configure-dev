@@ -1,4 +1,4 @@
 #!/bin/sh
-./configure CFLAGS="-g -O2" CXXFLAGS="-g -O2 -Wall -Fno-strict-aliasing -Wno-strict-aliasing -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unknown-warning -Wno-implicit-fallthrough" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O2" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-gui-tests --disable-bench --with-gui
+./configure CFLAGS="-g -O2" CXXFLAGS="-g -O2 -Wall -Fno-strict-aliasing -Wno-strict-aliasing -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unknown-warning -Wno-implicit-fallthrough" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O2" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-tests --disable-gui-tests --disable-bench
 
 #./configure CFLAGS="-g -O2" CXXFLAGS="-g -O2 -Wall -Fno-strict-aliasing -Wno-strict-aliasing -Wextra -Wformat -Wvla -Wformat-security -Wno-unused-parameter -Wno-unknown-pragmas -Wno-unknown-warning -Wimplicit-fallthrough=0" CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O2" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib" --disable-gui-tests --with-gui

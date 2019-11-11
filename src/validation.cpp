@@ -3941,11 +3941,13 @@ bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, const 
     if (fCheckPOW && block.IsProofOfWork() && !CheckHeaderPoW(block, consensusParams))
         return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed");
     // Check header for proof of Stake validity
+    /* disable PoS header check 
     if (block.IsProofOfStake()
 	&& !IsInitialBlockDownload()  
 	&& !CheckHeaderPoS(block, consensusParams)) {
         return state.DoS(50, false, REJECT_INVALID, "bad-cb-header", false, "header didn't pass proof of stake checks");
     }
+    */
     return true;
 }
 

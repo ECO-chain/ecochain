@@ -4295,9 +4295,24 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
             return true;
         }
 
-        if (!CheckBlockHeader(block, state, chainparams.GetConsensus()))
-            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
+	        // Shouldn't be before last checkpoint
+        if (chainActive.Tip() && block.hashPrevBlock != chainActive.Tip()->GetBlockHash())
+        {
+            // Extra checks to prevent "fill up memory by spamming with bogus blocks"
+            const CBlockIndex* pcheckpoint = Checkpoints::AutoSelectSyncCheckpoint();
+            int64_t deltaTime = block.GetBlockTime() - pcheckpoint->nTime;
+            if (deltaTime < 0)
+            {
+                return state.DoS(1, false, REJECT_INVALID, "older-than-checkpoint", false,"AcceptBlockHeader(): Timestamp is before last checkpoint");
+            }
+        }
 
+        // Signature check
+        if (!CheckCanonicalBlockSignature(&block))
+        {
+            return state.DoS(100, false, REJECT_INVALID, "bad-signature-encoding", false,"AcceptBlockHeader(): bad block signature encoding");
+        }
+	
         // Get prev block index
         CBlockIndex* pindexPrev = NULL;
         BlockMap::iterator mi = mapBlockIndex.find(block.hashPrevBlock);
@@ -4313,7 +4328,29 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
 
         if (!ContextualCheckBlockHeader(block, state, chainparams.GetConsensus(), pindexPrev, GetAdjustedTime()))
             return error("%s: Consensus::ContextualCheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
+	
+	// Reject proof of work at height consensusParams.nLastPOWBlock
+        int nHeight = pindexPrev->nHeight + 1;
+        if (block.IsProofOfWork() && nHeight > chainparams.GetConsensus().nLastPOWBlock)
+            return state.DoS(100, false, REJECT_INVALID, "reject-pow", false, strprintf("reject proof-of-work at height %d", nHeight));
+
+        if(block.IsProofOfStake())
+        {
+            // Dont accept other chains before coinbase maturity
+            if (nHeight < COINBASE_MATURITY)
+                return state.DoS(100, false, REJECT_INVALID, "reject-pos", false, strprintf("reject proof-of-stake at height %d", nHeight));
+
+            // Timestamp check for coinstake
+            if(!CheckCoinStakeTimestamp(block.nTime))
+                return state.DoS(100, false, REJECT_INVALID, "timestamp-invalid", false, "proof of stake failed: timastamp is invalid");
+        }
+
+        // Check block header
+        // if (!CheckBlockHeader(block, state, chainparams.GetConsensus(), true, CheckPOS(block, pindexPrev)))
+        if (!CheckBlockHeader(block, state, chainparams.GetConsensus()))
+            return error("%s: Consensus::CheckBlockHeader: %s, %s", __func__, hash.ToString(), FormatStateMessage(state));
     }
+    
     if (pindex == NULL)
         pindex = AddToBlockIndex(block);
 

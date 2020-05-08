@@ -4475,7 +4475,6 @@
     <message>
         <location line="+1"/>
         <source>Wallet Data (*.dat)</source>
-        <translation>电子钱包数据 (*. dat)</translation>
     </message>
 </context>
 <context>

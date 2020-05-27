@@ -154,6 +154,7 @@ public:
             boost::assign::map_list_of
             ( 0, uint256S(ecoc::genesisBlockMainNet))
             ( 10000, uint256S("000043c53370fffc55ea4baac593144dae30c2aced2156f3ab1c6ef1c147dded")) //last PoW block
+	    ( 500000, uint256S("3e9398ace037b47777b3b1e6e3ebf0b6cec6d8764299ebca9c860cb36f7e9d04")) //1st checkpoint
         };
 
         chainTxData = ChainTxData{
@@ -247,6 +248,7 @@ public:
             boost::assign::map_list_of
             ( 0, uint256S(ecoc::genesisBlockTestNet))
             ( 10000, uint256S("75a83c05f539b959d89524a0816d1e7272e539a123751303ecdc8255b7c81c08")) //last PoW block
+	    ( 500000, uint256S("cc8341b331ba5e1f7e02290ece750e841b95de43a007d47d484153c63e5980db")) //1st checkpoint
         };
 
         chainTxData = ChainTxData{

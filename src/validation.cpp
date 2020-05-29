@@ -4252,10 +4252,10 @@ static bool UpdateHashProof(const CBlock& block, CValidationState& state, const 
         return state.DoS(50, error("UpdateHashProof() : coinstake timestamp violation nTimeBlock=%d", block.GetBlockTime()));
 
     // Check proof-of-work or proof-of-stake
-    if (!(fReindex) || block.IsProofOfStake() ) { // exclude check for PoW phase when reindexing
+    if (!(fReindex)  || (pindex->nHeight>0) ) { // exclude check for genesis block only on reindex
       if (block.nBits != GetNextWorkRequired(pindex->pprev, &block, consensusParams,block.IsProofOfStake()))
-	return state.DoS(100, error("UpdateHashProof() : incorrect %s", block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
-    }
+        return state.DoS(100, error("UpdateHashProof() : incorrect %s", block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
+      }
     
     uint256 hashProof;
     // Verify hash target and signature of coinstake tx

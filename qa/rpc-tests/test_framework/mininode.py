@@ -43,7 +43,7 @@ MY_VERSION = 70016  # past bip-31 for ping/pong
 MY_SUBVERSION = b"/python-mininode-tester:0.0.3/"
 MY_RELAY = 1 # from version 70001 onwards, fRelay should be appended to version messages (BIP37)
 
-COIN = 100000000 # 1 ECO coin
+COIN = 100000000 # 1 ECOC coin
 
 MAX_INV_SZ = 50000
 MaxBlockBaseSize = 4000000

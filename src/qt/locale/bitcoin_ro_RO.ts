@@ -940,7 +940,7 @@
         <translation>Cantitate</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Introduceţi o adresă ECOC (de exemplu %1)</translation>
     </message>
     <message>

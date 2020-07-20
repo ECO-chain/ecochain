@@ -1369,7 +1369,7 @@ Per specificare più URL separarli con una barra verticale "|".</translation>
         <translation>Importo</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Inserisci un indirizzo ECOC (ad es. %1)</translation>
     </message>
     <message>

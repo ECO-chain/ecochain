@@ -1380,7 +1380,7 @@
         <translation>Beløb</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Indtast en ECOC-adresse (fx %1)</translation>
     </message>
     <message>

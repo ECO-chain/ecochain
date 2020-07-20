@@ -522,7 +522,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Введите ECOC адрес (напр. %1)</translation>
     </message>
     <message numerus="yes">

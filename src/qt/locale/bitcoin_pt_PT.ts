@@ -1377,7 +1377,7 @@
         <translation>Quantia</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Entre um endereço ECOC (ex. %1)</translation>
     </message>
     <message>

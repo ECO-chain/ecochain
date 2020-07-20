@@ -17,7 +17,7 @@
     <name>AddTokenPage</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation>形成</translation>
     </message>
     <message>
         <source>Token Symbol</source>
@@ -140,11 +140,11 @@
         <translation>收款地址</translation>
     </message>
     <message>
-        <source>These are your ECO addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your ECOC addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation>这些是你要付款过去的ECO地址。在付钱之前，务必要检查金额和收款地址是否正确。</translation>
     </message>
     <message>
-        <source>These are your ECO addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your ECOC addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation>这些是你用来收款的ECO地址。建议在每次交易时，都使用一个新的收款地址。</translation>
     </message>
     <message>
@@ -208,6 +208,16 @@
     <message>
         <source>Repeat new passphrase</source>
         <translation>重复新密码</translation>
+    </message>
+    <message>
+        <location line="+30"/>
+        <source>Serves to disable the trivial sendmoney when OS account compromised. Provides no real security.</source>
+        <translation >当操作系统帐户受到威胁时，用于禁用琐碎的汇款。 不提供真正的安全性。</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>For staking only.</source>
+        <translation>仅用于放样。</translation>
     </message>
     <message>
         <source>Enter the new passphrase to the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
@@ -312,16 +322,46 @@
 <context>
     <name>BitcoinGUI</name>
     <message>
+        <location filename="../bitcoingui.cpp" line="+160"/>
+        <source>Wallet</source>
+        <translation>钱包</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Node</source>
+        <translation >节点</translation>
+    </message>
+    <message>
+        <location line="+138"/>
+        <source>New version of ECOC-wallet is available on the ECOC source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
+        <translation>ECOC钱包的新版本可在ECOC源代码存储库中找到： &lt;br /&gt; %1. &lt;br /&gt;建议下载并更新此应用程序</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Check for updates</source>
+        <translation>检查更新</translation>
+    </message>
+    <message>
         <source>My &amp;wallet</source>
         <translation>我的钱包</translation>
     </message>
     <message>
-    <source>Smart &amp;Contracts</source>
-    <translation>智能合约</translation>
+        <source>Smart &amp;Contracts</source>
+        <translation>智能合约</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Smart contracts</source>
+        <translation>智能合约</translation>
     </message>
     <message>
 	<source>&amp;ECRC Tokens</source>
         <translation>ECRC 令牌</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>ECRC Tokens (send, receive or add Tokens in list)</source>
+        <translation>ECRC 令牌 (发送, 在列表中接收或添加令牌)</translation>
     </message>
     <message>
 	<source>Create</source>
@@ -416,8 +456,13 @@
         <translation>备份钱包(&amp;B)...</translation>
     </message>
     <message>
-	<source>&amp;Restore Wallet...</source>
-     	<translation>恢复钱包</translation>
+	    <source>&amp;Restore Wallet...</source>
+        <translation>恢复钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Restore wallet from another location</source>
+        <translation>从其他位置还原钱包</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
@@ -466,6 +511,26 @@
     <message>
         <source>Change the passphrase used for wallet encryption</source>
         <translation>更改钱包加密口令</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>&amp;Unlock Wallet...</source>
+        <translation >&amp;解锁钱包...</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Unlock wallet</source>
+        <translation >解锁钱包</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>&amp;Lock Wallet</source>
+        <translation >&amp;锁钱包</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Lock wallet</source>
+        <translation >锁钱包</translation>
     </message>
     <message>
         <source>&amp;Debug window</source>
@@ -532,8 +597,13 @@
         <translation>分页工具栏</translation>
     </message>
     <message>
-        <source>Request payments (generates QR codes and ECOC: URIs)</source>
-        <translation>请求支付 (生成二维码和 ECOC: URI)</translation>
+    <source>Request payments (generates QR codes and ecoc: URIs)</source>
+        <translation>请求支付 (生成二维码和 ecoc:uri)</translation>
+    </message>
+    <message>
+        <location line="+116"/>
+        <source>Open a ecoc: URI or payment request</source>
+        <translation>打开一个ecoc：URI或付款请求</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -1006,7 +1076,7 @@
     </message>
     <message>
         <location line="+151"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa00ff;&quot;&gt;Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ECO network, as detailed below.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa00ff;&quot;&gt;Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ECOC network, as detailed below.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa00ff;&quot;&gt;近期交易可能尚未显示，因此当前余额可能不准确。以上信息将在与ECOC网络完全同步后更正。详情如下&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -1558,7 +1628,7 @@
         <translation>金额</translation>
     </message>
     <message>
-        <source>Enter a ECO address (e.g. %1)</source>
+        <source>Enter a ECOC address (e.g. %1)</source>
         <translation>请输入一个ECOC地址 (例如 %1)</translation>
     </message>
     <message>
@@ -4248,7 +4318,7 @@
     <name>SendTokenPage</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation>形成</translation>
     </message>
     <message>
         <source>PayTo</source>
@@ -4295,7 +4365,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Gas price: ECO price per gas unit. Default = %1, Min = %2.</source>
+        <source>Gas price: ECOC price per gas unit. Default = %1, Min = %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4315,7 +4385,7 @@
         <translation>确认发送令牌。</translation>
     </message>
     <message>
-        <source>To send %1 you need ECO on address &lt;br /&gt; %2.</source>
+        <source>To send %1 you need ECOC on address &lt;br /&gt; %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4482,7 +4552,7 @@
     <message>
         <location filename="../forms/contractbookpage.ui" line="+20"/>
         <source>Form</source>
-        <translation type="unfinished">Form</translation>
+        <translation >形成</translation>
     </message>
     <message>
         <source>Create a new contract info</source>
@@ -4661,6 +4731,195 @@
         <location line="+112"/>
         <source>The entered address &quot;%1&quot; is already in the contract book.</source>
         <translation>所输入的地址&quot;%1&quot;已经在合同簿中。</translation>
+    </message>
+</context>
+<context>
+    <name>ECRCToken</name>
+    <message>
+        <location filename="../forms/ecrctoken.ui" line="+20"/>
+        <source>Form</source>
+        <translation>形成</translation>
+    </message>
+    <message>
+        <location filename="../ecrctoken.cpp" line="+126"/>
+        <source>Copy receive address</source>
+        <translation>复制接收地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy token balance</source>
+        <translation>复制令牌余额</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy token name</source>
+        <translation>复制令牌名称</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy contract address</source>
+        <translation>复制合同地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Remove token</source>
+        <translation>删除令牌</translation>
+    </message>
+    <message>
+        <location line="+182"/>
+        <source>Confirm token remove</source>
+        <translation>确认令牌删除</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>The selected token will be removed from the list. Are you sure?</source>
+        <translation>所选令牌将从列表中删除。 你确定吗？</translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveTokenPage</name>
+    <message>
+        <location filename="../forms/receivetokenpage.ui" line="+23"/>
+        <source>Form</source>
+        <translation>形成</translation>
+    </message>
+    <message>
+        <location line="+98"/>
+        <location filename="../receivetokenpage.cpp" line="+34"/>
+        <source>Address</source>
+        <translation>地址</translation>
+    </message>
+</context>
+<context>
+    <name>TokenDescDialog</name>
+    <message>
+        <location filename="../forms/tokendescdialog.ui" line="+20"/>
+        <source>Dialog</source>
+        <translation>对话</translation>
+    </message>
+    <message>
+        <location filename="../tokendescdialog.cpp" line="+18"/>
+        <source>Details for %1</source>
+        <translation>％1的详细信息</translation>
+    </message>
+</context>
+<context>
+    <name>TokenItemModel</name>
+    <message>
+        <location filename="../tokenitemmodel.cpp" line="+295"/>
+        <source>Token Name</source>
+        <translation>令牌名称</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Token Symbol</source>
+        <translation>令牌标识</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Balance</source>
+        <translation>余额</translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionDesc</name>
+    <message>
+        <location filename="../tokentransactiondesc.cpp" line="+27"/>
+        <source>conflicted with a transaction with %1 confirmations</source>
+        <translation>与一个有 %1 个确认的交易冲突</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/offline</source>
+        <translation>%1 / 离线</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>0/unconfirmed, in memory pool</source>
+        <translation>0/未确认, 在内存池中</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>0/unconfirmed, not in memory pool</source>
+        <translation>0/未确认, 不在内存池中</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1/unconfirmed</source>
+        <translation>%1/未确认</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 confirmations</source>
+        <translation>%1 已确认</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Status</source>
+        <translation>状态</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Date</source>
+        <translation>日期</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transaction ID</source>
+        <translation>交易ID</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Token Address</source>
+        <translation>令牌地址</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>From</source>
+        <translation>来自</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To</source>
+        <translation>到</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Credit</source>
+        <translation>收入</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Debit</source>
+        <translation>支出</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Net Amount</source>
+        <translation>净额</translation>
+    </message>
+</context>
+
+<context>
+    <name>ExecRPCCommand</name>
+    <message>
+        <location filename="../execrpccommand.cpp" line="+36"/>
+        <source>Mandatory fields are not present:
+%1</source>
+        <translation>必填字段不存在：
+％1</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Optional fields are not present:
+%1</source>
+        <translation>可选字段不存在：
+％1</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Parse error: unbalanced &apos; or &quot;</source>
+        <translation>解析错误：不平衡&apos;要么&quot;</translation>
     </message>
 </context>
 </TS>

@@ -70,7 +70,7 @@
        <item>
         <widget class="QToolButton" name="labelTokenStatus">
          <property name="toolTip">
-          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECO network after a connection is established, but this process has not completed yet.</string>
+          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECOC network after a connection is established, but this process has not completed yet.</string>
          </property>
          <property name="text">
           <string/>
@@ -217,7 +217,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: #ffffff;</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -251,7 +251,7 @@ background-opacity: 97%;</string>
              </font>
             </property>
             <property name="text">
-             <string>0.000 000 00 ECO</string>
+             <string>0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -278,7 +278,7 @@ background-opacity: 97%;</string>
              <string>Mined balance in watch-only addresses that has not yet matured</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -308,7 +308,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: #ffffff;</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -329,7 +329,7 @@ background-opacity: 97%;</string>
              </font>
             </property>
             <property name="text">
-             <string>0.000 000 00 ECO</string>
+             <string>0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -359,7 +359,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: Gold;</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -389,7 +389,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: Gold;</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -447,7 +447,7 @@ background-opacity: 97%;</string>
              <string>Mined balance that has not yet matured</string>
             </property>
             <property name="text">
-             <string notr="true">0.000 000 00 ECO</string>
+             <string notr="true">0.000 000 00 ECOC</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -477,7 +477,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: GreenYellow;</string>
             </property>
             <property name="text">
-             <string notr="true">&lt;font color=GreenYellow&gt;0.000 000 00 ECO&lt;font&gt;</string>
+             <string notr="true">&lt;font color=GreenYellow&gt;0.000 000 00 ECOC&lt;font&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -507,7 +507,7 @@ background-opacity: 97%;</string>
              <string notr="true">color: GreenYellow;</string>
             </property>
             <property name="text">
-             <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:GreenYellow;&quot;&gt;0.000 000 00 ECO&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:GreenYellow;&quot;&gt;0.000 000 00 ECOC&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -609,7 +609,7 @@ background-opacity: 97%;</string>
           <bool>true</bool>
          </property>
          <property name="toolTip">
-          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECO network after a connection is established, but this process has not completed yet.</string>
+          <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECOC network after a connection is established, but this process has not completed yet.</string>
          </property>
          <property name="text">
           <string/>
@@ -705,7 +705,7 @@ background-opacity: 97%;</string>
         <bool>true</bool>
        </property>
        <property name="toolTip">
-        <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECO network after a connection is established, but this process has not completed yet.</string>
+        <string>The displayed information may be out of date. Your wallet automatically synchronizes with the ECOC network after a connection is established, but this process has not completed yet.</string>
        </property>
        <property name="text">
         <string/>

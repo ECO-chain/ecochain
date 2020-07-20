@@ -62,7 +62,7 @@ class EcocCreateEthOpCodeTest(BitcoinTestFramework):
         assert_equal(self.node.listcontracts(), deployed_contracts)
 
         # Make sure that the call to create resulted in an out of gas exception (all gas will have been assigned to the miner)
-        # The total gas is equal to 1 ECO (10^6 * 10^2) + a minor txfee
+        # The total gas is equal to 1 ECOC (10^6 * 10^2) + a minor txfee
         block = self.node.getblock(blockhash)
         coinbase_tx = self.node.getrawtransaction(block['tx'][0], True)
         assert(coinbase_tx['vout'][0]['value'] >= 20000+1)
@@ -130,7 +130,7 @@ class EcocCreateEthOpCodeTest(BitcoinTestFramework):
         self.node.generate(1)
         assert_equal(self.node.listcontracts()[self.test_contract_address], 100)
 
-        # Transfer 50 ECO coins from the contract via p2pkh to an address of our choice
+        # Transfer 50 ECOC coins from the contract via p2pkh to an address of our choice
         receiver_address = self.node.getnewaddress()
         h160addr = str(base58_to_byte(receiver_address, 25)[1])[2:-1]
         data = "9e1a00aa"
@@ -141,7 +141,7 @@ class EcocCreateEthOpCodeTest(BitcoinTestFramework):
         assert_equal(self.node.listcontracts()[self.test_contract_address], 50)
         self.assert_address_with_value_in_unspents(receiver_address, 50)
 
-        # Transfer 50 ECO coins from the contract via OP_CALL to its parent contract (the Factory contract)
+        # Transfer 50 ECOC coins from the contract via OP_CALL to its parent contract (the Factory contract)
         receiver_address = self.node.getnewaddress()
         h160addr = str(base58_to_byte(receiver_address, 25)[1])[2:-1]
         data = "9e1a00aa"

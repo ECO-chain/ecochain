@@ -1380,7 +1380,7 @@
         <translation>거래액</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>큐텀 주소를 입력하기 (예. %1)</translation>
     </message>
     <message>

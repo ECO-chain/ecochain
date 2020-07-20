@@ -68,7 +68,7 @@ class SendToContractTest(BitcoinTestFramework):
 
     # Verifies that the contract storage, abi, balance work correctly
     def sendtocontract_verify_storage_and_balance_test(self):
-        # call set owner with 9999999999999999999999999999999999999999 as owner with 100 ECO
+        # call set owner with 9999999999999999999999999999999999999999 as owner with 100 ECOC
         ret = self.node.sendtocontract(self.contract_address, "13af40350000000000000000000000009999999999999999999999999999999999999999", 100)
         assert('txid' in ret)
         assert('sender' in ret)
@@ -87,7 +87,7 @@ class SendToContractTest(BitcoinTestFramework):
         self.node.importprivkey("cQWxca9y9XBf4c6ohTwRQ9Kf4GZyRybhGBfzaFgkvRpw8HjbRC58")
         self.node.sendtoaddress("qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", 0.1)
         self.node.generate(1)
-        # call setSenderAsOwner with 100 ECO
+        # call setSenderAsOwner with 100 ECOC
         ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, ECOC_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT")
         assert('txid' in ret)
         assert('sender' in ret)
@@ -105,7 +105,7 @@ class SendToContractTest(BitcoinTestFramework):
     def sendtocontract_no_broadcast(self):
         self.node.sendtoaddress("qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", 0.1)
         self.node.generate(1)
-        # call setSenderAsOwner with 100 ECO
+        # call setSenderAsOwner with 100 ECOC
         ret = self.node.sendtocontract(self.contract_address, "2bcf51b4", 100, 1000000, ECOC_MIN_GAS_PRICE_STR, "qabmqZk3re5b9UpUcznxDkCnCsnKdmPktT", False)
         assert('raw transaction' in ret)
         assert(len(ret.keys()) == 1)

@@ -1380,7 +1380,7 @@
         <translation>金額</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>輸入 ECOC 位址 (比如說 %1)</translation>
     </message>
     <message>

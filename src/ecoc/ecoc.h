@@ -15,7 +15,7 @@ namespace ecoc {
   const int granularity = 7;
   const int consensusMultisigners = 10;
   const int coinbaseMaturity = (600*100)/(BlockTime); //600*100/BlockTime = 1875 ; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
-  const std::string ecoUnit = "ECO";
+  const std::string ecoUnit = "ECOC";
   const int MinerSleepInSecs = 60; // delay the block creation for a minute
   const int StakerPollingPeriod = 5000; //STAKER_POLLING_PERIOD in miliseconds
   const int PoWReward = 20000 ; // reward of coins for each block at first phase (PoW)

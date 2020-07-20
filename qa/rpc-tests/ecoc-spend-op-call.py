@@ -35,7 +35,7 @@ class EcocSpendOpCallTest(BitcoinTestFramework):
         first_contract_address = self.nodes[0].createcontract(contract_bytecode)['address']
         self.nodes[0].generate(1)
 
-        # Send 100000 ECO to the contract
+        # Send 100000 ECOC to the contract
         self.nodes[0].sendtocontract(first_contract_address, "00", 100000)['txid']
         blockhash = self.nodes[0].generate(1)[0]
         prev_block = self.nodes[0].getblock(blockhash)

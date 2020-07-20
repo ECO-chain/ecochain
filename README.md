@@ -1,7 +1,7 @@
 # ECOchain
 **Official website**: [ecoc.io](https://ecoc.io)
 
-ECOchain is a public (permissionless) blockchain. The ECO stands for eco-friendly, e-commerce and economy. Our ambition is to attract decentralized applications that are targeting the business world.
+ECOchain is a public (permissionless) blockchain. The ECOC stands for eco-friendly, e-commerce and economy. Our ambition is to attract decentralized applications that are targeting the business world.
 
 There are a bunch of projects involved in this repository:
 - Bitcoin

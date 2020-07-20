@@ -440,7 +440,7 @@
 <context>
     <name>QObject</name>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>輸入一個 ECOC 位址 (例如 %1)</translation>
     </message>
     <message>

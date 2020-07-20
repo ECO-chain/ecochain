@@ -112,10 +112,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000001000099"); 
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000001ff7968db49a7d07084"); 
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S(ecoc::genesisBlockMainNet);
+        consensus.defaultAssumeValid = uint256S("0xafcacbe83c15d1c76f6e0d08eaf8cd0d4824f97c438d14857f54e8829c6bb21a"); //600000
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -213,7 +213,7 @@ public:
         consensus.nMinimumChainWork = uint256S ("0x01"); // ecoc
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S(ecoc::genesisBlockTestNet); //1079274
+        consensus.defaultAssumeValid = uint256S("0xdba75a42267c9f7cb8552d4f955ce7a01bbc4ef0b14a61f7bfd5e272dd83385b"); //700000
 
         pchMessageStart[0] = 0xc0; 
         pchMessageStart[1] = 0x00;

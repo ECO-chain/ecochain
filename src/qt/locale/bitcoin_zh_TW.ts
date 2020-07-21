@@ -547,6 +547,56 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>錢包&lt;b&gt;已加密&lt;/b&gt;並且&lt;b&gt;上鎖中&lt;/b&gt;</translation>
     </message>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation><numerusform>%n 秒</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation><numerusform>%n 分钟</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n 小时</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation><numerusform>%n 天</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation><numerusform>%n 周</numerusform></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>放样。&lt;br&gt;你的体重是%1&lt;br&gt;网络权重为%2&lt;br&gt;预期获得奖励的时间是%3</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Not staking because wallet is offline</source>
+        <translation>不放样，因为钱包离线</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is syncing</source>
+        <translation>不放样，因为钱包正在同步</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because you don&apos;t have mature coins</source>
+        <translation>不要下注，因为您没有成熟的硬币</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is locked</source>
+        <translation>钱包已锁定，因此无法下注</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking</source>
+        <translation>不下注</translation>
+    </message>
     <message>
         <source>A fatal error occurred. ECOC can no longer continue safely and will quit.</source>
         <translation>發生了致命的錯誤。ECOC 軟體沒辦法再繼續安全執行，只好結束。</translation>

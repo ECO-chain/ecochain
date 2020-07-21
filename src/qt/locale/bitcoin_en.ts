@@ -1891,7 +1891,7 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Attempting to spend ECOs that are affected by not-yet-displayed transactions will not be accepted by the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Attempting to spend ECOCs that are affected by not-yet-displayed transactions will not be accepted by the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3858,7 +3858,7 @@
     </message>
     <message>
         <location line="+31"/>
-        <source>The fee will be deducted from the amount being sent. The recipient will receive less ECOs than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
+        <source>The fee will be deducted from the amount being sent. The recipient will receive less ECOCs than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4281,7 +4281,7 @@
     </message>
     <message>
         <location line="-147"/>
-        <source>You can sign messages/agreements with your addresses to prove you can receive ECOs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <source>You can sign messages/agreements with your addresses to prove you can receive ECOCs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

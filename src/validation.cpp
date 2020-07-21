@@ -4252,9 +4252,9 @@ static bool UpdateHashProof(const CBlock& block, CValidationState& state, const 
         return state.DoS(50, error("UpdateHashProof() : coinstake timestamp violation nTimeBlock=%d", block.GetBlockTime()));
 
     // Check proof-of-work or proof-of-stake
-    if (!(fReindex)  || (pindex->nHeight>0) ) { 
+    if (!(fReindex && pindex->nHeight == 0)) {
         if (block.nBits != GetNextWorkRequired(pindex->pprev, &block, consensusParams,block.IsProofOfStake()))
-        return state.DoS(100, error("UpdateHashProof() : incorrect %s", block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
+            return state.DoS(100, error("UpdateHashProof() : incorrect %s", block.IsProofOfWork() ? "proof-of-work" : "proof-of-stake"));
     }
 
     uint256 hashProof;
@@ -4267,13 +4267,13 @@ static bool UpdateHashProof(const CBlock& block, CValidationState& state, const 
             return error("UpdateHashProof() : check proof-of-stake failed for block %s", hash.ToString());
         }
     }
-    
+
     // PoW is checked in CheckBlock()
     if (block.IsProofOfWork())
     {
         hashProof = block.GetHash();
     }
-    
+
     // Record proof hash value
     pindex->hashProof = hashProof;
     return true;

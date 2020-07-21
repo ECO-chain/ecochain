@@ -1345,7 +1345,7 @@ Kérem a kulcsmondatban használjon &lt;b&gt; tíz vagy több véletlenszerű ka
         <translation>Összeg</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Ad meg egy ECOC címet (pl: %1)</translation>
     </message>
     <message>

@@ -159,6 +159,90 @@ struct CBlockReject {
  * processing of incoming data is done after the ProcessMessage call returns,
  * and we're no longer holding the node's locks.
  */
+
+  /* add CNodeHeader class to guard resources */
+  class CNodeHeaders
+  {
+    std::map<int,int> points;
+    size_t maxSize;
+    size_t maxAverage;
+
+  public:
+    CNodeHeaders():
+      maxSize(0), maxAverage(0)
+    {
+      maxSize=HEADER_LIMIT_MAX_SIZE;
+      maxAverage=HEADER_LIMIT_MAX_AVERAGE;
+    }
+    
+    bool mayAddHeaders(const CBlockIndex *pindexFirst, const CBlockIndex *pindexLast)
+    {
+      if(pindexFirst && pindexLast)
+	{
+	  int nBegin = pindexFirst->nHeight;
+	  int nEnd = pindexLast->nHeight;
+
+	  for(int point = nBegin; point<= nEnd; point++)
+	    {
+	      addPoint(point);
+	    }
+
+	  return true;
+	}
+
+      return false;
+    }
+
+    bool memoryGuard(CValidationState& state, bool originalf)
+    {
+      size_t size = points.size();
+      if(size == 0) {
+      // No headers , just return
+	return originalf;
+      }
+      
+      // Get total headers received
+      size_t nHeaders = 0;
+      for(auto point : points)
+	{
+	  nHeaders += point.second;
+	}
+
+      // Average value for height
+      double nAvgValue = (double)nHeaders / size;
+
+      /** Ban the attacker if any of the three conditions hold */
+      bool memoryAttack = (nAvgValue >= (NODE_TOLERANCE/2) * maxAverage && size >= maxAverage) ||
+	(nAvgValue >= maxAverage && nHeaders >= maxSize) ||
+	(nHeaders >= maxSize * NODE_TOLERANCE);
+      if(memoryAttack)
+	  // Clear all points and ban the attacker
+	{
+	  points.clear();
+	  return state.DoS(100, false, REJECT_INVALID, "header-spam", false, "possible RAM resource exhaustion attack; ban the attacker");
+	}
+
+      return originalf;
+    }
+
+  private:
+    void addPoint(int height)
+    {
+      if(points.size() == maxSize)
+	{
+	  points.erase(points.begin());
+	}
+      int occurrence = 0;
+      auto mindex = points.find(height);
+      if (mindex != points.end())
+	occurrence = (*mindex).second;
+      occurrence++;
+      points[height] = occurrence;
+    }
+
+  };
+
+  
 struct CNodeState {
     //! The peer's address
     const CService address;
@@ -212,6 +296,8 @@ struct CNodeState {
      * otherwise: whether this peer sends non-witnesses in cmpctblocks/blocktxns.
      */
     bool fSupportsDesiredCmpctVersion;
+
+  CNodeHeaders headers;
 
     CNodeState(CAddress addrIn, std::string addrNameIn) : address(addrIn), name(addrNameIn) {
         fCurrentlyConnected = false;
@@ -320,6 +406,19 @@ void FinalizeNode(NodeId nodeid, bool& fUpdateConnectionTime) {
     }
 }
 
+bool ProcessAndCheckNewBlockHeaders(CNode* pfrom, const std::vector<CBlockHeader>& block, CValidationState& state, const CChainParams& chainparams, const CBlockIndex** ppindex=nullptr, CBlockHeader *first_invalid=nullptr)
+  {
+    const CBlockIndex *pindexFirst = nullptr;
+    bool fNewHeaders = ProcessNewBlockHeaders(block, state, chainparams, ppindex, first_invalid, &pindexFirst);
+    LOCK(cs_main);
+    CNodeState *nodestate = State(pfrom->GetId());
+    const CBlockIndex *pindexLast = ppindex == nullptr ? nullptr : *ppindex;
+    nodestate->headers.mayAddHeaders(pindexFirst, pindexLast);
+    return nodestate->headers.memoryGuard(state, fNewHeaders);
+
+    return fNewHeaders;
+  }
+  
 // Requires cs_main.
 // Returns a bool indicating whether we requested this block.
 // Also used if a block was /not/ received and timed out or started with another peer
@@ -495,7 +594,7 @@ void FindNextBlocksToDownload(NodeId nodeid, unsigned int count, std::vector<con
     // Make sure pindexBestKnownBlock is up to date, we'll need it.
     ProcessBlockAvailability(nodeid);
 
-    if (state->pindexBestKnownBlock == NULL || state->pindexBestKnownBlock->nChainWork < chainActive.Tip()->nChainWork) {
+    if (state->pindexBestKnownBlock == NULL || state->pindexBestKnownBlock->nChainWork <= chainActive.Tip()->nChainWork) {
         // This peer has nothing interesting.
         return;
     }
@@ -1985,7 +2084,7 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
 
         const CBlockIndex *pindex = NULL;
         CValidationState state;
-        if (!ProcessNewBlockHeaders({cmpctblock.header}, state, chainparams, &pindex)) {
+        if (!ProcessAndCheckNewBlockHeaders(pfrom, {cmpctblock.header}, state, chainparams, &pindex)) {
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 if (nDoS > 0) {
@@ -2296,14 +2395,14 @@ bool static ProcessMessage(CNode* pfrom, const std::string& strCommand, CDataStr
         }
 
         CValidationState state;
-        if (!ProcessNewBlockHeaders(headers, state, chainparams, &pindexLast)) {
+        if (!ProcessAndCheckNewBlockHeaders(pfrom, headers, state, chainparams, &pindexLast)) {
             int nDoS;
             if (state.IsInvalid(nDoS)) {
                 if (nDoS > 0) {
                     LOCK(cs_main);
                     Misbehaving(pfrom->GetId(), nDoS);
                 }
-                return error("invalid header received");
+            return error("invalid header received");
             }
         }
 
@@ -3383,7 +3482,7 @@ bool ProcessNetBlock(const CChainParams& chainparams, const std::shared_ptr<cons
         }
 
         // Check for the signiture encoding
-        if (!CheckCanonicalBlockSignature(pblock)) 
+        if (!CheckCanonicalBlockSignature(pblock.get()))
         {
             if (pfrom)
                 Misbehaving(pfrom->GetId(), 100);

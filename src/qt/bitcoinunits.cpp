@@ -38,11 +38,11 @@ QString BitcoinUnits::name(int unit)
 {
     switch (unit) {
     case BTC:
-        return QString("ECO");
+        return QString("ECOC");
     case mBTC:
-        return QString("mECO");
+        return QString("mECOC");
     case uBTC:
-        return QString::fromUtf8("μECO");
+        return QString::fromUtf8("μECOC");
     default:
         return QString("???");
     }
@@ -52,11 +52,11 @@ QString BitcoinUnits::description(int unit)
 {
     switch (unit) {
     case BTC:
-        return QString("ECOs");
+        return QString("ECOCs");
     case mBTC:
-        return QString("Milli-ECOs (1 / 1" THIN_SP_UTF8 "000)");
+        return QString("Milli-ECOCs (1 / 1" THIN_SP_UTF8 "000)");
     case uBTC:
-        return QString("Micro-ECOs (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        return QString("Micro-ECOCs (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default:
         return QString("???");
     }

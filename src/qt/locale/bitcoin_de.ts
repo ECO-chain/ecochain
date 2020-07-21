@@ -1380,7 +1380,7 @@
         <translation>Betrag</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>ECOC-Adresse eingeben (z.B. %1)</translation>
     </message>
     <message>

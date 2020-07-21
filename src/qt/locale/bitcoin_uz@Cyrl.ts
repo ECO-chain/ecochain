@@ -682,7 +682,7 @@
         <translation>Миқдори</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>ECOC манзилини киритинг (масалан.  %1)</translation>
     </message>
     <message>

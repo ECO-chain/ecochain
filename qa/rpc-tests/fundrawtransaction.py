@@ -203,9 +203,9 @@ class RawTransactionsTest(BitcoinTestFramework):
 
         try:
             self.nodes[2].fundrawtransaction(rawtx, {'changeAddress': 'foobar'})
-            raise AssertionError("Accepted invalid ECO address")
+            raise AssertionError("Accepted invalid ECOC address")
         except JSONRPCException as e:
-            assert("changeAddress must be a valid ECO address" in e.error['message'])
+            assert("changeAddress must be a valid ECOC address" in e.error['message'])
 
 
         ############################################################

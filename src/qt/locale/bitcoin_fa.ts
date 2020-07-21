@@ -1016,7 +1016,7 @@
         <translation>مبلغ</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>یک آدرس بیت‌کوین وارد کنید (مثلاً %1)</translation>
     </message>
     <message>

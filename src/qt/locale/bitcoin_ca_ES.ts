@@ -1348,7 +1348,7 @@
         <translation>Import</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Introduïu una adreça de ECOC (p. ex. %1)</translation>
     </message>
     <message>

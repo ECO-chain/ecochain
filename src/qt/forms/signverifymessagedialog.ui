@@ -92,7 +92,7 @@
            <item>
             <widget class="QValidatedLineEdit" name="addressIn_SM">
              <property name="toolTip">
-              <string>The ECO address to sign the message with</string>
+              <string>The ECOC address to sign the message with</string>
              </property>
             </widget>
            </item>
@@ -241,7 +241,7 @@
           <item>
            <widget class="QPushButton" name="signMessageButton_SM">
             <property name="toolTip">
-             <string>Sign the message to prove you own this ECO address</string>
+             <string>Sign the message to prove you own this ECOC address</string>
             </property>
             <property name="styleSheet">
              <string notr="true"/>
@@ -360,7 +360,7 @@
            <item>
             <widget class="QValidatedLineEdit" name="addressIn_VM">
              <property name="toolTip">
-              <string>The ECO address the message was signed with</string>
+              <string>The ECOC address the message was signed with</string>
              </property>
             </widget>
            </item>
@@ -429,7 +429,7 @@
           <item>
            <widget class="QPushButton" name="verifyMessageButton_VM">
             <property name="toolTip">
-             <string>Verify the message to ensure it was signed with the specified ECO address</string>
+             <string>Verify the message to ensure it was signed with the specified ECOC address</string>
             </property>
             <property name="styleSheet">
              <string notr="true"/>

@@ -1380,7 +1380,7 @@
         <translation>Cantidad</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Introducir una dirección ECOC (p. ej. %1)</translation>
     </message>
     <message>

@@ -1380,7 +1380,7 @@
         <translation>Bedrag</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Voer een ECOCadres in (bijv. %1)</translation>
     </message>
     <message>

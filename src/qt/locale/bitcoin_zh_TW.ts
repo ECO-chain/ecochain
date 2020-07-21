@@ -1380,7 +1380,7 @@
         <translation>金額</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>輸入 ECOC 位址 (比如說 %1)</translation>
     </message>
     <message>
@@ -3909,6 +3909,194 @@
     <message>
         <source>Error</source>
         <translation>錯誤</translation>
+    </message>
+</context>
+<context>
+    <name>ECRCToken</name>
+    <message>
+        <location filename="../forms/ecrctoken.ui" line="+20"/>
+        <source>Form</source>
+        <translation>形成</translation>
+    </message>
+    <message>
+        <location filename="../ecrctoken.cpp" line="+126"/>
+        <source>Copy receive address</source>
+        <translation>复制接收地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy token balance</source>
+        <translation>复制令牌余额</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy token name</source>
+        <translation>复制令牌名称</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Copy contract address</source>
+        <translation>复制合同地址</translation>
+    </message>
+    <message>
+        <location line="+1"/>
+        <source>Remove token</source>
+        <translation>删除令牌</translation>
+    </message>
+    <message>
+        <location line="+182"/>
+        <source>Confirm token remove</source>
+        <translation>确认令牌删除</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>The selected token will be removed from the list. Are you sure?</source>
+        <translation>所选令牌将从列表中删除。 你确定吗？</translation>
+    </message>
+</context>
+<context>
+    <name>ReceiveTokenPage</name>
+    <message>
+        <location filename="../forms/receivetokenpage.ui" line="+23"/>
+        <source>Form</source>
+        <translation>形成</translation>
+    </message>
+    <message>
+        <location line="+98"/>
+        <location filename="../receivetokenpage.cpp" line="+34"/>
+        <source>Address</source>
+        <translation>地址</translation>
+    </message>
+</context>
+<context>
+    <name>TokenDescDialog</name>
+    <message>
+        <location filename="../forms/tokendescdialog.ui" line="+20"/>
+        <source>Dialog</source>
+        <translation>对话</translation>
+    </message>
+    <message>
+        <location filename="../tokendescdialog.cpp" line="+18"/>
+        <source>Details for %1</source>
+        <translation>％1的详细信息</translation>
+    </message>
+</context>
+<context>
+    <name>TokenItemModel</name>
+    <message>
+        <location filename="../tokenitemmodel.cpp" line="+295"/>
+        <source>Token Name</source>
+        <translation>令牌名称</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Token Symbol</source>
+        <translation>令牌标识</translation>
+    </message>
+    <message>
+        <location line="+0"/>
+        <source>Balance</source>
+        <translation>余额</translation>
+    </message>
+</context>
+<context>
+    <name>TokenTransactionDesc</name>
+    <message>
+        <location filename="../tokentransactiondesc.cpp" line="+27"/>
+        <source>conflicted with a transaction with %1 confirmations</source>
+        <translation>与一个有 %1 个确认的交易冲突</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1/offline</source>
+        <translation>%1 / 离线</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>0/unconfirmed, in memory pool</source>
+        <translation>0/未确认, 在内存池中</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>0/unconfirmed, not in memory pool</source>
+        <translation>0/未确认, 不在内存池中</translation>
+    </message>
+    <message>
+        <location line="+3"/>
+        <source>%1/unconfirmed</source>
+        <translation>%1/未确认</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>%1 confirmations</source>
+        <translation>%1 已确认</translation>
+    </message>
+    <message>
+        <location line="+17"/>
+        <source>Status</source>
+        <translation>状态</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Date</source>
+        <translation>日期</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Transaction ID</source>
+        <translation>交易ID</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Token Address</source>
+        <translation>令牌地址</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>From</source>
+        <translation>来自</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>To</source>
+        <translation>到</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Credit</source>
+        <translation>收入</translation>
+    </message>
+    <message>
+        <location line="+4"/>
+        <source>Debit</source>
+        <translation>支出</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Net Amount</source>
+        <translation>净额</translation>
+    </message>
+</context>
+<context>
+    <name>ExecRPCCommand</name>
+    <message>
+        <location filename="../execrpccommand.cpp" line="+36"/>
+        <source>Mandatory fields are not present:
+%1</source>
+        <translation>必填字段不存在：
+％1</translation>
+    </message>
+    <message>
+        <location line="+26"/>
+        <source>Optional fields are not present:
+%1</source>
+        <translation>可选字段不存在：
+％1</translation>
+    </message>
+    <message>
+        <location line="+18"/>
+        <source>Parse error: unbalanced &apos; or &quot;</source>
+        <translation>解析错误：不平衡&apos;要么&quot;</translation>
     </message>
 </context>
 </TS>

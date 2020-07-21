@@ -1380,7 +1380,7 @@
         <translation>Částka</translation>
     </message>
     <message>
-        <source>enter a ECO address (e.g. %1)</source>
+        <source>enter a ECOC address (e.g. %1)</source>
         <translation>Zadej ECOCovou adresu (např. %1)</translation>
     </message>
     <message>

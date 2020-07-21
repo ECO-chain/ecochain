@@ -28,7 +28,6 @@ inline arith_uint256 GetLimit(const Consensus::Params& params, bool fProofOfStak
 
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader *pblock, const Consensus::Params& params, bool fProofOfStake)
 {
-
     unsigned int  nTargetLimit = GetLimit(params, fProofOfStake).GetCompact();
 
     // genesis block
@@ -51,7 +50,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         // Special difficulty rule for testnet:
         // If the new block's timestamp is more than 2* 10 minutes
         // then allow mining of a min-difficulty block.
-      ecoc::ecocLog("allow min difficult blocks");
+        ecoc::ecocLog("allow min difficult blocks");
         if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
             return nTargetLimit;
         else

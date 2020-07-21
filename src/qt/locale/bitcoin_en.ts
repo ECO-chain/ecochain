@@ -175,12 +175,12 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>These are your ECO addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
+        <source>These are your ECOC addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+4"/>
-        <source>These are your ECO addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
+        <source>These are your ECOC addresses for receiving payments. It is recommended to use a new receiving address for each transaction.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -316,7 +316,7 @@
     </message>
     <message>
         <location line="+12"/>
-        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ECO coins from being stolen by malware infecting your computer.</source>
+        <source>%1 will close now to finish the encryption process. Remember that encrypting your wallet cannot fully protect your ECOC coins from being stolen by malware infecting your computer.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -326,7 +326,7 @@
     </message>
     <message>
         <location line="+0"/>
-        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ECO COINS&lt;/b&gt;!</source>
+        <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ECOC COINS&lt;/b&gt;!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -415,7 +415,7 @@
     </message>
     <message>
         <location line="+138"/>
-        <source>New version of ECO-wallet is available on the ECO source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
+        <source>New version of ECOC-wallet is available on the ECOC source code repository: &lt;br /&gt; %1. &lt;br /&gt;It is recommended to download it and update this application</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -440,7 +440,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Send coins to a ECO address</source>
+        <source>Send coins to a ECOC address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -581,7 +581,7 @@
     <message>
         <location line="+1"/>
         <source>&amp;Restore Wallet...</source>
-        <translation type="unfinished">Restore wallet test</translation>
+        <translation type="unfinished">Restore wallet</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -625,7 +625,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Sign messages with your ECO addresses to prove you own them</source>
+        <source>Sign messages with your ECOC addresses to prove you own them</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -635,7 +635,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Verify messages to ensure they were signed with specified ECO addresses</source>
+        <source>Verify messages to ensure they were signed with specified ECOC addresses</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -690,7 +690,7 @@
     </message>
     <message>
         <location line="+2"/>
-        <source>Show the %1 help message to get a list with possible ECO command-line options</source>
+        <source>Show the %1 help message to get a list with possible ECOC command-line options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -715,7 +715,7 @@
     </message>
     <message numerus="yes">
         <location line="+191"/>
-        <source>%n active connection(s) to ECO network</source>
+        <source>%n active connection(s) to ECOC network</source>
         <translation type="unfinished">
             <numerusform></numerusform>
             <numerusform></numerusform>
@@ -801,7 +801,7 @@
     </message>
     <message>
         <location line="+13"/>
-        <source>ECO</source>
+        <source>ECOC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1548,7 +1548,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Gas price: ECO price per gas unit. Default = %1, Min = %2</source>
+        <source>Gas price: ECOC price per gas unit. Default = %1, Min = %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1644,7 +1644,7 @@
     </message>
     <message>
         <location line="+71"/>
-        <source>The entered address &quot;%1&quot; is not a valid ECO address.</source>
+        <source>The entered address &quot;%1&quot; is not a valid ECOC address.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1837,7 +1837,7 @@
     </message>
     <message>
         <location line="+10"/>
-        <source>%1 will download and store a copy of the ECO blockchain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
+        <source>%1 will download and store a copy of the ECOC blockchain. At least %2GB of data will be stored in this directory, and it will grow over time. The wallet will also be stored in this directory.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1886,7 +1886,7 @@
     </message>
     <message>
         <location line="+151"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa00ff;&quot;&gt;Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ECO network, as detailed below.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#aa00ff;&quot;&gt;Recent transactions may not yet be visible, and therefore your wallet&apos;s balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the ECOC network, as detailed below.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2050,7 +2050,7 @@
     </message>
     <message>
         <location line="+45"/>
-        <source>Automatically open the ECO client port on the router. This only works when your router supports UPnP and it is enabled.</source>
+        <source>Automatically open the ECOC client port on the router. This only works when your router supports UPnP and it is enabled.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2065,7 +2065,7 @@
     </message>
     <message>
         <location line="+7"/>
-        <source>Connect to the ECO network through a SOCKS5 proxy.</source>
+        <source>Connect to the ECOC network through a SOCKS5 proxy.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2262,7 +2262,7 @@
     </message>
     <message>
         <location line="+286"/>
-        <source>Connect to the ECO network through a separate SOCKS5 proxy for Tor hidden services.</source>
+        <source>Connect to the ECOC network through a separate SOCKS5 proxy for Tor hidden services.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2353,7 +2353,7 @@
         <location line="+7"/>
         <location line="+539"/>
         <location line="+96"/>
-        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ECO network after a connection is established, but this process has not completed yet.</source>
+        <source>The displayed information may be out of date. Your wallet automatically synchronizes with the ECOC network after a connection is established, but this process has not completed yet.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2369,7 +2369,7 @@
     <message>
         <location line="+71"/>
         <location line="+78"/>
-        <source>0.000&#x2009;000&#x2009;00 ECO</source>
+        <source>0.000&#x2009;000&#x2009;00 ECOC</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2500,7 +2500,7 @@
     </message>
     <message>
         <location line="+8"/>
-        <source>URI cannot be parsed! This can be caused by an invalid ECO address or malformed URI parameters.</source>
+        <source>URI cannot be parsed! This can be caused by an invalid ECOC address or malformed URI parameters.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2622,7 +2622,7 @@
     </message>
     <message>
         <location filename="../guiutil.cpp" line="+137"/>
-        <source>Enter a ECO address (e.g. %1)</source>
+        <source>Enter a ECOC address (e.g. %1)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3275,7 +3275,7 @@
     <message>
         <location line="+59"/>
         <location line="+55"/>
-        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ECO network.</source>
+        <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the ECOC network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3659,7 +3659,7 @@
     <message>
         <location line="+30"/>
         <location line="+13"/>
-        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for ECO transactions than the network can process.</source>
+        <source>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for ECOC transactions than the network can process.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3818,7 +3818,7 @@
     </message>
     <message>
         <location line="+100"/>
-        <source>Warning: Invalid ECO address</source>
+        <source>Warning: Invalid ECOC address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3868,7 +3868,7 @@
     </message>
     <message>
         <location line="+32"/>
-        <source>The ECO address to send the payment to</source>
+        <source>The ECOC address to send the payment to</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3905,7 +3905,7 @@
     </message>
     <message>
         <location line="-1180"/>
-        <source>A message that was attached to the ecoc: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the ECO network.</source>
+        <source>A message that was attached to the ecoc: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the ECOC network.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4045,7 +4045,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>The amount in ECO to send. Default = 0.</source>
+        <source>The amount in ECOC to send. Default = 0.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4095,7 +4095,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Gas price: ECO price per gas unit. Default = %1, Min = %2.</source>
+        <source>Gas price: ECOC price per gas unit. Default = %1, Min = %2.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -4163,7 +4163,7 @@
     </message>
     <message>
         <location line="+1"/>
-        <source>Gas price: ECO price per gas unit. Default = %1, Min = %2.</source>
+        <source>Gas price: ECOC price per gas unit. Default = %1, Min = %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4188,7 +4188,7 @@
     </message>
     <message>
         <location line="+22"/>
-        <source>To send %1 you need ECO on address &lt;br /&gt; %2.</source>
+        <source>To send %1 you need ECOC on address &lt;br /&gt; %2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4261,12 +4261,12 @@
     </message>
     <message>
         <location line="+172"/>
-        <source>The ECO address the message was signed with</source>
+        <source>The ECOC address the message was signed with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location line="+69"/>
-        <source>Verify the message to ensure it was signed with the specified ECO address</source>
+        <source>Verify the message to ensure it was signed with the specified ECOC address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4286,7 +4286,7 @@
     </message>
     <message>
         <location line="+18"/>
-        <source>The ECO address to sign the message with</source>
+        <source>The ECOC address to sign the message with</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -4297,7 +4297,7 @@
     </message>
     <message>
         <location line="-174"/>
-        <source>Sign the message to prove you own this ECO address</source>
+        <source>Sign the message to prove you own this ECOC address</source>
         <translation type="unfinished"></translation>
     </message>
     <message>

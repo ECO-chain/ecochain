@@ -2644,7 +2644,7 @@
     </message>
     <message>
     <source>You can sign messages/agreements with your addresses to prove you can receive ECOCs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>你可以和你的地址签署信息/协议，以证明你可以接收发送给他们的ECOs。小心，不要签署任何模糊或随机的，因为网络钓鱼攻击可能会试图欺骗你的身份签署给他们。只签署你同意的详细的声明。</translation>
+        <translation>你可以和你的地址签署信息/协议，以证明你可以接收发送给他们的ECOCs。小心，不要签署任何模糊或随机的，因为网络钓鱼攻击可能会试图欺骗你的身份签署给他们。只签署你同意的详细的声明。</translation>
     </message>
     <message>
         <source>The ECOC address to sign the message with</source>

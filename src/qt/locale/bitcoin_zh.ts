@@ -735,6 +735,56 @@
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
         <translation>钱包已被&lt;b&gt;加密&lt;/b&gt;，当前为&lt;b&gt;锁定&lt;/b&gt;状态</translation>
     </message>
+    <message numerus="yes">
+        <source>%n second(s)</source>
+        <translation><numerusform>%n 秒</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n minute(s)</source>
+        <translation><numerusform>%n 分钟</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n hour(s)</source>
+        <translation><numerusform>%n 小时</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n day(s)</source>
+        <translation><numerusform>%n 天</numerusform></translation>
+    </message>
+    <message numerus="yes">
+        <source>%n week(s)</source>
+        <translation><numerusform>%n 周</numerusform></translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Staking.&lt;br&gt;Your weight is %1&lt;br&gt;Network weight is %2&lt;br&gt;Expected time to earn reward is %3</source>
+        <translation>放样。&lt;br&gt;你的体重是%1&lt;br&gt;网络权重为%2&lt;br&gt;预期获得奖励的时间是%3</translation>
+    </message>
+    <message>
+        <location line="+7"/>
+        <source>Not staking because wallet is offline</source>
+        <translation>不放样，因为钱包离线</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is syncing</source>
+        <translation>不放样，因为钱包正在同步</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because you don&apos;t have mature coins</source>
+        <translation>不要下注，因为您没有成熟的硬币</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking because wallet is locked</source>
+        <translation>钱包已锁定，因此无法下注</translation>
+    </message>
+    <message>
+        <location line="+2"/>
+        <source>Not staking</source>
+        <translation>不下注</translation>
+    </message>
     <message>
         <source>A fatal error occurred. ECOC can no longer continue safely and will quit.</source>
         <translation>发生严重错误。客户端无法安全地继续运行，即将退出。</translation>
@@ -1081,7 +1131,7 @@
     </message>
     <message>
         <location line="+21"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Attempting to spend ECOs that are affected by not-yet-displayed transactions will not be accepted by the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Attempting to spend ECOCs that are affected by not-yet-displayed transactions will not be accepted by the network.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;尝试使用受未可见交易影响的余额将不被网络接受。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
@@ -2593,8 +2643,8 @@
         <translation>签名消息(&amp;S)</translation>
     </message>
     <message>
-    <source>You can sign messages/agreements with your addresses to prove you can receive ECOs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>你可以和你的地址签署信息/协议，以证明你可以接收发送给他们的ECOs。小心，不要签署任何模糊或随机的，因为网络钓鱼攻击可能会试图欺骗你的身份签署给他们。只签署你同意的详细的声明。</translation>
+    <source>You can sign messages/agreements with your addresses to prove you can receive ECOCs sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
+        <translation>你可以和你的地址签署信息/协议，以证明你可以接收发送给他们的ECOCs。小心，不要签署任何模糊或随机的，因为网络钓鱼攻击可能会试图欺骗你的身份签署给他们。只签署你同意的详细的声明。</translation>
     </message>
     <message>
         <source>The ECOC address to sign the message with</source>

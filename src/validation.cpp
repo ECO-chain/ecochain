@@ -1380,18 +1380,12 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if(nHeight <= consensusParams.nLastPOWBlock)
       return ecoc::PoWReward * COIN;
 
-    /* check for cap*/
+    /* check for cap, redundant*/
     if (nHeight - consensusParams.nLastPOWBlock> ecoc::LastPoSBlock)
       return 0;
-    
-    int doublings = (nHeight - consensusParams.nLastPOWBlock - 1) / consensusParams.nSubsidyHalvingInterval;
-    // Force block reward to zero when right shift is undefined.
-    if (doublings >= ecoc::maxHalvings) 
-        return 0;
 
     CAmount nSubsidy = ecoc::GetPoSReward(nHeight) * COIN;
     // Subsidy is doubled in half ecoc::rewardHalving blocks, which will occur approximately every 2 and a half years.
-    nSubsidy <<= doublings;
     return nSubsidy;
 }
 

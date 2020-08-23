@@ -4,7 +4,7 @@
 
 
 #include "ecoc.h"
-#define THEMIS_HEIGHT 850000
+#define THEMIS_HEIGHT 850001
 
 namespace ecoc {
 
@@ -12,8 +12,12 @@ namespace ecoc {
     int reward ;
     if (height < THEMIS_HEIGHT) {
       reward = 50;
+      return reward;
     } else {
-      reward = 5 - int((height -THEMIS_HEIGHT)/1000000);
+      reward = 5 - int((height -THEMIS_HEIGHT)/rewardSession);
+    }
+    if (height > 4850000) {
+      reward = 1;
     }
     if (height > 48850000) {
       reward = 0;

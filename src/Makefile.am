@@ -170,7 +170,8 @@ BITCOIN_CORE_H = \
   zmq/zmqpublishnotifier.h \
   aal/qtumstate.h \
   aal/qtumtransaction.h \
-  aal/storageresults.h
+  aal/storageresults.h \
+  ecoc/ecoc.h
 
 
 obj/build.h: FORCE
@@ -223,6 +224,7 @@ libbitcoin_server_a_SOURCES = \
   aal/qtumtransaction.cpp \
   consensus/consensus.cpp \
   aal/storageresults.cpp \
+  ecoc/ecoc.cpp \
   $(BITCOIN_CORE_H)
 
 if ENABLE_ZMQ
@@ -516,6 +518,8 @@ libbitcoin_common_a_SOURCES = \
   cpp-ethereum/utils/json_spirit/json_spirit_value.h \
   cpp-ethereum/utils/json_spirit/json_spirit_writer.h \
   cpp-ethereum/utils/json_spirit/json_spirit_writer_template.h \
+  ecoc/ecoc.h \
+  ecoc/ecoc.cpp \
   $(BITCOIN_CORE_H)
 
 #only added json_spirit so that `make dist` works properly

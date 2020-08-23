@@ -4,17 +4,16 @@
 
 
 #include "ecoc.h"
-#define THEMIS_HEIGHT 850001
 
 namespace ecoc {
 
   int GetPoSReward(int height) {
     int reward ;
-    if (height < THEMIS_HEIGHT) {
+    if (height < ThemisHeight+1) {
       reward = 50;
       return reward;
     } else {
-      reward = 5 - int((height -THEMIS_HEIGHT)/rewardSession);
+      reward = 5 - int((height -(ThemisHeight + 1))/rewardSession);
     }
     if (height > 4850000) {
       reward = 1;

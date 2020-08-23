@@ -6,10 +6,13 @@
 #define ECOC_H
 
 #include "util.h"
+#include "chainparams.h"
+
 
 namespace ecoc{
-
   const bool debug = true;
+  const CChainParams& chainParams = Params();
+  
   const int LastPoWBlock = 10000; // turning block from PoW to PoS
   const int BlockTime = 32;       // block time creation target
   const int granularity = 7;
@@ -26,6 +29,7 @@ namespace ecoc{
   const int blockSizeLimit = 4 * 1000 * 1000;    // blocksize limit 4M
   const int blockGasLimit = 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
   const int minTxGas = 40;
+  const int ThemisHeight = chainParams.GetConsensus().ThemisHeight;
 
   const std::string genesisBlockMainNet = "0000009cbd44612c6e231a74c6d5ae65dcc4a55fa728cc5aa55f0558bdcc7268";
   const std::string genesisBlockTestNet = "0000005d73ef7042858df0f7fca1459d519ae0a209d68c9bf5701e61dd97fb42";

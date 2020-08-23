@@ -19,7 +19,7 @@ namespace ecoc{
   const int MinerSleepInSecs = 60;               // delay the block creation for a minute
   const int StakerPollingPeriod = 5000;          //STAKER_POLLING_PERIOD in miliseconds
   const int PoWReward = 20000;                   // reward of coins for each block at first phase (PoW)
-  const int PoSReward = 50;                      // PoS reward, doubling every epoch. After LastPoSBlock blocks reward is zero.
+  // const int PoSReward = 50;                   // PoS reward, replaced with GetPosReward(height) at Themis hardfork
   const int maxHalvings = 4;                     // 4 POS epochs(sessions) , doubling until cap. Variable name (maxHalvings) stays unmodified for historical reasons (tribute to bitcoin)
   const int rewardSession = 2500000;             // how many blocks for doubling the PoS reward , about two and a half years
   const int LastPoSBlock = 9812500;              // LastPoWBlock + LastPoSBlock is the block height that gives the last reward (2 billion coins cap reached)
@@ -37,6 +37,7 @@ namespace ecoc{
   void ecocLogNL(int i);
   void ecocLog(int i);
   void ecocLogFun(const std::string message);
+  int GetPoSReward(int height);
 } // namespace ecoc
 
 #endif // ECOC_H

@@ -1389,7 +1389,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
     if (doublings >= ecoc::maxHalvings) 
         return 0;
 
-    CAmount nSubsidy = ecoc::PoSReward * COIN;
+    CAmount nSubsidy = ecoc::GetPoSReward(nHeight) * COIN;
     // Subsidy is doubled in half ecoc::rewardHalving blocks, which will occur approximately every 2 and a half years.
     nSubsidy <<= doublings;
     return nSubsidy;
@@ -2883,9 +2883,9 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     //only start checking this error after lasi PoW block  and only on testnet and mainnet, not regtest
     if(pindex->nHeight > ecoc::LastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
-      if(pindex->nMoneySupply > (uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::PoSReward)) * COIN){
+      if(pindex->nMoneySupply > (uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::GetPoSReward(pindex->nHeight))) * COIN){
 	ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
-	ecoc::ecocLogNL("Reward limit: "); ecoc::ecocLogNL((uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::PoSReward)) * COIN);
+	ecoc::ecocLogNL("Reward limit: "); ecoc::ecocLogNL((uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::GetPoSReward(pindex->nHeight))) * COIN);
             return state.DoS(100, error("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply"),
                              REJECT_INVALID, "incorrect-money-supply");
         }

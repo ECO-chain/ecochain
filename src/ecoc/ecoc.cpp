@@ -4,8 +4,22 @@
 
 
 #include "ecoc.h"
+#define THEMIS_HEIGHT 850000
 
 namespace ecoc {
+
+  int GetPoSReward(int height) {
+    int reward ;
+    if (height < THEMIS_HEIGHT) {
+      reward = 50;
+    } else {
+      reward = 5 - int((height -THEMIS_HEIGHT)/1000000);
+    }
+    if (height > 48850000) {
+      reward = 0;
+    }
+    return reward;
+  }
     void ecocLog(const std::string message) {
     if (debug) {
       LogPrintf("ecoc: %s\n", message);

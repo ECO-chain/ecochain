@@ -4,21 +4,24 @@
 
 
 #include "ecoc.h"
+#include "chainparams.h"
 
 namespace ecoc {
 
   int GetPoSReward(int height) {
+    const int ThemisHeight = Params().GetConsensus().ThemisHeight;
     int reward ;
+    int lastEpoch = ThemisHeight + 4*1000*1000 ;
     if (height < ThemisHeight+1) {
       reward = 50;
       return reward;
     } else {
       reward = 5 - int((height -(ThemisHeight + 1))/rewardSession);
     }
-    if (height > 4850000) {
+    if (height > lastEpoch) {
       reward = 1;
     }
-    if (height > 48850000) {
+    if (height > LastPoWBlock + LastPoSBlock) {
       reward = 0;
     }
     return reward;

@@ -14,7 +14,7 @@ namespace ecoc{
   const int LastPoWBlock = 10000; // turning block from PoW to PoS
   const int BlockTime = 32;       // block time creation target
   const int granularity = 7;
-  const int consensusMultisigners = 10;
+  // const int consensusMultisigners = 10;
   const int coinbaseMaturity = (600 * 100) / (BlockTime); //600*100/BlockTime = 1875 ; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
   const std::string ecoUnit = "ECOC";
   const int MinerSleepInSecs = 60;               // delay the block creation for a minute
@@ -39,6 +39,7 @@ namespace ecoc{
   void ecocLog(int i);
   void ecocLogFun(const std::string message);
   int GetPoSReward(int height);
+  int getMultisigners(int height);
 } // namespace ecoc
 
 #endif // ECOC_H

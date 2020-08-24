@@ -26,6 +26,7 @@
 #include "ui_interface.h"
 #include "utilmoneystr.h"
 #include "pos.h"
+#include "ecoc/ecoc.h"
 
 #include <assert.h>
 
@@ -60,7 +61,7 @@ struct ScriptsElement{
 
 /**
  * Cache of the recent mpos scripts for the block reward recipients
- * The max size of the map is 2 * nCacheScripts - nMPoSRewardRecipients, so in this case it is 20
+ * The max size of the map is 2 * nCacheScripts - getMultisigners()
  */
 std::map<int, ScriptsElement> scriptsMap;
 
@@ -108,7 +109,7 @@ bool NeedToEraseScriptFromCache(int nBlockHeight, int nCacheScripts, int nScript
 
 void CleanScriptCache(int nHeight, const Consensus::Params& consensusParams)
 {
-    int nCacheScripts = consensusParams.nMPoSRewardRecipients * 1.5;
+    int nCacheScripts = ecoc::getMultisigners(nHeight) * 1.5;
 
     // Remove the scripts from cache that are not used
     for (std::map<int, ScriptsElement>::iterator it=scriptsMap.begin(); it!=scriptsMap.end();){
@@ -217,7 +218,7 @@ bool GetMPoSOutputScripts(std::vector<CScript>& mposScriptList, int nHeight, con
     nHeight -= COINBASE_MATURITY;
 
     // Populate the list of scripts for the reward recipients
-    for(int i = 0; (i < consensusParams.nMPoSRewardRecipients - 1) && ret; i++)
+    for(int i = 0; (i < ecoc::getMultisigners(nHeight) - 1) && ret; i++)
     {
         ret &= AddMPoSScript(mposScriptList, nHeight - i, consensusParams);
     }
@@ -3305,8 +3306,8 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
         else
         {
             // Split the reward when mpos is used
-            nRewardPiece = nReward / consensusParams.nMPoSRewardRecipients;
-            nCredit += nRewardPiece + nReward % consensusParams.nMPoSRewardRecipients;
+            nRewardPiece = nReward / ecoc::getMultisigners(pindexPrev->nHeight);
+            nCredit += nRewardPiece + nReward % ecoc::getMultisigners(pindexPrev->nHeight);
         }
    }
 

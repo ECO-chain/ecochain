@@ -2051,7 +2051,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         int nPrevHeight = nHeight -1;
         if(nPrevHeight >= consensusParams.nFirstMPoSBlock) {
 	  ecoc::ecocLog("Time to set the correct number of cosigners to be rewarded." );
-          rewardRecipients = consensusParams.nMPoSRewardRecipients;
+          rewardRecipients = ecoc::getMultisigners(nHeight);
 	}
         // Check reward recipients number
         if(rewardRecipients < 1)

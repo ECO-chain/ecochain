@@ -164,8 +164,8 @@ public:
             0 // * estimated number of transactions per second after that timestamp
         };
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
+        int nOriginalMPoSRewardRecipients = 10;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
         
         consensus.nFixUTXOCacheHFHeight=0;
     }
@@ -259,13 +259,10 @@ public:
         };
 
         consensus.nLastPOWBlock = ecoc::LastPoWBlock; 
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY; 
+        int nOriginalMPoSRewardRecipients = 10;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY; 
         consensus.nFixUTXOCacheHFHeight = 84500;
-        
-        ecoc::ecocLogNL("nMPoSRewardRecipients: ") ; ecoc::ecocLog(consensus.nMPoSRewardRecipients);
-        ecoc::ecocLogNL("nLastPOWBlock: ") ; ecoc::ecocLog(consensus.nLastPOWBlock);
-        ecoc::ecocLogNL("nFirstMPoSBlock: ") ; ecoc::ecocLog(consensus.nFirstMPoSBlock);
+
     }
 };
 static CTestNetParams testNetParams;
@@ -342,7 +339,6 @@ public:
         };
 
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
         consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
 
         consensus.nFixUTXOCacheHFHeight=0;

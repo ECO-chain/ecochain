@@ -8,6 +8,15 @@
 
 namespace ecoc {
 
+  int getMultisigners(int height) {
+    const int ThemisHeight = Params().GetConsensus().ThemisHeight;
+    int multisigners = 10;
+    if (height > ThemisHeight) {
+      multisigners = multisigners >> 1 ;
+    }
+    return multisigners;
+  }
+
   int GetPoSReward(int height) {
     const int ThemisHeight = Params().GetConsensus().ThemisHeight;
     int reward ;

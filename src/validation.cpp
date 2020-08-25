@@ -1381,7 +1381,7 @@ CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
       return ecoc::PoWReward * COIN;
 
     /* check for cap, redundant*/
-    if (nHeight - consensusParams.nLastPOWBlock> ecoc::LastPoSBlock)
+    if (nHeight - consensusParams.nLastPOWBlock > consensusParams.lastPOSBlock)
       return 0;
 
     CAmount nSubsidy = ecoc::GetPoSReward(nHeight) * COIN;

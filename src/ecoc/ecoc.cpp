@@ -12,13 +12,14 @@ namespace ecoc {
     const int ThemisHeight = Params().GetConsensus().ThemisHeight;
     int multisigners = 10;
     if (height > ThemisHeight) {
-      multisigners = multisigners >> 1 ;
+      multisigners = 5;
     }
     return multisigners;
   }
 
   int GetPoSReward(int height) {
     const int ThemisHeight = Params().GetConsensus().ThemisHeight;
+    const int lastRewardBlock = LastPoWBlock + Params().GetConsensus().lastPOSBlock;
     int reward ;
     int lastEpoch = ThemisHeight + 4*1000*1000 ;
     if (height < ThemisHeight+1) {
@@ -30,7 +31,7 @@ namespace ecoc {
     if (height > lastEpoch) {
       reward = 1;
     }
-    if (height > LastPoWBlock + LastPoSBlock) {
+    if (height > lastRewardBlock ) {
       reward = 0;
     }
     return reward;

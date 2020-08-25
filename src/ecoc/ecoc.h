@@ -23,7 +23,6 @@ namespace ecoc{
   // const int PoSReward = 50;                   // PoS reward, replaced with GetPosReward(height) at Themis hardfork
   // const int maxHalvings = 4;                  // Number of doubling epochs, removes at Themis hardfork
   const int rewardSession = 1000000;             // how many blocks for reward reduction , about a year
-  const int LastPoSBlock = 48840000;             // LastPoWBlock + LastPoSBlock is the block height that gives the last reward (300 million coins cap reached)
   const int blockSizeLimit = 4 * 1000 * 1000;    // blocksize limit 4M
   const int blockGasLimit = 20 * blockSizeLimit; // maximum gas per block , set it proportionally to blockSizeLimit
   const int minTxGas = 40;

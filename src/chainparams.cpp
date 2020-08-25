@@ -164,6 +164,7 @@ public:
             0 // * estimated number of transactions per second after that timestamp
         };
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.lastPOSBlock = 48840000;
         int nOriginalMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
         
@@ -258,7 +259,8 @@ public:
             0,
         };
 
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock; 
+        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.lastPOSBlock = 45900000;
         int nOriginalMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY; 
         consensus.nFixUTXOCacheHFHeight = 84500;
@@ -339,6 +341,7 @@ public:
         };
 
         consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.lastPOSBlock = 45900000;
         consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
 
         consensus.nFixUTXOCacheHFHeight=0;

@@ -2401,7 +2401,7 @@ QtumTransaction QtumTxConverter::createEthTX(const EthTransactionParams& etp, ui
 ///////////////////////////////////////////////////////////////////////
 
 bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pindex,
-                  CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck)
+    CCoinsViewCache& view, const CChainParams& chainparams, bool fJustCheck)
 {
     AssertLockHeld(cs_main);
 
@@ -2511,7 +2511,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             for (size_t o = 0; o < tx->vout.size(); o++) {
                 if (view.HaveCoin(COutPoint(tx->GetHash(), o))) {
                     return state.DoS(100, error("ConnectBlock(): tried to overwrite transaction"),
-                                     REJECT_INVALID, "bad-txns-BIP30");
+                        REJECT_INVALID, "bad-txns-BIP30");
                 }
             }
         }
@@ -2574,17 +2574,15 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     uint64_t nValueOut=0;
     uint64_t nValueIn=0;
 
-    for (unsigned int i = 0; i < block.vtx.size(); i++)
-    {
+    for (unsigned int i = 0; i < block.vtx.size(); i++) {
         const CTransaction &tx = *(block.vtx[i]);
 
         nInputs += tx.vin.size();
 
-        if (!tx.IsCoinBase())
-        {
+        if (!tx.IsCoinBase()) {
             if (!view.HaveInputs(tx))
                 return state.DoS(100, error("ConnectBlock(): inputs missing/spent"),
-                                 REJECT_INVALID, "bad-txns-inputs-missingorspent");
+                    REJECT_INVALID, "bad-txns-inputs-missingorspent");
 
             // Check that transaction is BIP68 final
             // BIP68 lock checks (as opposed to nLockTime checks) must
@@ -2596,7 +2594,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
             if (!SequenceLocks(tx, nLockTimeFlags, &prevheights, *pindex)) {
                 return state.DoS(100, error("%s: contains a non-BIP68-final transaction", __func__),
-                                 REJECT_INVALID, "bad-txns-nonfinal");
+                    REJECT_INVALID, "bad-txns-nonfinal");
             }
         }
 
@@ -2607,42 +2605,42 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         nSigOpsCost += GetTransactionSigOpCost(tx, view, flags);
         if (nSigOpsCost > MaxBlockSigOps)
             return state.DoS(100, error("ConnectBlock(): too many sigops"),
-                             REJECT_INVALID, "bad-blk-sigops");
+                REJECT_INVALID, "bad-blk-sigops");
 
         txdata.emplace_back(tx);
 
         bool hasOpSpend = tx.HasOpSpend();
 
-        if (!tx.IsCoinBase())
-        {
-	  if (tx.IsCoinStake())
-                nActualStakeReward = tx.GetValueOut()-view.GetValueIn(tx);
+        if (!tx.IsCoinBase()) {
+            if (tx.IsCoinStake())
+                nActualStakeReward = tx.GetValueOut() - view.GetValueIn(tx);
             else
-                nFees += view.GetValueIn(tx)-tx.GetValueOut();
-                    
+                nFees += view.GetValueIn(tx) - tx.GetValueOut();
+
             std::vector<CScriptCheck> vChecks;
             bool fCacheResults = fJustCheck; /* Don't cache results if we're actually connecting blocks (still consult the cache, though) */
             // if (!CheckInputs(tx, state, view, fScriptChecks, flags, fCacheResults, txdata[i], nScriptCheckThreads ? &vChecks : NULL))
             //note that coinbase and coinstake can not contain any contract opcodes, this is checked in CheckBlock
-            if (!CheckInputs(tx, state, view, fScriptChecks, flags, fCacheResults, txdata[i], (hasOpSpend || tx.HasCreateOrCall()) ? NULL : (nScriptCheckThreads ? &vChecks : NULL)))//nScriptCheckThreads ? &vChecks : NULL))
+            if (!CheckInputs(tx, state, view, fScriptChecks, flags, fCacheResults, txdata[i], (hasOpSpend || tx.HasCreateOrCall()) ? NULL : (nScriptCheckThreads ? &vChecks : NULL))) //nScriptCheckThreads ? &vChecks : NULL))
                 return error("ConnectBlock(): CheckInputs on %s failed with %s",
                     tx.GetHash().ToString(), FormatStateMessage(state));
             control.Add(vChecks);
 
-            for(const CTxIn& j : tx.vin){
-                if(!j.scriptSig.HasOpSpend()){
+            for (const CTxIn& j : tx.vin) {
+                if (!j.scriptSig.HasOpSpend()) {
                     const CTxOut& prevout = view.AccessCoin(j.prevout).out;
-                    if((prevout.scriptPubKey.HasOpCreate() || prevout.scriptPubKey.HasOpCall())){
+                    if ((prevout.scriptPubKey.HasOpCreate() || prevout.scriptPubKey.HasOpCall())) {
                         return state.DoS(100, error("ConnectBlock(): Contract spend without OP_SPEND in scriptSig"),
-                                REJECT_INVALID, "bad-txns-invalid-contract-spend");
+                            REJECT_INVALID, "bad-txns-invalid-contract-spend");
                     }
                 }
             }
         }
 
-        if(tx.IsCoinBase()){
+        if (tx.IsCoinBase()) {
             nValueOut += tx.GetValueOut();
-        }else{
+        }
+        else {
             int64_t nTxValueIn = view.GetValueIn(tx);
             int64_t nTxValueOut = tx.GetValueOut();
             nValueIn += nTxValueIn;
@@ -2650,12 +2648,12 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         }
 
 ///////////////////////////////////////////////////////////////////////////////////////// qtum
-        if(!tx.HasOpSpend()){
+        if (!tx.HasOpSpend()) {
             checkBlock.vtx.push_back(block.vtx[i]);
         }
-        if(tx.HasCreateOrCall() && !hasOpSpend){
+        if (tx.HasCreateOrCall() && !hasOpSpend) {
 
-            if(!CheckSenderScript(view, tx)){
+            if (!CheckSenderScript(view, tx)) {
                 return state.DoS(100, false, REJECT_INVALID, "bad-txns-invalid-sender-script");
             }
 
@@ -2720,56 +2718,55 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                     return state.DoS(100, error("ConnectBlock(): Contract execution has lower gas price than allowed"), REJECT_INVALID, "bad-tx-low-gas-price");
             }
 
-            if(!nonZeroVersion){
+            if (!nonZeroVersion) {
                 //if tx is 0 version, then the tx must already have been added by a previous contract execution
-                if(!tx.HasOpSpend()){
+                if (!tx.HasOpSpend()) {
                     return state.DoS(100, error("ConnectBlock(): Version 0 contract executions are not allowed unless created by the AAL "), REJECT_INVALID, "bad-tx-improper-version-0");
                 }
             }
 
-            if(!exec.performByteCode()){
+            if (!exec.performByteCode()) {
                 return state.DoS(100, error("ConnectBlock(): Unknown error during contract execution"), REJECT_INVALID, "bad-tx-unknown-error");
             }
 
             std::vector<ResultExecute> resultExec(exec.getResult());
             ByteCodeExecResult bcer;
-            if(!exec.processingResults(bcer)){
+            if (!exec.processingResults(bcer)) {
                 return state.DoS(100, error("ConnectBlock(): Error processing VM execution results"), REJECT_INVALID, "bad-vm-exec-processing");
             }
 
             countCumulativeGasUsed += bcer.usedGas;
             std::vector<TransactionReceiptInfo> tri;
-            if (fLogEvents)
-            {
-                for(size_t k = 0; k < resultConvertQtumTX.first.size(); k ++){
+            if (fLogEvents) {
+                for (size_t k = 0; k < resultConvertQtumTX.first.size(); k++) {
                     dev::Address key = resultExec[k].execRes.newAddress;
-                    if(!heightIndexes.count(key)){
+                    if (!heightIndexes.count(key)) {
                         heightIndexes[key].first = CHeightTxIndexKey(pindex->nHeight, resultExec[k].execRes.newAddress);
                     }
                     heightIndexes[key].second.push_back(tx.GetHash());
-                    tri.push_back(TransactionReceiptInfo{block.GetHash(), uint32_t(pindex->nHeight), tx.GetHash(), uint32_t(i), resultConvertQtumTX.first[k].from(), resultConvertQtumTX.first[k].to(),
-                                countCumulativeGasUsed, uint64_t(resultExec[k].execRes.gasUsed), resultExec[k].execRes.newAddress, resultExec[k].txRec.log(), resultExec[k].execRes.excepted});
+                    tri.push_back(TransactionReceiptInfo{ block.GetHash(), uint32_t(pindex->nHeight), tx.GetHash(), uint32_t(i), resultConvertQtumTX.first[k].from(), resultConvertQtumTX.first[k].to(),
+                        countCumulativeGasUsed, uint64_t(resultExec[k].execRes.gasUsed), resultExec[k].execRes.newAddress, resultExec[k].txRec.log(), resultExec[k].execRes.excepted });
                 }
 
                 pstorageresult->addResult(uintToh256(tx.GetHash()), tri);
             }
 
             blockGasUsed += bcer.usedGas;
-            if(blockGasUsed > blockGasLimit){
+            if (blockGasUsed > blockGasLimit) {
                 return state.DoS(1000, error("ConnectBlock(): Block exceeds gas limit"), REJECT_INVALID, "bad-blk-gaslimit");
             }
-            for(CTxOut refundVout : bcer.refundOutputs){
+            for (CTxOut refundVout : bcer.refundOutputs) {
                 gasRefunds += refundVout.nValue;
             }
             checkVouts.insert(checkVouts.end(), bcer.refundOutputs.begin(), bcer.refundOutputs.end());
-            for(CTransaction& t : bcer.valueTransfers){
+            for (CTransaction& t : bcer.valueTransfers) {
                 checkBlock.vtx.push_back(MakeTransactionRef(std::move(t)));
             }
-            if(fRecordLogOpcodes && !fJustCheck){
+            if (fRecordLogOpcodes && !fJustCheck) {
                 writeVMlog(resultExec, tx, block);
             }
 
-            for(ResultExecute& re: resultExec){
+            for (ResultExecute& re: resultExec) {
                 if(re.execRes.newAddress != dev::Address() && !fJustCheck)
                     dev::g_logPost(std::string("Address : " + re.execRes.newAddress.hex()), NULL);
             }
@@ -2785,16 +2782,18 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         vPos.push_back(std::make_pair(tx.GetHash(), pos));
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
     }
+
     int64_t nTime3 = GetTimeMicros(); nTimeConnect += nTime3 - nTime2;
     LogPrint("bench", "      - Connect %u transactions: %.2fms (%.3fms/tx, %.3fms/txin) [%.2fs]\n", (unsigned)block.vtx.size(), 0.001 * (nTime3 - nTime2), 0.001 * (nTime3 - nTime2) / block.vtx.size(), nInputs <= 1 ? 0 : 0.001 * (nTime3 - nTime2) / (nInputs-1), nTimeConnect * 0.000001);
-    if(nFees < gasRefunds) { //make sure it won't overflow
+    if (nFees < gasRefunds) { //make sure it won't overflow
         return state.DoS(1000, error("ConnectBlock(): Less total fees than gas refund fees"), REJECT_INVALID, "bad-blk-fees-greater-gasrefund");
     }
-    if(!CheckReward(block, state, pindex->nHeight, chainparams.GetConsensus(), nFees, gasRefunds, nActualStakeReward, checkVouts))
+    if (!CheckReward(block, state, pindex->nHeight, chainparams.GetConsensus(), nFees, gasRefunds, nActualStakeReward, checkVouts))
         return state.DoS(100,error("ConnectBlock(): Reward check failed"));
 
     if (!control.Wait())
         return state.DoS(100, false);
+
     int64_t nTime4 = GetTimeMicros(); nTimeVerify += nTime4 - nTime2;
     LogPrint("bench", "    - Verify %u txins: %.2fms (%.3fms/txin) [%.2fs]\n", nInputs - 1, 0.001 * (nTime4 - nTime2), nInputs <= 1 ? 0 : 0.001 * (nTime4 - nTime2) / (nInputs-1), nTimeVerify * 0.000001);
 
@@ -2804,18 +2803,18 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     checkBlock.hashUTXORoot = h256Touint(globalState->rootHashUTXO());
 
     //If this error happens, it probably means that something with AAL created transactions didn't match up to what is expected
-    if((checkBlock.GetHash() != block.GetHash()) && !fJustCheck)
-    {
+    if ((checkBlock.GetHash() != block.GetHash()) && !fJustCheck) {
         LogPrintf("Actual block data does not match block expected by AAL\n");
         //Something went wrong with AAL, compare different elements and determine what the problem is
-        if(checkBlock.hashMerkleRoot != block.hashMerkleRoot){
+        if (checkBlock.hashMerkleRoot != block.hashMerkleRoot) {
             //there is a mismatched tx, so go through and determine which txs
-            if(block.vtx.size() > checkBlock.vtx.size()){
+            if (block.vtx.size() > checkBlock.vtx.size()) {
                 LogPrintf("Unexpected AAL transactions in block. Actual txs: %i, expected txs: %i\n", block.vtx.size(), checkBlock.vtx.size());
-                for(size_t i=0;i<block.vtx.size();i++){
-                    if(i > checkBlock.vtx.size()){
+                for (size_t i=0;i<block.vtx.size();i++) {
+                    if (i > checkBlock.vtx.size()) {
                         LogPrintf("Unexpected transaction: %s\n", block.vtx[i]->ToString());
-                    }else {
+                    }
+                    else {
                         if (block.vtx[i]->GetHash() != block.vtx[i]->GetHash()) {
                             LogPrintf("Mismatched transaction at entry %i\n", i);
                             LogPrintf("Actual: %s\n", block.vtx[i]->ToString());
@@ -2823,12 +2822,14 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                         }
                     }
                 }
-            }else if(block.vtx.size() < checkBlock.vtx.size()){
+            }
+            else if (block.vtx.size() < checkBlock.vtx.size()) {
                 LogPrintf("Actual block is missing AAL transactions. Actual txs: %i, expected txs: %i\n", block.vtx.size(), checkBlock.vtx.size());
-                for(size_t i=0;i<checkBlock.vtx.size();i++){
-                    if(i > block.vtx.size()){
+                for (size_t i=0;i<checkBlock.vtx.size();i++) {
+                    if (i > block.vtx.size()) {
                         LogPrintf("Missing transaction: %s\n", checkBlock.vtx[i]->ToString());
-                    }else {
+                    }
+                    else {
                         if (block.vtx[i]->GetHash() != block.vtx[i]->GetHash()) {
                             LogPrintf("Mismatched transaction at entry %i\n", i);
                             LogPrintf("Actual: %s\n", block.vtx[i]->ToString());
@@ -2836,9 +2837,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                         }
                     }
                 }
-            }else{
+            }
+            else {
                 //count is correct, but a tx is wrong
-                for(size_t i=0;i<checkBlock.vtx.size();i++){
+                for (size_t i = 0; i < checkBlock.vtx.size(); i++) {
                     if (block.vtx[i]->GetHash() != block.vtx[i]->GetHash()) {
                         LogPrintf("Mismatched transaction at entry %i\n", i);
                         LogPrintf("Actual: %s\n", block.vtx[i]->ToString());
@@ -2847,22 +2849,21 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                 }
             }
         }
-        if(checkBlock.hashUTXORoot != block.hashUTXORoot){
+        if (checkBlock.hashUTXORoot != block.hashUTXORoot) {
             LogPrintf("Actual block data does not match hashUTXORoot expected by AAL block\n");
         }
-        if(checkBlock.hashStateRoot != block.hashStateRoot){
+        if (checkBlock.hashStateRoot != block.hashStateRoot) {
             LogPrintf("Actual block data does not match hashStateRoot expected by AAL block\n");
         }
 
         return state.DoS(100, error("ConnectBlock(): Incorrect AAL transactions or hashes (hashStateRoot, hashUTXORoot)"),
-                         REJECT_INVALID, "incorrect-transactions-or-hashes-block");
+            REJECT_INVALID, "incorrect-transactions-or-hashes-block");
     }
 
-    if (fJustCheck)
-    {
+    if (fJustCheck) {
         dev::h256 prevHashStateRoot(dev::sha3(dev::rlp("")));
         dev::h256 prevHashUTXORoot(dev::sha3(dev::rlp("")));
-        if(pindex->pprev->hashStateRoot != uint256() && pindex->pprev->hashUTXORoot != uint256()){
+        if (pindex->pprev->hashStateRoot != uint256() && pindex->pprev->hashUTXORoot != uint256()) {
             prevHashStateRoot = uintToh256(pindex->pprev->hashStateRoot);
             prevHashUTXORoot = uintToh256(pindex->pprev->hashUTXORoot);
         }
@@ -2874,10 +2875,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
     //only start checking this error after last PoW block and only on testnet and mainnet, not regtest
-    if(pindex->nHeight > ecoc::lastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
+    if (pindex->nHeight > ecoc::lastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
         uint64_t actualSupply = (ecoc::lastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::lastPoWBlock) * ecoc::getPoSReward(pindex->nHeight, chainparams.GetConsensus()))) * COIN;
-        if(pindex->nMoneySupply > actualSupply) {
+        if (pindex->nMoneySupply > actualSupply) {
             ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
             ecoc::ecocLogNL("Reward limit: ");
             ecoc::ecocLogNL(actualSupply);
@@ -2887,8 +2888,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         }
     }
     // Write undo information to disk
-    if (pindex->GetUndoPos().IsNull() || !pindex->IsValid(BLOCK_VALID_SCRIPTS))
-    {
+    if (pindex->GetUndoPos().IsNull() || !pindex->IsValid(BLOCK_VALID_SCRIPTS)) {
         if (pindex->GetUndoPos().IsNull()) {
             CDiskBlockPos _pos;
             if (!FindUndoPos(state, pindex->nFile, _pos, ::GetSerializeSize(blockundo, SER_DISK, CLIENT_VERSION) + 40))
@@ -2905,27 +2905,29 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         setDirtyBlockIndex.insert(pindex);
     }
 
-    if (fLogEvents)
-    {
+    if (fLogEvents) {
         for (const auto& e: heightIndexes)
         {
             if (!pblocktree->WriteHeightIndex(e.second.first, e.second.second))
                 return AbortNode(state, "Failed to write height index");
         }
     }
-    if(block.IsProofOfStake()){
+
+    if (block.IsProofOfStake()) {
         // Read the public key from the second output
         std::vector<unsigned char> vchPubKey;
-        if(GetBlockPublicKey(block, vchPubKey))
-        {
+        if (GetBlockPublicKey(block, vchPubKey)) {
             uint160 pkh = uint160(ToByteVector(CPubKey(vchPubKey).GetID()));
             pblocktree->WriteStakeIndex(pindex->nHeight, pkh);
-        }else{
+        }
+        else {
             pblocktree->WriteStakeIndex(pindex->nHeight, uint160());
         }
-    }else{
+    }
+    else {
         pblocktree->WriteStakeIndex(pindex->nHeight, uint160());
     }
+
     if (fTxIndex)
         if (!pblocktree->WriteTxIndex(vPos))
             return AbortNode(state, "Failed to write transaction index");
@@ -5657,15 +5659,14 @@ double GuessVerificationProgress(const ChainTxData& data, CBlockIndex *pindex) {
     return pindex->nChainTx / fTxTotal;
 }
 
-class CMainCleanup
-{
-public:
-    CMainCleanup() {}
-    ~CMainCleanup() {
-        // block headers
-        BlockMap::iterator it1 = mapBlockIndex.begin();
-        for (; it1 != mapBlockIndex.end(); it1++)
-            delete (*it1).second;
-        mapBlockIndex.clear();
-    }
-} instance_of_cmaincleanup;
+class CMainCleanup {
+    public:
+        CMainCleanup() {}~CMainCleanup() {
+            // block headers
+            BlockMap::iterator it1 = mapBlockIndex.begin();
+            for (; it1 != mapBlockIndex.end(); it1++)
+                delete( * it1).second;
+            mapBlockIndex.clear();
+        }
+}
+instance_of_cmaincleanup;

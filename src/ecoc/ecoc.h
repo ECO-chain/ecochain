@@ -40,6 +40,7 @@ namespace ecoc {
 
   int getPoSReward(int height, const Consensus::Params& params);
   int getMultisigners(int height);
+  uint64_t getActualSupply(int height);
 } // namespace ecoc
 
 #endif // ECOC_H

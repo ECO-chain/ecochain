@@ -100,7 +100,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-        consensus.ThemisHeight = 850000;
+        consensus.ThemisHeight = 870000;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -165,7 +165,7 @@ public:
             0 // * estimated number of transactions per second after that timestamp
         };
         consensus.nLastPOWBlock = ecoc::lastPoWBlock;
-        consensus.lastPOSBlock = 48840000;
+        consensus.lastPOSBlock = 47860000;
         consensus.nThemisMPoSRewardRecipients = 5;
         consensus.nOriginalMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
@@ -262,10 +262,10 @@ public:
         };
 
         consensus.nLastPOWBlock = ecoc::lastPoWBlock;
-        consensus.lastPOSBlock = 45900000;
+        consensus.lastPOSBlock = 45900000 - (49 * (consensus.ThemisHeight - 920000));
         consensus.nThemisMPoSRewardRecipients = 5;
         consensus.nOriginalMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY; 
         consensus.nFixUTXOCacheHFHeight = 84500;
     }
 };
@@ -344,10 +344,10 @@ public:
         };
 
         consensus.nLastPOWBlock = ecoc::lastPoWBlock;
-        consensus.lastPOSBlock = 45900000;
         consensus.nThemisMPoSRewardRecipients = 5;
         consensus.nOriginalMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock;
+        consensus.lastPOSBlock = 45900000 - (49 * (consensus.ThemisHeight - 920000));
+        consensus.nFirstMPoSBlock = ecoc::lastPoWBlock;
 
         consensus.nFixUTXOCacheHFHeight = 0;
 

@@ -5,10 +5,9 @@
 #include "ecoc.h"
 #include "chainparams.h"
 
-namespace ecoc {
-
-int getMultisigners(int height)
+namespace ecoc
 {
+int getMultisigners(int height) {
     const Consensus::Params& params = Params().GetConsensus();
 
     if (height < params.ThemisHeight + 1) {
@@ -33,12 +32,38 @@ int getPoSReward(int height, const Consensus::Params& params)
         return 1;
     }
 
+    /* redundant check */
     if (height > lastRewardBlock) {
         return 0;
     }
 
     int rewardReduction = int((height - (ThemisHeight + 1)) / rewardSession);
     return (ThemisBlockReward - rewardReduction);
+}
+
+uint64_t getActualSupply(int height)
+{
+    const Consensus::Params& params = Params().GetConsensus();
+    const int ThemisHeight = params.ThemisHeight;
+    int epochPeriod = 1000000;
+    uint64_t actualSupply;
+    if (height <= lastPoWBlock) {
+        actualSupply = height * PoWReward;
+    } else if (height <= ThemisHeight) {
+        actualSupply = lastPoWBlock * PoWReward + (height - lastPoWBlock) * 50;
+    } else if (height > ThemisHeight && height <= lastPoWBlock + params.lastPOSBlock) {
+        actualSupply = lastPoWBlock * PoWReward + (ThemisHeight - lastPoWBlock) * 50; /* actualy supply at themis height*/
+        for (int epoch = 1; epoch <= 5; epoch++) {
+            if (epoch == 5) {
+                epochPeriod = lastPoWBlock + params.lastPOSBlock - ThemisHeight - 4 * epochPeriod;
+            }
+            actualSupply += std::max(0, (6 - epoch) * std::min(epochPeriod, height - ThemisHeight - (epoch - 1) * 1000 * 1000));
+        }
+    } else {
+        actualSupply = 300 * 1000 * 1000;
+    }
+
+    return actualSupply;
 }
 
 void ecocLog(const std::string message)

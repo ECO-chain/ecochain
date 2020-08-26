@@ -2876,7 +2876,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     //only start checking this error after last PoW block and only on testnet and mainnet, not regtest
     if(pindex->nHeight > ecoc::lastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
-        uint64_t actualSupply = (ecoc::lastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::lastPoWBlock) * ecoc::getPoSReward(pindex->nHeight, chainparams.GetConsensus()))) * COIN;
+        uint64_t actualSupply = ecoc::getActualSupply(pindex->nHeight);
         if(pindex->nMoneySupply > actualSupply) {
             ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
             ecoc::ecocLogNL("Reward limit: ");

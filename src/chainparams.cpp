@@ -82,7 +82,7 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // set doubling to take place every 2 and half years
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession;
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockMainNet);
         consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
@@ -90,7 +90,7 @@ public:
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
+        consensus.nPowTargetSpacing = ecoc::blockTime;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
@@ -163,11 +163,12 @@ public:
                             //   (the tx=... number in the SetBestChain debug.log lines)
             0 // * estimated number of transactions per second after that timestamp
         };
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
         consensus.lastPOSBlock = 48840000;
-        int nOriginalMPoSRewardRecipients = 10;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
-        
+        consensus.nThemisMPoSRewardRecipients = 5;
+        consensus.nOriginalMPoSRewardRecipients = 10;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
+
         consensus.nFixUTXOCacheHFHeight=0;
     }
 };
@@ -189,7 +190,7 @@ public:
         consensus.powLimit = uint256S("efffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
+        consensus.nPowTargetSpacing = ecoc::blockTime;
         consensus.fPowAllowMinDifficultyBlocks = false; 
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
@@ -259,7 +260,7 @@ public:
             0,
         };
 
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
         consensus.lastPOSBlock = 45900000;
         int nOriginalMPoSRewardRecipients = 10;
         consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + nOriginalMPoSRewardRecipients + COINBASE_MATURITY; 
@@ -285,7 +286,7 @@ public:
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
+        consensus.nPowTargetSpacing = ecoc::blockTime;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = true;
@@ -340,9 +341,9 @@ public:
             0
         };
 
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
         consensus.lastPOSBlock = 45900000;
-        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
+        consensus.nFirstMPoSBlock = ecoc::lastPoWBlock;
 
         consensus.nFixUTXOCacheHFHeight=0;
 

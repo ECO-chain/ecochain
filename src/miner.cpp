@@ -1084,7 +1084,7 @@ void ThreadStakeMiner(CWallet *pwallet)
     bool fTryToSync = true;
     bool regtestMode = Params().GetConsensus().fPoSNoRetargeting;
     if(regtestMode){
-      nMinerSleep = ecoc::MinerSleepInSecs * 1000; //limit regtest , otherwise it'll create 2 blocks per second
+      nMinerSleep = ecoc::minerSleepInSecs * 1000; //limit regtest , otherwise it'll create 2 blocks per second
     }
 
     while (true)

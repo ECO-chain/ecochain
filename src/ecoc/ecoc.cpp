@@ -8,62 +8,65 @@
 
 namespace ecoc {
 
-  int getMultisigners(int height) {
-    const int ThemisHeight = Params().GetConsensus().ThemisHeight;
-    int multisigners = 10;
-    if (height > ThemisHeight) {
-      multisigners = 5;
-    }
-    return multisigners;
+int getMultisigners(int height) {
+  const Consensus::Params& params = Params().GetConsensus()
+
+  if (height < params.ThemisHeight + 1) {
+    return params.nOriginalMPoSRewardRecipients;
   }
 
-  int GetPoSReward(int height) {
-    const int ThemisHeight = Params().GetConsensus().ThemisHeight;
-    const int lastRewardBlock = LastPoWBlock + Params().GetConsensus().lastPOSBlock;
-    int reward ;
-    int lastEpoch = ThemisHeight + 4*1000*1000 ;
-    if (height < ThemisHeight+1) {
-      reward = 50;
-      return reward;
-    } else {
-      reward = 5 - int((height -(ThemisHeight + 1))/rewardSession);
-    }
-    if (height > lastEpoch) {
-      reward = 1;
-    }
-    if (height > lastRewardBlock ) {
-      reward = 0;
-    }
-    return reward;
-  }
-    void ecocLog(const std::string message) {
-    if (debug) {
-      LogPrintf("ecoc: %s\n", message);
-    }
+  return params.nThemisMPoSRewardRecipients;
+}
+
+int getPoSReward(int height, const Consensus::Params& params) {
+  const int ThemisHeight = params.ThemisHeight;
+  const int lastRewardBlock = lastPoWBlock + params.lastPOSBlock;
+  const int lastEpoch = ThemisHeight + 4*1000*1000;
+  const int ThemisBlockReward = 5;
+
+  if (height < ThemisHeight + 1) {
+    return 50;
   }
 
-  void ecocLogNL(const std::string message) {
-    if (debug) {
-      LogPrintf("ecoc: %s", message);
-    }
-  }
-  
-  void ecocLogNL(int i) {
-    if (debug) {
-      LogPrintf("ecoc: %d", i);
-    }
+  if (height > lastEpoch) {
+    return 1;
   }
 
-  void ecocLog(int i) {
-    if (debug) {
-      LogPrintf("ecoc: %d\n", i);
-    }
+  if (height > lastRewardBlock) {
+    return 0;
   }
 
-  void ecocLogFun(const std::string message) {
-    if (debug) {
-      LogPrintf("ecoc: Entering function %s\n", message);
-    }
+  int rewardReduction = int((height - (ThemisHeight + 1)) / rewardSession);
+  return (ThemisBlockReward - rewardReduction);
+}
+
+void ecocLog(const std::string message) {
+  if (debug) {
+    LogPrintf("ecoc: %s\n", message);
   }
 }
 
+void ecocLogNL(const std::string message) {
+  if (debug) {
+    LogPrintf("ecoc: %s", message);
+  }
+}
+
+void ecocLogNL(int i) {
+  if (debug) {
+    LogPrintf("ecoc: %d", i);
+  }
+}
+
+void ecocLog(int i) {
+  if (debug) {
+    LogPrintf("ecoc: %d\n", i);
+  }
+}
+
+void ecocLogFun(const std::string message) {
+  if (debug) {
+    LogPrintf("ecoc: Entering function %s\n", message);
+  }
+}
+} // namespace ecoc

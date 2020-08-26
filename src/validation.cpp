@@ -1377,15 +1377,14 @@ bool ReadFromDisk(CMutableTransaction& tx, CDiskTxPos& txindex, CBlockTreeDB& tx
 
 CAmount GetBlockSubsidy(int nHeight, const Consensus::Params& consensusParams)
 {
-    if(nHeight <= consensusParams.nLastPOWBlock)
-      return ecoc::PoWReward * COIN;
+    if (nHeight <= consensusParams.nLastPOWBlock)
+        return ecoc::PoWReward * COIN;
 
     /* check for cap, redundant*/
-    if (nHeight - consensusParams.nLastPOWBlock > consensusParams.lastPOSBlock)
-      return 0;
+    if (nHeight > (consensusParams.nLastPOWBlock + consensusParams.lastPOSBlock))
+        return 0;
 
-    CAmount nSubsidy = ecoc::GetPoSReward(nHeight) * COIN;
-    // Subsidy is doubled in half ecoc::rewardHalving blocks, which will occur approximately every 2 and a half years.
+    CAmount nSubsidy = ecoc::getPoSReward(nHeight, consensusParams) * COIN;
     return nSubsidy;
 }
 
@@ -2874,14 +2873,17 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
 //////////////////////////////////////////////////////////////////
 
     pindex->nMoneySupply = (pindex->pprev? pindex->pprev->nMoneySupply : 0) + nValueOut - nValueIn;
-    //only start checking this error after lasi PoW block  and only on testnet and mainnet, not regtest
-    if(pindex->nHeight > ecoc::LastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
+    //only start checking this error after last PoW block and only on testnet and mainnet, not regtest
+    if(pindex->nHeight > ecoc::lastPoWBlock && !Params().GetConsensus().fPoSNoRetargeting) {
         //sanity check in case an exploit happens that allows new coins to be minted
-      if(pindex->nMoneySupply > (uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::GetPoSReward(pindex->nHeight))) * COIN){
-	ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
-	ecoc::ecocLogNL("Reward limit: "); ecoc::ecocLogNL((uint64_t)(ecoc::LastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::LastPoWBlock) * ecoc::GetPoSReward(pindex->nHeight))) * COIN);
+        uint64_t actualSupply = (ecoc::lastPoWBlock * ecoc::PoWReward + ((pindex->nHeight - ecoc::lastPoWBlock) * ecoc::getPoSReward(pindex->nHeight, chainparams.GetConsensus()))) * COIN;
+        if(pindex->nMoneySupply > actualSupply) {
+            ecoc::ecocLogNL("pindex->nMoneySupply: "); ecoc::ecocLogNL(pindex->nMoneySupply);
+            ecoc::ecocLogNL("Reward limit: ");
+            ecoc::ecocLogNL(actualSupply);
+
             return state.DoS(100, error("ConnectBlock(): Unknown error caused actual money supply to exceed expected money supply"),
-                             REJECT_INVALID, "incorrect-money-supply");
+                            REJECT_INVALID, "incorrect-money-supply");
         }
     }
     // Write undo information to disk
@@ -2910,7 +2912,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             if (!pblocktree->WriteHeightIndex(e.second.first, e.second.second))
                 return AbortNode(state, "Failed to write height index");
         }
-    }    
+    }
     if(block.IsProofOfStake()){
         // Read the public key from the second output
         std::vector<unsigned char> vchPubKey;

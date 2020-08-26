@@ -8,17 +8,17 @@
 #include "util.h"
 #include "chainparams.h"
 
-namespace ecoc{
+namespace ecoc {
   const bool debug = true;
-  
-  const int LastPoWBlock = 10000; // turning block from PoW to PoS
-  const int BlockTime = 32;       // block time creation target
+
+  const int lastPoWBlock = 10000; // turning block from PoW to PoS
+  const int blockTime = 32;       // block time creation target
   const int granularity = 7;
   // const int consensusMultisigners = 10;
-  const int coinbaseMaturity = (600 * 100) / (BlockTime); //600*100/BlockTime = 1875 ; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
+  const int coinbaseMaturity = (600 * 100) / (blockTime); //600*100/blockTime = 1875 ; (formula proportional to bitcoin who has 600 secs and 100 blocks maturity)
   const std::string ecoUnit = "ECOC";
-  const int MinerSleepInSecs = 60;               // delay the block creation for a minute
-  const int StakerPollingPeriod = 5000;          // STAKER_POLLING_PERIOD in miliseconds
+  const int minerSleepInSecs = 60;               // delay the block creation for a minute
+  const int stakerPollingPeriod = 5000;          // STAKER_POLLING_PERIOD in miliseconds
   const int PoWReward = 20000;                   // reward of coins for each block at first phase (PoW)
   // const int PoSReward = 50;                   // PoS reward, replaced with GetPosReward(height) at Themis hardfork
   // const int maxHalvings = 4;                  // Number of doubling epochs, removes at Themis hardfork
@@ -37,7 +37,8 @@ namespace ecoc{
   void ecocLogNL(int i);
   void ecocLog(int i);
   void ecocLogFun(const std::string message);
-  int GetPoSReward(int height);
+
+  int getPoSReward(int height, const Consensus::Params& params);
   int getMultisigners(int height);
 } // namespace ecoc
 

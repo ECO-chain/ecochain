@@ -2025,7 +2025,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         }
     }
 
-    LogPrintf("\nCheck reward for block %d\n", nHeight); //ecoclog
+    LogPrintf("Check reward for block %d\n", nHeight); //ecoclog
 
     // Check block reward
     if (block.IsProofOfWork()) {

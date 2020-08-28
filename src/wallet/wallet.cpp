@@ -3300,7 +3300,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
             // Keep whole reward
             nCredit += nReward;
         }
-        else if (pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
+        else if (pindexPrev->nHeight > consensusParams.ThemisHeight && pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
             // Keep whole reward
             nCredit += nReward;
         }

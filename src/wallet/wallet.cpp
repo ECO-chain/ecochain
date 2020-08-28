@@ -112,12 +112,11 @@ void CleanScriptCache(int nHeight, const Consensus::Params& consensusParams)
     int nCacheScripts = ecoc::getMultisigners(nHeight) * 1.5;
 
     // Remove the scripts from cache that are not used
-    for (std::map<int, ScriptsElement>::iterator it=scriptsMap.begin(); it!=scriptsMap.end();){
-        if(NeedToEraseScriptFromCache(nHeight, nCacheScripts, it->first, it->second))
-        {
+    for (std::map<int, ScriptsElement>::iterator it=scriptsMap.begin(); it!=scriptsMap.end();) {
+        if (NeedToEraseScriptFromCache(nHeight, nCacheScripts, it->first, it->second)) {
             it = scriptsMap.erase(it);
         }
-        else{
+        else {
             it++;
         }
     }
@@ -218,7 +217,7 @@ bool GetMPoSOutputScripts(std::vector<CScript>& mposScriptList, int nHeight, con
     nHeight -= COINBASE_MATURITY;
 
     // Populate the list of scripts for the reward recipients
-    for(int i = 0; (i < ecoc::getMultisigners(nHeight) - 1) && ret; i++)
+    for(int i = 0; (i < ecoc::getMultisigners(nHeight+COINBASE_MATURITY) - 1) && ret; i++)
     {
         ret &= AddMPoSScript(mposScriptList, nHeight - i, consensusParams);
     }
@@ -3267,8 +3266,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
     if (nCredit == 0 || nCredit > nBalance - nReserveBalance)
         return false;
 
-    BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins)
-    {
+    BOOST_FOREACH(const PAIRTYPE(const CWalletTx*, unsigned int)& pcoin, setCoins) {
         // Attempt to add more inputs
         // Only add coins of the same key/address as kernel
         if (txNew.vout.size() == 2 && ((pcoin.first->tx->vout[pcoin.second].scriptPubKey == scriptPubKeyKernel || pcoin.first->tx->vout[pcoin.second].scriptPubKey == txNew.vout[1].scriptPubKey))
@@ -3298,28 +3296,31 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
         if (nReward < 0)
             return false;
 
-        if(pindexPrev->nHeight < consensusParams.nFirstMPoSBlock)
-        {
+        if (pindexPrev->nHeight < consensusParams.nFirstMPoSBlock) {
             // Keep whole reward
             nCredit += nReward;
         }
-        else
-        {
+        // else if (pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
+        //     // Keep whole reward
+        //     nCredit += nReward;
+        // }
+        else {
             // Split the reward when mpos is used
-            nRewardPiece = nReward / ecoc::getMultisigners(pindexPrev->nHeight);
-            nCredit += nRewardPiece + nReward % ecoc::getMultisigners(pindexPrev->nHeight);
+            int64_t nMPoS = ecoc::getMultisigners(pindexPrev->nHeight);
+            nRewardPiece = nReward / nMPoS;
+            nCredit += nRewardPiece + nReward % nMPoS;
         }
-   }
 
-    if (nCredit >= GetStakeSplitThreshold())
-    {
+        LogPrintf("[PoS] Create coin stake block: %d, nRewardPiece reward: %d, nCredit: %d\n", pindexPrev->nHeight, nRewardPiece, nCredit);
+    }
+
+    if (nCredit >= GetStakeSplitThreshold()) {
         for(unsigned int i = 0; i < GetStakeSplitOutputs() - 1; i++)
             txNew.vout.push_back(CTxOut(0, txNew.vout[1].scriptPubKey)); //split stake
     }
 
     // Set output amount
-    if (txNew.vout.size() == GetStakeSplitOutputs() + 1)
-    {
+    if (txNew.vout.size() == GetStakeSplitOutputs() + 1) {
         CAmount nValue = (nCredit / GetStakeSplitOutputs() / CENT) * CENT;
         for(unsigned int i = 1; i < GetStakeSplitOutputs(); i++)
             txNew.vout[i].nValue = nValue;
@@ -3328,15 +3329,13 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
     else
         txNew.vout[1].nValue = nCredit;
 
-    if(pindexPrev->nHeight >= consensusParams.nFirstMPoSBlock)
-    {
+    if(pindexPrev->nHeight >= consensusParams.nFirstMPoSBlock) {
         if(!CreateMPoSOutputs(txNew, nRewardPiece, pindexPrev->nHeight, consensusParams))
             return error("CreateCoinStake : failed to create MPoS reward outputs");
     }
 
     // Append the Refunds To Sender to the transaction outputs
-    for(unsigned int i = 2; i < tx.vout.size(); i++)
-    {
+    for(unsigned int i = 2; i < tx.vout.size(); i++) {
         txNew.vout.push_back(tx.vout[i]);
     }
 

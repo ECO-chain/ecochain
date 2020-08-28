@@ -131,7 +131,8 @@ void BlockAssembler::resetBlock()
     blockFinished = false;
 }
 
-void BlockAssembler::RebuildRefundTransaction(){
+void BlockAssembler::RebuildRefundTransaction()
+{
     int refundtx=0; //0 for coinbase in PoW
     if(pblock->IsProofOfStake()){
         refundtx=1; //1 for coinstake in PoS
@@ -152,18 +153,19 @@ void BlockAssembler::RebuildRefundTransaction(){
 
 std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn, bool fProofOfStake, int64_t* pTotalFees, int32_t txProofTime, int32_t nTimeLimit)
 {
-  ecoc::ecocLogFun(__PRETTY_FUNCTION__);
+    ecoc::ecocLogFun(__PRETTY_FUNCTION__);
     resetBlock();
-    if (fProofOfStake){
-    ecoc:: ecocLog("Proof of Stake phase");
+    if (fProofOfStake) {
+        ecoc:: ecocLog("Proof of Stake phase");
     }
     else {
-    ecoc:: ecocLog("Proof of Work phase");
+        ecoc:: ecocLog("Proof of Work phase");
     }
     pblocktemplate.reset(new CBlockTemplate());
 
     if(!pblocktemplate.get())
         return nullptr;
+
     pblock = &pblocktemplate->block; // pointer for convenience
 
     this->nTimeLimit = nTimeLimit;
@@ -173,6 +175,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     // Add dummy coinstake tx as second transaction
     if(fProofOfStake)
         pblock->vtx.emplace_back();
+
     pblocktemplate->vTxFees.push_back(-1); // updated at end
     pblocktemplate->vTxSigOpsCost.push_back(-1); // updated at end
 
@@ -189,11 +192,13 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     if(txProofTime == 0) {
         txProofTime = GetAdjustedTime();
     }
-    if(fProofOfStake)
+    if (fProofOfStake)
         txProofTime &= ~STAKE_TIMESTAMP_MASK;
+
     pblock->nTime = txProofTime;
     if (!fProofOfStake)
         UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
+
     pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus(),fProofOfStake);
     const int64_t nMedianTimePast = pindexPrev->GetMedianTimePast();
 
@@ -218,13 +223,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
-    if (fProofOfStake)
-    {
+    if (fProofOfStake) {
         // Make the coinbase tx empty in case of proof of stake
         coinbaseTx.vout[0].SetEmpty();
     }
-    else
-    {
+    else {
         coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -233,8 +236,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
 
     // Create coinstake transaction.
-    if(fProofOfStake)
-    {
+    if (fProofOfStake) {
         CMutableTransaction coinstakeTx;
         coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
@@ -245,16 +247,15 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
         //this just makes CBlock::IsProofOfStake to return true
         //real prevoutstake info is filled in later in SignBlock
         pblock->prevoutStake.n=0;
-
     }
 
     //////////////////////////////////////////////////////// qtum
     dev::eth::EVMSchedule scheduleEIP158 = dev::eth::EIP158Schedule;
     globalSealEngine->setQtumSchedule(scheduleEIP158);
     minGasPrice = MIN_TX_GAS;
-    if(IsArgSet("-staker-min-tx-gas-price")) {
+    if (IsArgSet("-staker-min-tx-gas-price")) {
         CAmount stakerMinGasPrice;
-        if(ParseMoney(GetArg("-staker-min-tx-gas-price", ""), stakerMinGasPrice)) {
+        if (ParseMoney(GetArg("-staker-min-tx-gas-price", ""), stakerMinGasPrice)) {
             minGasPrice = std::max(minGasPrice, (uint64_t)stakerMinGasPrice);
         }
     }
@@ -349,13 +350,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
     coinbaseTx.vin.resize(1);
     coinbaseTx.vin[0].prevout.SetNull();
     coinbaseTx.vout.resize(1);
-    if (fProofOfStake)
-    {
+    if (fProofOfStake) {
         // Make the coinbase tx empty in case of proof of stake
         coinbaseTx.vout[0].SetEmpty();
     }
-    else
-    {
+    else {
         coinbaseTx.vout[0].scriptPubKey = scriptPubKeyIn;
         coinbaseTx.vout[0].nValue = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
     }
@@ -364,8 +363,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
     pblock->vtx[0] = MakeTransactionRef(std::move(coinbaseTx));
 
     // Create coinstake transaction.
-    if(fProofOfStake)
-    {
+    if (fProofOfStake) {
         CMutableTransaction coinstakeTx;
         coinstakeTx.vout.resize(2);
         coinstakeTx.vout[0].SetEmpty();
@@ -397,8 +395,9 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateEmptyBlock(const CScript& 
     pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
     if (!fProofOfStake)
         UpdateTime(pblock, chainparams.GetConsensus(), pindexPrev);
-    pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus(),fProofOfStake);
-    pblock->nNonce         = 0;
+
+    pblock->nBits = GetNextWorkRequired(pindexPrev, pblock, chainparams.GetConsensus(), fProofOfStake);
+    pblock->nNonce = 0;
     pblocktemplate->vTxSigOpsCost[0] = WITNESS_SCALE_FACTOR * GetLegacySigOpCount(*pblock->vtx[0]);
 
     CValidationState state;
@@ -423,7 +422,7 @@ bool BlockAssembler::isStillDependent(CTxMemPool::txiter iter)
 
 void BlockAssembler::onlyUnconfirmed(CTxMemPool::setEntries& testSet)
 {
-    for (CTxMemPool::setEntries::iterator iit = testSet.begin(); iit != testSet.end(); ) {
+    for (CTxMemPool::setEntries::iterator iit = testSet.begin(); iit != testSet.end();) {
         // Only test txs not already in the block
         if (inBlock.count(*iit)) {
             testSet.erase(iit++);

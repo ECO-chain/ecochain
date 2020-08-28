@@ -1086,16 +1086,14 @@ void ThreadStakeMiner(CWallet *pwallet)
       nMinerSleep = ecoc::minerSleepInSecs * 1000; //limit regtest , otherwise it'll create 2 blocks per second
     }
 
-    while (true)
-    {
-        while (pwallet->IsLocked())
-        {
+    while (true) {
+        while (pwallet->IsLocked()) {
             nLastCoinStakeSearchInterval = 0;
             MilliSleep(10000);
         }
-        //don't disable PoS mining for no connections if in regtest mode
-	//       if(!regtestMode && !GetBoolArg("-emergencystaking", false)) {
-	if (false) {
+        // don't disable PoS mining for no connections if in regtest mode
+        // if(!regtestMode && !GetBoolArg("-emergencystaking", false)) {
+        if (false) {
             while (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 || IsInitialBlockDownload()) {
                 nLastCoinStakeSearchInterval = 0;
                 fTryToSync = true;
@@ -1113,18 +1111,18 @@ void ThreadStakeMiner(CWallet *pwallet)
         //
         // Create new block
         //
-        if(pwallet->HaveAvailableCoinsForStaking())
-        {
+        if (pwallet->HaveAvailableCoinsForStaking()) {
             int64_t nTotalFees = 0;
             // First just create an empty block. No need to process transactions until we know we can create a block
             std::unique_ptr<CBlockTemplate> pblocktemplate(BlockAssembler(Params()).CreateEmptyBlock(reservekey.reserveScript, true, &nTotalFees));
             if (!pblocktemplate.get())
                 return;
+
             CBlockIndex* pindexPrev =  chainActive.Tip();
 
             uint32_t beginningTime=GetAdjustedTime();
             beginningTime &= ~STAKE_TIMESTAMP_MASK;
-            for(uint32_t i=beginningTime;i<beginningTime + MAX_STAKE_LOOKAHEAD;i+=STAKE_TIMESTAMP_MASK+1) {
+            for (uint32_t i=beginningTime;i<beginningTime + MAX_STAKE_LOOKAHEAD;i+=STAKE_TIMESTAMP_MASK+1) {
 
                 // The information is needed for status bar to determine if the staker is trying to create block and when it will be created approximately,
                 static int64_t nLastCoinStakeSearchTime = GetAdjustedTime(); // startup timestamp
@@ -1149,6 +1147,7 @@ void ThreadStakeMiner(CWallet *pwallet)
                                                                     i, FutureDrift(GetAdjustedTime()) - STAKE_TIME_BUFFER));
                     if (!pblocktemplatefilled.get())
                         return;
+
                     if (chainActive.Tip()->GetBlockHash() != pblock->hashPrevBlock) {
                         //another block was received while building ours, scrap progress
                         LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid");
@@ -1160,7 +1159,7 @@ void ThreadStakeMiner(CWallet *pwallet)
                         // Should always reach here unless we spent too much time processing transactions and the timestamp is now invalid
                         // CheckStake also does CheckBlock and AcceptBlock to propogate it to the network
                         bool validBlock = false;
-                        while(!validBlock) {
+                        while (!validBlock) {
                             if (chainActive.Tip()->GetBlockHash() != pblockfilled->hashPrevBlock) {
                                 //another block was received while building ours, scrap progress
                                 LogPrintf("ThreadStakeMiner(): Valid future PoS block was orphaned before becoming valid");
@@ -1178,7 +1177,7 @@ void ThreadStakeMiner(CWallet *pwallet)
                                     //but also increases the chance of broadcasting invalid blocks and getting DoS banned by nodes,
                                     //or receiving more stale/orphan blocks than normal. Use at your own risk.
                                     MilliSleep(100);
-                                }else{
+                                } else {
                                     //too early, so wait 3 seconds and try again
                                     MilliSleep(3000);
                                 }

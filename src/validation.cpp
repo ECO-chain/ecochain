@@ -2073,11 +2073,11 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         if (!GetMPoSOutputScripts(mposScriptList, nPrevHeight, consensusParams))
             return error("CheckReward(): cannot create the list of MPoS output scripts");
 
-        // if (nHeight > consensusParams.ThemisHeight && nHeight <= consensusParams.ThemisHeight + 10) { // clear mposScript after ThemisHeight + previous multisigner number
-        //     mposScriptList.erase(mposScriptList.begin(), mposScriptList.end());
-        // }
+        if (nHeight > consensusParams.ThemisHeight && nHeight <= consensusParams.ThemisHeight + 10) { // clear mposScript after ThemisHeight + previous multisigner number
+            mposScriptList.erase(mposScriptList.begin(), mposScriptList.end());
+        }
 
-        // LogPrintf("MPoS script size %d\n", mposScriptList.size() + 1); //ecoclog
+        LogPrintf("MPoS script size %d\n", mposScriptList.size() + 1); //ecoclog
 
         for (size_t i = 0; i < mposScriptList.size(); i++) {
             it = std::find(vTempVouts.begin(), vTempVouts.end(), CTxOut(splitReward, mposScriptList[i]));

@@ -3300,10 +3300,10 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
             // Keep whole reward
             nCredit += nReward;
         }
-        // else if (pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
-        //     // Keep whole reward
-        //     nCredit += nReward;
-        // }
+        else if (pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
+            // Keep whole reward
+            nCredit += nReward;
+        }
         else {
             // Split the reward when mpos is used
             int64_t nMPoS = ecoc::getMultisigners(pindexPrev->nHeight);

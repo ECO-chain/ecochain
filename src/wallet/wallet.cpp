@@ -3292,21 +3292,22 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
     int64_t nRewardPiece = 0;
     // Calculate reward
     {
-        int64_t nReward = nTotalFees + GetBlockSubsidy(pindexPrev->nHeight, consensusParams);
+        int nHeight = pindexPrev->nHeight + 1;
+        int64_t nReward = nTotalFees + GetBlockSubsidy(nHeight, consensusParams);
         if (nReward < 0)
             return false;
 
-        if (pindexPrev->nHeight < consensusParams.nFirstMPoSBlock) {
+        if (nHeight < consensusParams.nFirstMPoSBlock) {
             // Keep whole reward
             nCredit += nReward;
         }
-        else if (pindexPrev->nHeight > consensusParams.ThemisHeight && pindexPrev->nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
+        else if (nHeight > consensusParams.ThemisHeight && nHeight <= consensusParams.ThemisHeight + 10) { // previous multisigner number
             // Keep whole reward
             nCredit += nReward;
         }
         else {
             // Split the reward when mpos is used
-            int64_t nMPoS = ecoc::getMultisigners(pindexPrev->nHeight);
+            int64_t nMPoS = ecoc::getMultisigners(nHeight);
             nRewardPiece = nReward / nMPoS;
             nCredit += nRewardPiece + nReward % nMPoS;
         }

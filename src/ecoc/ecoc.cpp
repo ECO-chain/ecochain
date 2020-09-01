@@ -22,8 +22,13 @@ int getPoSReward(int height, const Consensus::Params& params)
 {
     const int ThemisHeight = params.ThemisHeight;
     const int lastRewardBlock = lastPoWBlock + params.lastPOSBlock;
-    const int lastEpoch = ThemisHeight + 4 * 1000 * 1000;
+    const int lastEpoch = ThemisHeight + (4 * rewardSession);
     const int ThemisBlockReward = 5;
+
+    /* redundant check */
+    if (height > lastRewardBlock) {
+        return 0;
+    }
 
     if (height < ThemisHeight + 1) {
         return 50;
@@ -33,13 +38,8 @@ int getPoSReward(int height, const Consensus::Params& params)
         return 1;
     }
 
-    /* redundant check */
-    if (height > lastRewardBlock) {
-        return 0;
-    }
-
     int rewardReduction = int((height - (ThemisHeight + 1)) / rewardSession);
-    return (ThemisBlockReward - rewardReduction);
+    return ThemisBlockReward - rewardReduction;
 }
 
 uint64_t getActualSupply(int height)

@@ -2051,7 +2051,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         int nPrevHeight = nHeight -1;
         if (nPrevHeight >= consensusParams.nFirstMPoSBlock) {
             rewardRecipients = ecoc::getMultisigners(nHeight);
-            LogPrintf("Number of Reward Recipients: %d\n", rewardRecipients); //ecoclog
+            LogPrintf(" Number of Reward Recipients: %d\n", rewardRecipients); //ecoclog
         }
         // Check reward recipients number
         if (rewardRecipients < 1)
@@ -2077,8 +2077,7 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
             mposScriptList.erase(mposScriptList.begin(), mposScriptList.end());
         }
 
-        LogPrintf("Block Reward:  %d\n", blockReward); //ecoclog
-        LogPrintf("MPoS Script Size %d\n", mposScriptList.size() + 1); //ecoclog
+        LogPrintf(" Block Reward:  %d\n", blockReward); //ecoclog
 
         for (size_t i = 0; i < mposScriptList.size(); i++) {
             it = std::find(vTempVouts.begin(), vTempVouts.end(), CTxOut(splitReward, mposScriptList[i]));

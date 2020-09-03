@@ -45,7 +45,7 @@ static const int32_t STAKE_TIME_BUFFER = 2;
 
 //How often to try to stake blocks in milliseconds
 //Note this is overridden for regtest mode
-static const int32_t STAKER_POLLING_PERIOD = ecoc::StakerPollingPeriod ;
+static const int32_t STAKER_POLLING_PERIOD = ecoc::stakerPollingPeriod ;
 
 //How much time to spend trying to process transactions when using the generate RPC call
 static const int32_t POW_MINER_MAX_TIME = 60;

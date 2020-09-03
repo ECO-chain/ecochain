@@ -36,16 +36,16 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
     txNew.vout[0].scriptPubKey = genesisOutputScript;
 
     CBlock genesis;
-    genesis.nTime    = nTime;
-    genesis.nBits    = nBits;
-    genesis.nNonce   = nNonce;
+    genesis.nTime = nTime;
+    genesis.nBits = nBits;
+    genesis.nNonce = nNonce;
     genesis.nVersion = nVersion;
     genesis.vtx.push_back(MakeTransactionRef(std::move(txNew)));
     genesis.hashPrevBlock.SetNull();
     genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
     genesis.hashStateRoot = uint256(h256Touint(dev::h256("56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421"))); // for EVM
     genesis.hashUTXORoot = uint256(h256Touint(dev::sha3(dev::rlp("")))); // for EVM
-    
+
     return genesis;
 }
 
@@ -80,9 +80,10 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 
 class CMainParams : public CChainParams {
 public:
-    CMainParams() {
+    CMainParams()
+    {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // set doubling to take place every 2 and half years
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession;
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockMainNet);
         consensus.BIP65Height = 0; // 000000000000000004c2b624ed5d7756c508d90fd0da2c7c679febfa6c4735f0
@@ -90,7 +91,7 @@ public:
         consensus.powLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
+        consensus.nPowTargetSpacing = ecoc::blockTime;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
@@ -99,7 +100,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-
+        consensus.ThemisHeight = 870000;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -112,7 +113,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000001ff7968db49a7d07084"); 
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000001ff7968db49a7d07084");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xafcacbe83c15d1c76f6e0d08eaf8cd0d4824f97c438d14857f54e8829c6bb21a"); //600000
@@ -127,21 +128,21 @@ public:
         pchMessageStart[3] = 0xc0;
         nDefaultPort = 36563;
         nPruneAfterHeight = 100000;
-        
-        genesis = CreateGenesisBlock(1561089219 , 348169991 , 0x1e00ffff, 1, 50 * COIN);
+
+        genesis = CreateGenesisBlock(1561089219, 348169991, 0x1e00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
 
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockMainNet));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
-	
+
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("mainnet.seeder.ecoc.io", "mainnet.seeder.ecoc.io", false)); // Ecochain mainnet
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,33);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,50);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,128);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 33);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 50);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 128);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >(); //BIP32 xpub...
-        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >(); //BIP32 xprv... 
+        base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >(); //BIP32 xprv...
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -150,24 +151,26 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
 
-        checkpointData = (CCheckpointData) {
+        checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S(ecoc::genesisBlockMainNet))
-            ( 10000, uint256S("000043c53370fffc55ea4baac593144dae30c2aced2156f3ab1c6ef1c147dded")) //last PoW block
-	        ( 500000, uint256S("3e9398ace037b47777b3b1e6e3ebf0b6cec6d8764299ebca9c860cb36f7e9d04")) //1st checkpoint
+            (0, uint256S(ecoc::genesisBlockMainNet))
+            (10000, uint256S("000043c53370fffc55ea4baac593144dae30c2aced2156f3ab1c6ef1c147dded")) //last PoW block
+            (500000, uint256S("3e9398ace037b47777b3b1e6e3ebf0b6cec6d8764299ebca9c860cb36f7e9d04")) //1st checkpoint
         };
 
         chainTxData = ChainTxData{
             0, // * UNIX timestamp of last known number of transactions
             0, // * total number of transactions between genesis and that timestamp
-                            //   (the tx=... number in the SetBestChain debug.log lines)
+            //   (the tx=... number in the SetBestChain debug.log lines)
             0 // * estimated number of transactions per second after that timestamp
         };
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY;
-        
-        consensus.nFixUTXOCacheHFHeight=0;
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
+        consensus.lastPOSBlock = 47860000;
+        consensus.nThemisMPoSRewardRecipients = 5;
+        consensus.nOriginalMPoSRewardRecipients = 10;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY;
+
+        consensus.nFixUTXOCacheHFHeight = 0;
     }
 };
 static CMainParams mainParams;
@@ -177,10 +180,11 @@ static CMainParams mainParams;
  */
 class CTestNetParams : public CChainParams {
 public:
-    CTestNetParams() {
+    CTestNetParams()
+    {
         strNetworkID = "test";
-        
-        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; // ecoc halving every 2 and half years
+
+        consensus.nSubsidyHalvingInterval = ecoc::rewardSession; //
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S(ecoc::genesisBlockTestNet);
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
@@ -188,8 +192,8 @@ public:
         consensus.powLimit = uint256S("efffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0000ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
-        consensus.fPowAllowMinDifficultyBlocks = false; 
+        consensus.nPowTargetSpacing = ecoc::blockTime;
+        consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1512; // 75% for testchains
@@ -197,7 +201,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
-
+        consensus.ThemisHeight = 929300;
 
         // Deployment of BIP68, BIP112, and BIP113.
         consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
@@ -210,12 +214,12 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S ("0x01"); // ecoc
+        consensus.nMinimumChainWork = uint256S("0x01"); // ecoc
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0xdba75a42267c9f7cb8552d4f955ce7a01bbc4ef0b14a61f7bfd5e272dd83385b"); //700000
 
-        pchMessageStart[0] = 0xc0; 
+        pchMessageStart[0] = 0xc0;
         pchMessageStart[1] = 0x00;
         pchMessageStart[2] = 0xc0;
         pchMessageStart[3] = 0xe0;
@@ -224,31 +228,31 @@ public:
 
         genesis = CreateGenesisBlock(1530693715, 7921910, 0x1e00ffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-	
+
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockTestNet));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
-	
+
         vFixedSeeds.clear();
         vSeeds.clear();
         // nodes with support for servicebits filtering should be at the top
         vSeeds.push_back(CDNSSeedData("testnet.seeder.ecoc.io", "testnet.seeder.ecoc.io", false)); // Ecochain testnet
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,92);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 92);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 110);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >(); //BIP32 xpub...
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >(); //BIP32 xprv...
 
         fMiningRequiresPeers = true; //not used anywhere
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
-        fMineBlocksOnDemand = false; 
-	
-        checkpointData = (CCheckpointData) {
+        fMineBlocksOnDemand = false;
+
+        checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S(ecoc::genesisBlockTestNet))
-            ( 10000, uint256S("75a83c05f539b959d89524a0816d1e7272e539a123751303ecdc8255b7c81c08")) //last PoW block
-	        ( 500000, uint256S("cc8341b331ba5e1f7e02290ece750e841b95de43a007d47d484153c63e5980db")) //1st checkpoint
+            (0, uint256S(ecoc::genesisBlockTestNet))
+            (10000, uint256S("75a83c05f539b959d89524a0816d1e7272e539a123751303ecdc8255b7c81c08")) //last PoW block
+            (500000, uint256S("cc8341b331ba5e1f7e02290ece750e841b95de43a007d47d484153c63e5980db")) //1st checkpoint
         };
 
         chainTxData = ChainTxData{
@@ -257,14 +261,12 @@ public:
             0,
         };
 
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock; 
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nMPoSRewardRecipients + COINBASE_MATURITY; 
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
+        consensus.lastPOSBlock = 45900000 - (49 * (consensus.ThemisHeight - 920000));
+        consensus.nThemisMPoSRewardRecipients = 5;
+        consensus.nOriginalMPoSRewardRecipients = 10;
+        consensus.nFirstMPoSBlock = consensus.nLastPOWBlock + consensus.nOriginalMPoSRewardRecipients + COINBASE_MATURITY; 
         consensus.nFixUTXOCacheHFHeight = 84500;
-        
-        ecoc::ecocLogNL("nMPoSRewardRecipients: ") ; ecoc::ecocLog(consensus.nMPoSRewardRecipients);
-        ecoc::ecocLogNL("nLastPOWBlock: ") ; ecoc::ecocLog(consensus.nLastPOWBlock);
-        ecoc::ecocLogNL("nFirstMPoSBlock: ") ; ecoc::ecocLog(consensus.nFirstMPoSBlock);
     }
 };
 static CTestNetParams testNetParams;
@@ -274,9 +276,10 @@ static CTestNetParams testNetParams;
  */
 class CRegTestParams : public CChainParams {
 public:
-    CRegTestParams() {
+    CRegTestParams()
+    {
         strNetworkID = "regtest";
-	
+
         consensus.nSubsidyHalvingInterval = ecoc::rewardSession;
         consensus.BIP34Height = 0; // BIP34 has not activated on regtest (far in the future so block v1 are not rejected in tests) // activate for ecoc
         consensus.BIP34Hash = uint256S("0x665ed5b402ac0b44efc37d8926332994363e8a7278b7ee9a58fb972efadae943");
@@ -285,7 +288,7 @@ public:
         consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 16 * 60; // 16 minutes
-        consensus.nPowTargetSpacing = ecoc::BlockTime;
+        consensus.nPowTargetSpacing = 8;
         consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = true;
         consensus.fPoSNoRetargeting = true;
@@ -300,6 +303,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0;
         consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
+        consensus.ThemisHeight = 10500;
 
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x00");
@@ -307,21 +311,21 @@ public:
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
 
-        pchMessageStart[0] = 0xc0 ;
-        pchMessageStart[1] = 0x00 ;
-        pchMessageStart[2] = 0xc0 ;
-        pchMessageStart[3] = 0xe0 ;
+        pchMessageStart[0] = 0xc0;
+        pchMessageStart[1] = 0x00;
+        pchMessageStart[2] = 0xc0;
+        pchMessageStart[3] = 0xe0;
         nDefaultPort = 56555;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1504695029, 17, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-	
+
         assert(consensus.hashGenesisBlock == uint256S(ecoc::genesisBlockRegTest));
         assert(genesis.hashMerkleRoot == uint256S(ecoc::genesisMerkleRoot));
-	
+
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
-        vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
+        vSeeds.clear(); //!< Regtest mode doesn't have any DNS seeds.
 
         fMiningRequiresPeers = false; //not used anywhere
         fDefaultConsistencyChecks = true;
@@ -330,7 +334,7 @@ public:
 
         checkpointData = (CCheckpointData){
             boost::assign::map_list_of
-            ( 0, uint256S(ecoc::genesisBlockRegTest))
+            (0, uint256S(ecoc::genesisBlockRegTest))
         };
 
         chainTxData = ChainTxData{
@@ -339,15 +343,17 @@ public:
             0
         };
 
-        consensus.nLastPOWBlock = ecoc::LastPoWBlock;
-        consensus.nMPoSRewardRecipients = ecoc::consensusMultisigners;
-        consensus.nFirstMPoSBlock = ecoc::LastPoWBlock;
+        consensus.nLastPOWBlock = ecoc::lastPoWBlock;
+        consensus.nThemisMPoSRewardRecipients = 5;
+        consensus.nOriginalMPoSRewardRecipients = 10;
+        consensus.lastPOSBlock = 45900000 - (49 * (consensus.ThemisHeight - 920000));
+        consensus.nFirstMPoSBlock = ecoc::lastPoWBlock;
 
-        consensus.nFixUTXOCacheHFHeight=0;
+        consensus.nFixUTXOCacheHFHeight = 0;
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,92);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,110);
-        base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 92);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 110);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >(); //BIP32 xpub...
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >(); //BIP32 xprv...
     }
@@ -360,9 +366,10 @@ public:
 };
 static CRegTestParams regTestParams;
 
-static CChainParams *pCurrentParams = 0;
+static CChainParams* pCurrentParams = 0;
 
-const CChainParams &Params() {
+const CChainParams& Params()
+{
     assert(pCurrentParams);
     return *pCurrentParams;
 }

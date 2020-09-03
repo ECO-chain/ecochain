@@ -3312,7 +3312,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, con
             nCredit += nRewardPiece + nReward % nMPoS;
         }
 
-        LogPrintf("[PoS] Create coin stake for block: %d\n Reward: %d\n", nHeight, nReward);
+        LogPrintf("[PoS] Create coin stake for block: %d, Reward: %d\n", nHeight, nReward);
     }
 
     if (nCredit >= GetStakeSplitThreshold()) {

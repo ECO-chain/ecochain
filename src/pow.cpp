@@ -45,16 +45,15 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
         return nTargetLimit;
 
     // min difficulty
-    if (params.fPowAllowMinDifficultyBlocks)
-    {
+    if (params.fPowAllowMinDifficultyBlocks) {
         // Special difficulty rule for testnet:
         // If the new block's timestamp is more than 2* 10 minutes
         // then allow mining of a min-difficulty block.
         ecoc::ecocLog("allow min difficult blocks");
         if (pblock->GetBlockTime() > pindexLast->GetBlockTime() + params.nPowTargetSpacing*2)
             return nTargetLimit;
-        else
-        {
+
+        else {
             // Return the last non-special-min-difficulty-rules-block
             const CBlockIndex* pindex = pindexLast;
             while (pindex->pprev && pindex->nHeight % params.DifficultyAdjustmentInterval() != 0 && pindex->nBits == nTargetLimit)
@@ -68,11 +67,11 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params, bool fProofOfStake)
 {
-
-    if(fProofOfStake){
+    if (fProofOfStake) {
         if (params.fPoSNoRetargeting)
             return pindexLast->nBits;
-    }else{
+    }
+    else {
         if (params.fPowNoRetargeting)
             return pindexLast->nBits;
     }

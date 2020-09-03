@@ -18,7 +18,7 @@ static void TestBlockSubsidyHalvings(const Consensus::Params& consensusParams)
     int maxHalvings = 7;
     CAmount nInitialSubsidy = 4 * COIN;
 
-    CAmount nPreviousSubsidy = nInitialSubsidy * 2 ; // for height == LastPoWBlock + 1
+    CAmount nPreviousSubsidy = nInitialSubsidy * 2 ; // for height == lastPoWBlock + 1
     BOOST_CHECK_EQUAL(nPreviousSubsidy, nInitialSubsidy * 2);
     for (int nHalvings = 0; nHalvings < maxHalvings; nHalvings++) {
         int nHeight = nHalvings * consensusParams.nSubsidyHalvingInterval + consensusParams.nLastPOWBlock + 1;

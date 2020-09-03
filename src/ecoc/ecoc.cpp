@@ -61,7 +61,7 @@ uint64_t getActualSupply(int height)
             if (epoch == 5) {
                 epochPeriod = lastPoWBlock + params.lastPOSBlock - ThemisHeight - 4 * epochPeriod;
             }
-            actualSupply += std::max(0, (6 - epoch) * std::min(epochPeriod, height - ThemisHeight - (epoch - 1) * epochPeriod));
+            actualSupply += std::max(0, (6 - epoch) * std::min(epochPeriod, height - ThemisHeight - (epoch - 1) * rewardSession));
         }
     }
     else {

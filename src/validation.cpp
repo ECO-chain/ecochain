@@ -2018,7 +2018,9 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
     for (size_t i = 0; i < vouts.size(); i++) {
         it=std::find(vTempVouts.begin(), vTempVouts.end(), vouts[i]);
         if (it==vTempVouts.end()) {
-            return state.DoS(100,error("CheckReward(): Gas refund missing"));
+	    if (!IsArgSet("-unsafe-mode")) {
+	      return state.DoS(100,error("CheckReward(): Gas refund missing"));
+	    }
         }
         else {
             vTempVouts.erase(it);
@@ -2082,9 +2084,11 @@ bool CheckReward(const CBlock& block, CValidationState& state, int nHeight, cons
         for (size_t i = 0; i < mposScriptList.size(); i++) {
             it = std::find(vTempVouts.begin(), vTempVouts.end(), CTxOut(splitReward, mposScriptList[i]));
             if (it==vTempVouts.end()) {
+	      if(!IsArgSet("-unsafe-mode")) {
                 return state.DoS(100,
                         error("CheckReward(): An MPoS participant was not properly paid"),
                         REJECT_INVALID, "bad-cs-mpos-missing");
+	      }
             }
             else {
                 vTempVouts.erase(it);
@@ -2881,8 +2885,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
             LogPrintf("Actual block data does not match hashStateRoot expected by AAL block\n");
         }
 
+	/* disable AAL hashroot on unsafe mode */
+	 if (!IsArgSet("-unsafe-mode")) {
         return state.DoS(100, error("ConnectBlock(): Incorrect AAL transactions or hashes (hashStateRoot, hashUTXORoot)"),
             REJECT_INVALID, "incorrect-transactions-or-hashes-block");
+	 }
     }
 
     if (fJustCheck) {

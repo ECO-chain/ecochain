@@ -515,6 +515,45 @@ UniValue echo(const JSONRPCRequest& request)
     return request.params;
 }
 
+UniValue getGlobalState(const JSONRPCRequest& request) {
+if (!IsArgSet("-unsafe-mode")) {
+  throw runtime_error("this command is available only in unsafe-mode");
+ }
+  if (request.fHelp || request.params.size() != 1)
+        throw runtime_error(
+            "getglobalstate \"block\"\n"
+            "\nReturns hashes about the global state.\n"
+            "\nArguments:\n"
+            "1. \"block\"     (string, required) The block number for checking\n"
+            "\nResult:\n"
+            "{\n"
+            "  \"MerkleRoot\" : \"hex\", (string) The hex of Merkle root\n"
+            "  \"StateRoot\" : \"hex\", (string) The hex of state root\n"
+            "  \"UTXORoot\" : \"hex\",  (string) The hex of UTXO root\n"
+            "}\n"
+            "\nExamples:\n"
+            + HelpExampleCli("getglobalstate", "\"<blocknumber>\"")
+            + HelpExampleRpc("getglobalstate", "\"<blocknumber>\"")
+        );
+  
+  LOCK(cs_main);
+
+  string nHeight = request.params[0].get_str();
+  if (stoi(nHeight) < 0 || stoi(nHeight) > chainActive.Height()) {
+        throw runtime_error("Block height out of range\n");
+    }
+    
+  CBlockIndex* blockindex = chainActive[stoi(nHeight)];
+  UniValue obj(UniValue::VOBJ);
+  
+  obj.push_back(Pair("MerkleRoot", blockindex->hashMerkleRoot.GetHex()));
+  obj.push_back(Pair("StateRoot", blockindex->hashStateRoot.GetHex()));
+  obj.push_back(Pair("UTXORoot",  blockindex->hashUTXORoot.GetHex()));
+  
+  return obj;  
+  
+}
+
 static const CRPCCommand commands[] =
 { //  category              name                      actor (function)         okSafeMode
   //  --------------------- ------------------------  -----------------------  ----------
@@ -529,6 +568,10 @@ static const CRPCCommand commands[] =
     { "hidden",             "setmocktime",            &setmocktime,            true,  {"timestamp"}},
     { "hidden",             "echo",                   &echo,                   true,  {"arg0","arg1","arg2","arg3","arg4","arg5","arg6","arg7","arg8","arg9"}},
     { "hidden",             "echojson",               &echo,                  true,  {"arg0","arg1","arg2","arg3","arg4","arg5","arg6","arg7","arg8","arg9"}},
+
+    /* extra rpc calls */
+    { "control",            "getglobalstate",        &getGlobalState,         true,  {"block"} },
+    
 };
 
 void RegisterMiscRPCCommands(CRPCTable &t)
